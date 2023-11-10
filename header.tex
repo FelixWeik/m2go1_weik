@@ -309,7 +309,6 @@
 \makeindex
 
 \usepackage{bera}% optional: just to have a nice mono-spaced font
-\usepackage{listings}
 \usepackage{xcolor}
 
 \colorlet{punct}{red!60!black}
@@ -320,3 +319,13 @@
 \usepackage{tabularx}
 
 \usepackage{listingsutf8}
+
+\lstdefinelanguage{Golang}{
+  morekeywords={break,default,func,interface,select,
+  case,defer,go,map,struct,chan,else,goto,package,switch,
+  const,fallthrough,if,range,type,continue,for,import,return,var},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+}

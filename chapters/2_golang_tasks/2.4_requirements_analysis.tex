@@ -7,7 +7,9 @@ Goal of this task is to find four use cases and one actor according to the given
 
 \begin{lstlisting}[
     caption={Use Case 1: "Rent a Car"},
-    label={lst:car_rental_use_case_1}
+    label={lst:car_rental_use_case_1},
+    numbers=left,
+    numberstyle=\tiny
 ]
     Title: Rent a Car
     Primary Actor: Customer
@@ -38,7 +40,9 @@ Goal of this task is to find four use cases and one actor according to the given
 
 \begin{lstlisting}[
     caption={Use Case 2: "Registering Process"},
-    label={lst:car_rental_use_case_2}
+    label={lst:car_rental_use_case_2},
+    numbers=left,
+    numberstyle=\tiny
 ]
     Title: Registering Process
     Primary Actor: Customer
@@ -80,7 +84,9 @@ Goal of this task is to find four use cases and one actor according to the given
 
 \begin{lstlisting}[
     caption={Use Case 3: "Cancellation of a rental"},
-    label={lst:car_rental_use_case_3}
+    label={lst:car_rental_use_case_3},
+    numbers=left,
+    numberstyle=\tiny
 ]
     Title: Cancellation of a rental
     Primary Actor: Customer
@@ -119,7 +125,9 @@ Goal of this task is to find four use cases and one actor according to the given
 
 \begin{lstlisting}[
     caption={Use Case 4: "Cancellation of the Registration"},
-    label={lst:car_rental_use_case_4}
+    label={lst:car_rental_use_case_4},
+    numbers=left,
+    numberstyle=\tiny
 ]
     Title: Cancellation of the Registration
     Primary Actor: Customer
@@ -149,3 +157,19 @@ Goal of this task is to find four use cases and one actor according to the given
     6a. Customer does not confirm the cancellation via email
         6a1. The flow terminates and the registration is not cancelled
 \end{lstlisting}
+
+\subsection{Modelling the Use Case Diagram with UMLet}
+The installation of the standalone version of UMLet is carried out as follows:
+\begin{enumerate}
+    \item Download the latest version of UMLet from \url{https://www.umlet.com/changes.htm}
+    \item Extract the downloaded archive
+    \item Run the executable file \texttt{umlet.sh} in the extracted folder
+\end{enumerate}
+
+A screendump of the folder structure of the extracted archive is shown in figure \ref{fig:umlet_folder_structure}.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRental_umletInstallation.png}
+    \caption{Folder structure of the extracted UMLet archive}
+    \label{fig:umlet_folder_structure}
+\end{figure}

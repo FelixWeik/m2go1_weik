@@ -173,3 +173,26 @@ A screendump of the folder structure of the extracted archive is shown in figure
     \caption{Folder structure of the extracted UMLet archive}
     \label{fig:umlet_folder_structure}
 \end{figure}
+
+The use case diagram is shown in figure \ref{fig:car_rental_use_case_diagram}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRental_umlDiagram.png}
+    \caption{Use case diagram of the car rental application}
+    \label{fig:car_rental_use_case_diagram}
+\end{figure}
+
+\subsection{Alice's Car Rental}
+\begin{lstlisting}[
+    caption={Alice's version of Use Case 1},
+    label={lst:alices_car_rental_use_case_1},
+    numbers=left,
+    numberstyle=\tiny
+]
+    1. Alice calls the application CarRental.
+    2. Alice enters the 01.01.00 as a start date and 02.02.00 as the end date as the rental period
+    3. The system shows a list with the cars which are available at the selected rental period
+    4. Alice selects a VW ID.2
+    5. The system shows a rental confirmation and stores the rental
+\end{lstlisting}

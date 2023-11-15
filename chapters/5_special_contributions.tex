@@ -1,0 +1,36 @@
+\chapter{Special Contributions}
+\label{ch:special_contributions}
+
+\section{Go Environment Variables}
+This section is executed on an unix-based system, in the author's case it's Ubuntu.
+
+\subsection*{Installation}
+During the go installation, one needs to add paths to the environment variables.
+To add the paths add \texttt{export PATH\=\$PATH\:\/usr\/local\/go\/bin} 
+to the \texttt{\$HOME/.profile} for user-wide installation or to \texttt{/etc/profile} for a system-wide installation.
+But what is the difference between both files and what exactly does this extra variable in the file do?
+
+\subsubsection*{The .profile File}
+This file is used to set environment variables and configurations for the shell.
+It contains the file paths for commands the system will check for instead of the user typing the full path to the file everytime he wants to execute it.
+When a user logs into the system, the file is executed to initialize the environment for the user's session.
+The file is located in the user's home directory and is hidden by default.
+
+The usual setup is separated into two files:
+\begin{enumerate}
+    \item System-wide configuration:
+        Files like \texttt{/etc/profile} are used to set up the environment for all users.
+        These files are executed when any user logs in.
+    \item User-specific configuration:
+        Each user has their own profile configuration file.
+        This file is located in the user's home directory like \texttt{\$HOME/.profile} or \texttt{\$HOME/.bashrc}.
+        These files are executed when the specific user logs in.
+\end{enumerate}
+
+\subsubsection*{The PATH Variable}
+If one does not include a \texttt{PATH} variable in her system, the shell will only search for executable files in the system-wide paths defined in the default \texttt{PATH} variable.
+If the binary is not located in these system-wide paths, the file will not be able to be executed correctly without providing the complete path.
+Adding a directory to the \texttt{PATH} allows the shell to search in custom directories for executable (or binary) files.
+Therefore, commands and programs can be executed without specifying the full path.
+
+In the example above, the \texttt{PATH} variable is extended by the path to the go binaries, enabling go files in the \texttt{PATH} to be executed without specifying the full path.

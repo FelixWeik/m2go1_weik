@@ -17,11 +17,43 @@ The given task starts with three different software components:
     \item Infrastructure Layer: CarRentalRepository
 \end{itemize}
 \subsubsection*{Presentation Layer: CarRentalCLI}
-This layer consists out of two files: \texttt{CarRentalCli.go} and \texttt{CliActions.go}.
-\texttt{CarRentalCli.go} creates a new CLI-object and returns it.
-It defines the CLI-commands and their corresponding functions.
-It also implements the function to run the CLI, also providing error functions in case of an anomaly.
-\texttt{CliActions.go} implements the functions that are called from the CarRentalCli.
+\begin{itemize}
+    \item Functionality: This component implements the CLI itself. 
+          It creates a new CLI object, runs it, and exits safely if an error occurs.
+          Furthermore, it implements the CLI commands with the list of according functions a command calls.
+    \item Interfaces: The CLI component implements the CarRentalOperationsInterface
+    \item Dependencies: This layer is dependent from the applications logic layer, importing and implementing functions from the logic layer.
+    \item Reusability: The layer is reusable since it only implements CLI and commands.
+          By providing a different set of function the CLI implements, one can reuse the CLI in a different context.
+    \item Scalability and Maintainability: It can be scaled by adding new commands and functions to the CLI.
+          It can be maintained by fixing commands and the according functions.
+          By separating the CLI into a single layer, the commands can be organized systematically and provide great overview.
+\end{itemize}
 
 \subsubsection*{Application Logic Layer: CarRentalOperations}
+\begin{itemize}
+    \item Functionality: This component implements the business logic of the application.
+          It provides functions for the CLI to call, which then call the according functions from the infrastructure layer.
+          It also provides the models of the objects, that are used in the application.
+    \item Interfaces: This component implements the CarRentalRepositoryInterface and provides the CarRentalOperationsInterface
+    \item Dependencies: This component is dependent from the infrastructure layer and therefore dependent from the layer below.
+    \item Reusability: Since this component uses the infrastructure layer, it is not directly reusable.
+          It implements a specific set of functions, which cannot be reused in different contexts.
+    \item Scalability and Maintainability: It can be scaled by adding new functions to the component.
+          It can be maintained by fixing functions.
+\end{itemize}
 
+\subsubsection*{Infrastructure Layer: CarRentalRepository}
+\begin{itemize}
+    \item Functionality: This component implements yaml mappers and entities. 
+          This allows for simple communication between the application and the yaml files.
+          The yaml mappers provide functions to read and write yaml files.
+          The entities provide the structure of the yaml files and the structure of the struct the mapper creates.
+    \item Interfaces: This component provides the CarRentalRepositoryInterface
+    \item Dependencies: The component is dependent from the provided yaml files, since it reads and writes them.
+          In terms of functionality, no functionality imports from other parts of the application are needed since all functions are implemented in the component itself.
+    \item Reusability: This component is reusable since it only implements yaml mappers and entities.
+          By providing a different set of entities and mappers, one can reuse the component in a different context.
+    \item Scalability and Maintainability: By adding new mappers and entities, the functionality can be extended.
+          By fixing the mappers and entities, the maintainability can be ensured.
+\end{itemize}

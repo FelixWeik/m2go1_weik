@@ -57,3 +57,55 @@ The given task starts with three different software components:
     \item Scalability and Maintainability: By adding new mappers and entities, the functionality can be extended.
           By fixing the mappers and entities, the maintainability can be ensured.
 \end{itemize}
+
+\subsubsection*{Analyze the Micro Architecture}
+
+\subsubsection*{Start the Go Program CarRentalCLI}
+The output after starting the program successfully is displayed in figure \ref*{fig:car_rental_cli_successful_rental_max}.
+The program asks for the id of the customer and the id of the car.
+After entering the ids, the program asks for the start and enddate of the rental by asking for the day, month and year.
+If the data is entered correctly and the rental is successful, the program prints a success message and exits.
+Otherwise, the program asks for the remaining data, prints an error message, the exit-status and exits.
+
+\begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRentalCLI/carRentalCli_SuccessfulRentalMax.png}
+      \caption{Successful Rental of a Car for Max}
+      \label{fig:car_rental_cli_successful_rental_max}
+\end{figure}
+
+\section{Excercise AddRegisterAsCustomer}
+\subsection*{Why is the Mapper required?}
+The general task of a mapper is to enable communication between the application and the database.
+In this case, the database is a yaml file.
+Therefore the mapper can read and write to the yaml files and convert the data to the according entities and vice versa.
+
+In the use case of registering a new customer, the mapper is called while creating a new customer.
+The yaml mapper receives the customer object from the function and returns the CustomerPersistenceEntity.
+This entity is then written to the yaml file.
+By writing the entity into the yaml file, the customer is registered and can be used in the application.
+
+\subsection*{Register Alice as Customer}
+After running the CLI command to register a new customer, the program asks for the ID of the customer.
+In this case Alice receives the ID \texttt{Cus5}.
+After entering the ID, the program asks for the name of the customer, in this case Alice.
+The program exits with a success message and the exit-status as shown in figure \ref{fig:car_rental_cli_register_alice}.
+
+To register a new rental, the programm starts with \texttt{go run . -- rent}.
+The program asks for the ID of the rental, here it is \texttt{Rental7}.
+The customer ID for Alice is \texttt{Cus5}.
+After that the start and enddate is entered.
+The program exits with a success message and the exit-status as shown in figure \ref{fig:car_rental_cli_rental_alice_successful}.
+
+\begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRentalCLI/carRentalCLI_RegisterAlice.png}
+      \caption{Register Alice as a Customer}
+      \label{fig:car_rental_cli_register_alice}
+\end{figure}
+\begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRentalCLI/carRentalCLI_SuccessfulRentalAlice.png}
+      \caption{Successful Rental of a Car for Alice}
+      \label{fig:car_rental_cli_rental_alice_successful}
+\end{figure}

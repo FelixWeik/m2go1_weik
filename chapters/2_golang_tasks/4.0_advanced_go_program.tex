@@ -114,3 +114,61 @@ The program exits with a success message and the exit-status as shown in figure 
 
 \subsection{Excercise TestCarRentalCLI}
 \label{sec:exercise_test_car_rental_cli}
+\subsubsection*{Derive Test Cases}
+
+\subsubsection*{Analyze Test Structure}
+% Structure description of the test file and mock-repository
+The MockCarRepository acts similar to the actual CarRepository.
+It implements the CarRentalRepositoryInterface and provides the according functions.
+Furthermore, it also implements the lists of the models \texttt{Rental}, \texttt{Car}, and \texttt{Customer}.
+However, there is no constructor and no manipulation of yaml files.
+All data-manipulations are done in the memory of the mock-repository.
+Therefore the mock-repository only imports the used models.
+
+The test file \texttt{RentACarOperation\_test.go} implements the tests for the \texttt{RentACar} function.
+It creates the testint environment by implementing the constructor of the mock-repository, populating it with test data.
+After the setup the executable tests are implemented.
+
+% Structure description of the test function TestCarRentalOperations_RentACar
+The implementation of the tests happens in the \texttt{TestCarRentalOperations\_RentACar} function.
+The \texttt{fields} struct defines the repository used in each test and therefore the test environment.
+After that, the \texttt{args} struct defines the arguments needed for the \texttt{RentACar} function.
+Now, the test cases are implemented containing the following values:
+\begin{itemize}
+      \item fields: The repository used in the test as specified above
+      \item name: The name of the test
+      \item args: The arguments for the \texttt{RentACar} function as specified above
+      \item want: The expected return value of the \texttt{RentACar} function, in this case a String 
+      \item wantErr: True, if an error is expected, false otherwise. 
+            This allows the implementation of negative test cases without the tests failing.
+\end{itemize}
+
+% Differences between the mock and the normal repository
+The following differences occur between the mock and the normal repository:
+\begin{itemize}
+      \item The mock repository does not implement a constructor
+      \item The mock repository does not manipulate any yaml files, everything is done in the mock repository's lists.
+      \item The mock repository only imports the models used in the tests.
+      \item The mock repository is only used for testing while the normal repository is used in the application.
+      \item The mock repository is located in the same package as the test file (operations), while the normal repository is located in the infrastructure package.
+\end{itemize}
+
+However, there are still some similarities:
+\begin{itemize}
+      \item Both repositories implement the CarRentalRepositoryInterface and therefore provide the same functions.
+      \item The provided functionalities are somewhat similar besides the differences mentioned above.
+      \item Both repositories are adressed via an operations object representing the repository
+\end{itemize}
+
+% Why is a mocked repository required?
+Now, why is mocked repository required?
+First of all, the mock repository is required to test the functionality of the \texttt{RentACar} function.
+This could also be done with the normal repository, however, this would require the manipulation of the yaml files, which arises the following problems:
+\begin{itemize}
+      \item Test data and actual application data are mixed up
+      \item The test data is not reset after the test, which could lead to problems in the next test
+      \item The test data needs no be cleaned up after the test, which is not necessary with the mock repository
+      \item By creating a certain testing environment, the testing data can manipulated to test the wanted scenarios
+\end{itemize}
+
+Further benefits and the actual usage and implementation of both the normal and the mock repository are further explained in \ref*{sec:go_repositories}.

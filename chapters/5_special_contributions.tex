@@ -4,13 +4,13 @@
 \section{Go Environment Variables}
 This section is executed on an unix-based system, in the author's case it's Ubuntu.
 
-\subsection*{Installation}
+\subsection{Installation}
 During the go installation, one needs to add paths to the environment variables.
 To add the paths add \texttt{export PATH\=\$PATH\:\/usr\/local\/go\/bin} 
 to the \texttt{\$HOME/.profile} for user-wide installation or to \texttt{/etc/profile} for a system-wide installation.
 But what is the difference between both files and what exactly does this extra variable in the file do?
 
-\subsubsection*{The .profile File}
+\subsection{The .profile File}
 This file is used to set environment variables and configurations for the shell.
 It contains the file paths for commands the system will check for instead of the user typing the full path to the file everytime he wants to execute it.
 When a user logs into the system, the file is executed to initialize the environment for the user's session.
@@ -27,10 +27,79 @@ The usual setup is separated into two files:
         These files are executed when the specific user logs in.
 \end{enumerate}
 
-\subsubsection*{The PATH Variable}
+\subsection{PATH Variables}
 If one does not include a \texttt{PATH} variable in her system, the shell will only search for executable files in the system-wide paths defined in the default \texttt{PATH} variable.
 If the binary is not located in these system-wide paths, the file will not be able to be executed correctly without providing the complete path.
 Adding a directory to the \texttt{PATH} allows the shell to search in custom directories for executable (or binary) files.
 Therefore, commands and programs can be executed without specifying the full path.
 
 In the example above, the \texttt{PATH} variable is extended by the path to the go binaries, enabling go files in the \texttt{PATH} to be executed without specifying the full path.
+
+\section{Go Repositories}
+\label{sec:go_repositories}
+This section explains the benefits and use-cases of repositories in go.
+The go-application \texttt{CarRentalCLI} is used as an example.
+
+\subsection{Repositories}
+CarRentalCLI uses repositories to access the data.
+These repositories are located on the logic layer.
+It implements the interface \texttt{CarRentalRepositoryInterface} which provides the signatures of the data accessing functions.
+\texttt{CarRentalRepository} then implements these specified functions, the constructor, and lists containing the application's data as specified in the model package.
+
+All of the implemented functions are used to manipulate data in the lists and the yaml files.
+Therefore the repository also has access to the yaml mappers and entities.
+
+\subsubsection*{Implementation in CarRentalCLI}
+The \texttt{CarRentalRepositoryInterface} is implemented by \texttt{CarRentalRepository}.
+This repository is then given to \texttt{CarRentalOperations} in the main function.
+The operations-object then is used in the cli to call the repository's functions and lists.
+
+\subsubsection*{Benefits}
+While this seeming contra-intuitive at first, this implementation hierarchy provides some great benefits.
+\begin{enumerate}
+    \item Abstraction: The cli does not need to know how the data is accessed.
+          It only needs to know that the data is accessed by the repository.
+          This allows for easy changes in the data accessing process.
+    \item Flexibility: The operations object and therefore the cli can be used with different repositories.
+          This allows for easy changes in the data accessing process.
+          Furthermore, the functionality can be switched out if neccessary.
+    \item Scalability: The repository can be extended by adding new functions.
+          The operations and the cli can then use these new functions without changing the cli itself.
+    \item Encapsulation: The cli does not need to know how the data is accessed.
+          It only needs to know that the data is accessed by the repository.
+          This allows for easy changes in the data accessing process.
+    \item Maintainability: The repository and therefore the cli can be maintained by fixing functions.
+    \item Testing: Testing can be easily realized by implementing a mock repository.
+          This is further explained in the following section on mock-repositories \ref*{sec:mock_repositories}.
+\end{enumerate}
+
+\subsection{Mock-Repositories}
+\label{sec:mock_repositories}
+A mock repository is a repository that implements the repository interface but does not access the data.
+It usually is located on the same layer as the actual repository, yet in a different package.
+
+The mock repository does not import any other packages or modules besides the repository interface or helper packages.
+It only implements the repository interface and provides the lists and functions needed for exectuing correctly.
+Furthermore, it does not implement a constructor, since it does not need to initialize any data.
+This is usually done in the test file to create the needed testing-environment.
+
+\subsubsection*{Implementation in CarRentalCLI}
+The mock repository implements the \texttt{CarRentalRepositoryInterface} and provides the lists and functions needed for executing correctly.
+Yet, it does not implement a constructor as the actual repository does.
+This is done in the test file to create the needed testing-environment.
+
+This mock repository does not access any yaml mapper or writes data to any yaml file.
+It solely writes to the mock-repository's lists and manipulates them.
+
+To implement the lists it needs to import the according models.
+Apart from that, it does not import any other packages or modules.
+
+\subsubsection*{Benefits}
+This process provides similar benefits as the actual repository but also has some great benefits for testing.
+\begin{enumerate}
+    \item Readability: Tests and code of the actual application are separated.
+          This allows for better readability and overview.
+    \item No new Dependencies and Datafiles: By solely accessing the lists in the mock-repository, nothing is written to the yaml files.
+          Therefore, nothing needs to be cleaned up after testing is done.
+          Furthermore, testing cannot corrupt the data in the yaml files or block the execution of the application.
+\end{enumerate}

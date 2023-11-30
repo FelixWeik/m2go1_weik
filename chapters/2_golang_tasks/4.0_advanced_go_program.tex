@@ -1,5 +1,6 @@
-\section{Excercise GettingStartedWithCarRentalCLI}
-\subsection*{Analyze the CLI Parameters}
+\subsection{Excercise GettingStartedWithCarRentalCLI}
+\label{sec:exercise_getting_started_with_car_rental_cli}
+\subsubsection*{Analyze the CLI Parameters}
 After analyzing the use cases presented in section 3.1 of the goLang tasks in table 4.1, the parameters displayed in figure \ref{fig:car_rental_cli_parameters} are needed.
 
 \begin{figure}[H]
@@ -9,7 +10,7 @@ After analyzing the use cases presented in section 3.1 of the goLang tasks in ta
     \label{fig:car_rental_cli_parameters}
 \end{figure}
 
-\subsection*{Describe the Software Architecture}
+\subsubsection*{Describe the Software Architecture}
 The given task starts with three different software components:
 \begin{itemize}
     \item Presentation Layer: CarRentalCLI
@@ -74,8 +75,9 @@ Otherwise, the program asks for the remaining data, prints an error message, the
       \label{fig:car_rental_cli_successful_rental_max}
 \end{figure}
 
-\section{Excercise AddRegisterAsCustomer}
-\subsection*{Why is the Mapper required?}
+\subsection{Excercise AddRegisterAsCustomer}
+\label{sec:exercise_add_register_as_customer}
+\subsubsection*{Why is the Mapper required?}
 The general task of a mapper is to enable communication between the application and the database.
 In this case, the database is a yaml file.
 Therefore the mapper can read and write to the yaml files and convert the data to the according entities and vice versa.
@@ -85,7 +87,7 @@ The yaml mapper receives the customer object from the function and returns the C
 This entity is then written to the yaml file.
 By writing the entity into the yaml file, the customer is registered and can be used in the application.
 
-\subsection*{Register Alice as Customer}
+\subsubsection*{Register Alice as Customer}
 After running the CLI command to register a new customer, the program asks for the ID of the customer.
 In this case Alice receives the ID \texttt{Cus5}.
 After entering the ID, the program asks for the name of the customer, in this case Alice.
@@ -109,3 +111,6 @@ The program exits with a success message and the exit-status as shown in figure 
       \caption{Successful Rental of a Car for Alice}
       \label{fig:car_rental_cli_rental_alice_successful}
 \end{figure}
+
+\subsection{Excercise TestCarRentalCLI}
+\label{sec:exercise_test_car_rental_cli}

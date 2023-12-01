@@ -46,8 +46,8 @@ We specified in the beginning of the section, startDate, endDate, correctCar, an
 
 \begin{lstlisting}[
     language=Golang,
-    caption={Test Cases for the Rental Context},
-    label={lstlisting:rental_test_cases},
+    caption={Test Cases for the Customer Context},
+    label={lstlisting:customer_test_cases},
     numbers=left,
     numberstyle=\tiny
     ]
@@ -124,5 +124,26 @@ This could also be done with the normal repository, however, this would require 
 \end{itemize}
 
 Further benefits and the actual usage and implementation of both the normal and the mock repository are further explained in \ref{sec:go_repositories}.
+As shown all tests pass besides the first test.
+This is due to the given testing envorionment.
+The rental is already created therefore an error will occur and the test fails.
+
+The negative test-cases do not fail due to its construction.
+By setting the \texttt{wantErr} value to true, the test will not fail if an error occurs.
+This allows the implementation of negative test cases without the tests failing, which is the desired behaviour.
 
 \subsection*{Run Tests}
+Test testing results are shown in figures \ref*{fig:carRentalCLI_testingConsoleOutput} and \ref*{fig:carRentalCLI_testingGraphicalOutput}.
+
+\begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRentalCLI/carRentalCLI_testingConsoleOutput.png}
+      \caption{Console Output of the RentACar Tests}
+      \label{fig:carRentalCLI_testingConsoleOutput}
+\end{figure}
+\begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRentalCLI/carRentalCLI_testingGraphicalOutput.png}
+      \caption{Graphical Output of the RentACar Tests}
+      \label{fig:carRentalCLI_testingGraphicalOutput}
+\end{figure}

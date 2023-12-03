@@ -1,25 +1,31 @@
 \chapter{M2Go Part 2: Golang}
 \label{cha:golang}
-The first section explains the installation process of the go-environment.
-The second section describes the usage and the structure of the GitLab repository.
-The third section contains the basic Hello World program and its execution.
+This section introduces the Golang programming language.
+It is a compiled, statically typed language developed by Google, commonly used for network and web applications.
+Its performance and simplicity make it a good choice for microservices, APIs and other network applications.
 
-Section two is based on the CarRental app and its use cases.
+In the first section, we will install the Golang environment and clone the golang repository from gitlab.
+Section \ref{sec:basic_hello_world_program} will introduce the basic syntax of Golang by implementing a simple hello world program.
+In section \ref{sec:go_program_car_rental} we will analyse the structure and requirements of the CarRental program, manifesting the basic golang knowledge.
+Finally, in section \ref{sec:advanced_go_program_car_rental_cli} we will implement a command line interface for the CarRental program, using advanced golang features for implementing and testing.
 
 %==============================================================================
 
 \section{M2Go Environment Installation}
+\label{sec:m2go_env_installation}
 \input{chapters/2_golang_tasks/2.1_excercise_install_go_env.tex}
 \input{chapters/2_golang_tasks/2.2_cm_gitlab_usage.tex}
 
 %==============================================================================
 
 \section{Basic Go Program HelloWorld}
+\label{sec:basic_go_program}
 \input{chapters/2_golang_tasks/2.3_basic_hello_world_program.tex}
 
 %==============================================================================
 
 \section{Go Program CarRental}
+\label{sec:go_program_car_rental}
 \input{chapters/2_golang_tasks/3.1_requirements_analysis.tex}
 \input{chapters/2_golang_tasks/3.2_design_of_data_and_functionality.tex}
 \input{chapters/2_golang_tasks/3.3_implementation_and_test.tex}
@@ -27,6 +33,7 @@ Section two is based on the CarRental app and its use cases.
 %==============================================================================
 
 \section{Advanced Go Program CarRentalCLI}
+\label{sec:advanced_go_program_car_rental_cli}
 \input{chapters/2_golang_tasks/4.0_advanced_go_program.tex}
 \input{chapters/2_golang_tasks/4.3_tests.tex}
 

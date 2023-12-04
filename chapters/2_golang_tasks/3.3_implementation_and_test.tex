@@ -1,13 +1,14 @@
 \subsection{Excercise CarRentalStructs}
 \label{sec:car_rental_structs}
-% TODO Einleitung zu jeder Aufgabe schreiben
+%//TODO Einleitung zu jeder Aufgabe schreiben
 
 \subsubsection*{Add the Attributes to Structs}
-After adding the attributes from the entity diagram to the 
-\texttt{.../golang/CarRental/CarRentalStructs/CarRentalStructs.go} path and saving
+%//TODO Einführung zu Structs, struct mit großem Buchstaben wird exportiert wie public, kleiner Buchstabe ist private
+After adding the attributes from the entity diagram to the \hfill \newline \texttt{.../golang/CarRental/CarRentalStructs/CarRentalStructs.go} path and saving
 the IDE automatically formats the code and indents it correctly.
 
 \subsubsection*{Initialize and Print Structs}
+%//TODO erklären wie das printen funktioniert, key-value pairs im struct (werden auch ausgegeben), struct structs müssen implementiert werden, sachen wurden noch nicht implementiert, was macht der & operator
 The result of the initialization and printing of the structs is shown in figure \ref{fig:car_rental_structs}.
 \begin{figure}[H]
     \centering
@@ -15,19 +16,20 @@ The result of the initialization and printing of the structs is shown in figure 
     \caption{Output of the structs}
     \label{fig:car_rental_structs}
 \end{figure}
+%//TODO Code von Rental initialisierung einfügen
 
 \subsubsection*{Create an Array of Rentals}
 The function works as follows:
 \begin{enumerate}
-    \item The array \texttt{cartypes} holds the string of 5 different cartypes
-    \item The function \texttt{createRentals(id, date, car)} returns 5 rentals that are appended to the array
+    \item The array \texttt{cartypes} holds the string of five different cartypes
+    \item The function \texttt{createRentals(id, date, car)} returns five rentals that are appended to the array
     \item Via \texttt{fmt.Println(rentals)} the array is printed into the console
 \end{enumerate}
 
 The result is shown in figure \ref{fig:car_rental_array_five_rentals}.
 
-The initialization process of an empty array containing 5 cars in go looks as follows: \texttt{var cars \[5\]Car}
-Alternatively the array can be created already initialized with \texttt{var cartypes = \[5\]string\{"Type1", ..., "Type5"\}}
+The initialization process of an empty array containing five cars in go looks as follows: \texttt{var cars [5]Car}
+Alternatively the array can be created already initialized with \texttt{var cartypes = [5]string\{"Type1", ..., "Type5"\}}
 This notation creates an array of 5 strings representing cartypes.
 
 A for loop in go ranges from an integer value, usually called "i", to an upper border.
@@ -71,7 +73,7 @@ After running the test function an error occurs.
 The test, therefore, does not pass.
 The error is shown in figure \ref{fig:car_rental_test_error}.
 
-This error is caused due to a false implementation in line 20 of \texttt{./CarRentalTests/CarRentalTests.go}
+This error is caused due to a false implementation in line 20 of \hfill \linebreak \texttt{./CarRentalTests/CarRentalTests.go}
 In the first test, it checks if the year is $>2000$, yet for correct execution it needs to be $>=2000$.
 
 \begin{figure}[H]

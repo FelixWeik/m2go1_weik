@@ -11,7 +11,10 @@ The entity diagram consists of the following entities:
     \item Date value object
 \end{itemize}
 A customer has zero ore more rentals.
-Each rental has a date value object and belongs to at most one car.
+Therefore each rental belongs to at exactly one customer.
+Each rental has a date value object and belongs to exactly one car.
+
+%//TODO entity diagram methoden unten, signatur bekommt kein rental sondern gibt zurück, sichtbarkeit einfügen
 
 \subsubsection*{Adding the Attributes}
 The extended entity diagram is shown in figure \ref{fig:extendedEntityDiagram}.
@@ -51,6 +54,7 @@ The following attributes are added to the entities:
     \label{fig:extendedEntityDiagram}
 \end{figure}
 
+%//TODO Signatur anpassen, wird funktionlität benötigt?
 \subsubsection*{Adding the Functionality as a Method}
 The chosen signature of the funcion is \texttt{rentACar(date, rental)}.
 The method works as follows:
@@ -69,6 +73,7 @@ The method works as follows:
 \label{sec:exercise_car_rental_example_data}
 \subsubsection*{Analyze Alice's Rental Request}
 Yes, the request is successful for the following reasons:
+%//TODO Fließtext statt Stichpunktef
 \begin{itemize}
     \item The car exists
     \item The car is not rented for the specified time period
@@ -77,7 +82,9 @@ Yes, the request is successful for the following reasons:
 Therefore the request is successful and the car is rented to Alice.
 
 \subsubsection*{Add Further Rentals}
+%//TODO Tabellen aus der Aufgabenstellung übernehmen und mit den hinzugefügten Daten füllen
 -- Does this need to be done? --
 
 \subsubsection*{Write YAML Code}
+%//TODO Tabelle von oben übernehmen und in YAML umschreiben
 -- Still needs to be done --

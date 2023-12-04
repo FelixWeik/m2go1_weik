@@ -1,14 +1,75 @@
 \subsection{Excercise CarRentalStructs}
 \label{sec:car_rental_structs}
-%//TODO Einleitung zu jeder Aufgabe schreiben
+This task introduces the concept of structs and arrays in go.
+The goal is to apply the described concept described in the tasks above to the given code.
+
+By creating structs and arrays a general understanding of the concept of storing and accessing data is developed.
 
 \subsubsection*{Add the Attributes to Structs}
-%//TODO Einführung zu Structs, struct mit großem Buchstaben wird exportiert wie public, kleiner Buchstabe ist private
+According to \cite{W3-GOSTRUCT}, a struct creates a collection of members of different types into a single object.
+The difference to arrays is that the members can be of different types.
+
+A struct can be defined by using the keyword \texttt{type} followed by the name of the struct and the keyword \texttt{struct}.
+Then the attributes and their datatypes are defined within curly brackets.
+Struct members can be accessed by using the dot operator after the struct name.
+
+Structs can be used to store data in a structured way.
+It can also be used for passing and returning multiple values from a function.
+
+Goal of this task is to add the attributes from the entities Car and Rental as specified in \autoref{fig:extendedEntityDiagram} to the structs.
+
 After adding the attributes from the entity diagram to the \hfill \newline \texttt{.../golang/CarRental/CarRentalStructs/CarRentalStructs.go} path and saving
 the IDE automatically formats the code and indents it correctly.
 
+The code is specified in \autoref{lst:car_rental_structs}.
+\begin{lstlisting}[
+style=kit-cm,
+language=Golang,
+caption={Structs of CarRentalStructs.go after adding the Attributes from the Entity Diagram},
+label={lst:car_rental_structs}
+]
+\\ CarRentalStructs.go
+\\ Author: Felix Weik
+
+type Customer struct {
+	id         int
+	Name       string
+	creditCard bool
+	rentals    []Rental
+}
+
+type Rental struct {
+	id   int
+	date Date
+	car  Car
+}
+
+type Car struct {
+	id      int
+	carType string
+	rented  bool
+	price   float32
+}
+
+type Date struct {
+	startDate string
+	endDate   string
+}
+\end{lstlisting}
+
 \subsubsection*{Initialize and Print Structs}
-%//TODO erklären wie das printen funktioniert, key-value pairs im struct (werden auch ausgegeben), struct structs müssen implementiert werden, sachen wurden noch nicht implementiert, was macht der & operator
+Structs are organized in key-value pairs.
+The key is the name of the attribute and the value is the value of the attribute.
+By using the dot operator, this data can be acessed.
+Key of this task is to initialize the structs and print them to the console.
+
+The code for printing the structs is shown in \autoref{lst:car_rental_print_structs}.
+The \texttt{fmt.Printf()} function is used to print the structs.
+The \texttt{\%+v} is used to print the structs in a human readable way.
+\texttt{\%v} is a formatting verb used to represent values in a default way.
+Adding the \texttt{+} flag the data is displayd in a structured way, which is particularly useful for structured data like structs.
+The struct-name after the comma defines the struct that will be printed where the placeholder is located.
+
 The result of the initialization and printing of the structs is shown in \autoref{fig:car_rental_structs}.
 \begin{figure}[H]
     \centering
@@ -16,7 +77,19 @@ The result of the initialization and printing of the structs is shown in \autore
     \caption{Output of the structs}
     \label{fig:car_rental_structs}
 \end{figure}
-%//TODO Code von Rental initialisierung einfügen
+
+\begin{lstlisting}[
+style=kit-cm,
+language=Golang,
+caption={Printing the Structs},
+label={lst:car_rental_print_structs}
+]
+// CarRentalStructs.go
+
+fmt.Printf("Customer: %+v\n", customer1)
+fmt.Printf("Rental: %+v\n", rental)
+fmt.Printf("Car: %+v\n", car)
+\end{lstlisting}
 
 \subsubsection*{Create an Array of Rentals}
 The function works as follows:
@@ -57,9 +130,15 @@ for i := 0; i < 5; i++ {
 
 \subsection{Excercise CarRentalTests}
 \label{sec:car_rental_tests}
+This task introduces the concept of testing in go.
+It also introduces the Open-Constraint-Language (OCL) and how to implement it in go.
+
+A listing is given containing the OCL constraints.
+Goal of this task is to analyze these constraints, check their implementation in go, run the tests and add additional test cases.
+
 \subsubsection*{Analyze OCL Constraints}
 In the given task five invariants are described.
-These invariants are implemented in \texttt{./CarRentalTests/CarRentalTests.go} and executed in \texttt{./CarRentalStructs/CarRentalStructs.go}.
+These invariants are implemented in \texttt{./CarRentalTests/CarRentalTests.go} and executed in\hfill \linebreak \texttt{./CarRentalStructs/CarRentalStructs.go}.
 \begin{enumerate}
     \item \texttt{self.Date.Year >= 2000}: CarRentalTests.go line 20-22
     \item \texttt{self.Date.Month < 13}: CarRentalTests.go line 24-26
@@ -102,9 +181,9 @@ language=Golang,
 caption={Invalid Test Case},
 label={lst:invalid_test_case}
 ]
-    name:   "InvalidTestCase1",
-    fields: fields{Day: 12, Month: 13, Year: 2000},
-    want:   false,  
+name:   "InvalidTestCase1",
+fields: fields{Day: 12, Month: 13, Year: 2000},
+want:   false,  
 \end{lstlisting}
 
 As shown in \autoref{lst:invalid_test_case} the month is set to 13, which is invalid.

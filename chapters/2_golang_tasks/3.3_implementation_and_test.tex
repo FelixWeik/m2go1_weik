@@ -1,5 +1,6 @@
 \subsection{Excercise CarRentalStructs}
 \label{sec:car_rental_structs}
+% TODO Einleitung zu jeder Aufgabe schreiben
 
 \subsubsection*{Add the Attributes to Structs}
 After adding the attributes from the entity diagram to the 
@@ -24,6 +25,28 @@ The function works as follows:
 \end{enumerate}
 
 The result is shown in figure \ref{fig:car_rental_array_five_rentals}.
+
+The initialization process of an empty array containing 5 cars in go looks as follows: \texttt{var cars \[5\]Car}
+Alternatively the array can be created already initialized with \texttt{var cartypes = \[5\]string\{"Type1", ..., "Type5"\}}
+This notation creates an array of 5 strings representing cartypes.
+
+A for loop in go ranges from an integer value, usually called "i", to an upper border.
+The value will usually be incremented by one until the upper border is reached. 
+The code within the loop will be executed until i reaches the upper border.
+A correct implementation for five iterations is shown in listing \ref{lst:for_loop_init}.
+
+\begin{lstlisting}[
+    language=Golang,
+    caption={Initialization of a For-Loop iterating five Times},
+    label={lst:for_loop_init},
+    numbers=left,
+    numberstyle=\tiny
+]
+    for i := 0; i < 5; i++ {
+        // run some code
+    }
+\end{lstlisting}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/goLang/carRental/carRental_arrayFiveRentals.png}

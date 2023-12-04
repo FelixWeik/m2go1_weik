@@ -1,10 +1,11 @@
 \subsection{Excercise HelloWorld}
 \label{sec:excercise_hello_world}
-
+% // TODO Einleitung schreiben
+% // TODO Listings style updaten 
 \subsubsection*{Run Hello World}
 After following the instruction in \cite{MS-GODEV}, the code is executed by running \texttt{go run main.go} in the terminal.
 The code was executed twice: The first time the given code was executed leading to the output shown in figure \ref{fig:screendump_helloWorld_basicExecution}.
-The second time the code was executed with different text, which can be seen in figure \ref{fig:screendump_helloWorld_differentText}.
+The second time the code was executed with different text, which can be seen in figure \ref{fig:screendump_helloWorld_differentText}. % // TODO: use autoref
 
 \begin{figure}[H]
     \centering
@@ -23,60 +24,58 @@ The second time the code was executed with different text, which can be seen in 
 \subsubsection*{Code Explanation}
 The following listing \ref{lst:helloWorld} shows the code of the Hello World program with explanations of the different parts of the code.
 \begin{lstlisting}[
-    language=Golang,
-    caption={Hello World Program in Golang with Explanations},
-    label={lst:helloWorld},
-    numbers=left,
-    numberstyle=\tiny
-    ]
-    // main.go 
-    // Author: Felix Weik
+style=kit-cm,
+language=Golang,
+caption={Hello World Program in Golang with Explanations},
+label={lst:helloWorld},
+]
+// main.go 
+// Author: Felix Weik
 
-    package main    // package declaration: every executable belongs to the main package
-                    // by declaring this package, a executable file is produced after compliation
-    
-    import "fmt"    // import the fmt package, a standard library package 
-                    // implementing formatted I/O functions
-                    // after import, one can use the functions of the imported package
+package main    // package declaration: every executable belongs to the main package
+                // by declaring this package, a executable file is produced after compliation
 
-    func main() {   // declares the function main, which is the 
-                    // entry point of the program
-        fmt.Println("Hello, World!")    // call the Println function 
-                                        // of the fmt package; Println prints 
-                                        // the given text to the standard output
-    }               // end of the main function
-    
+import "fmt"    // import the fmt package, a standard library package 
+                // implementing formatted I/O functions
+                // after import, one can use the functions of the imported package
+
+func main() {   // declares the function main, which is the 
+                // entry point of the program
+    fmt.Println("Hello, World!")    // call the Println function 
+                                    // of the fmt package; Println prints 
+                                    // the given text to the standard output
+}               // end of the main function
+
 \end{lstlisting}
 
 \subsubsection*{HelloName}
 The goal of this task is to extend the already given HelloWorld program to the HelloName program, prompting the user for a name then showing the given prompt in the output.
 The code is shown in listing \ref{lst:helloName}:
 \begin{lstlisting}[
-    language=Golang,
-    caption={Extension of helloWorld to helloName},
-    label={lst:helloName},
-    numbers=left,
-    numberstyle=\tiny
-    ]
-    // main.go
-    // Author: Felix Weik
+style=kit-cm,
+language=Golang,
+caption={Extension of helloWorld to helloName},
+label={lst:helloName},
+]
+// main.go
+// Author: Felix Weik
 
-    package main
+package main
 
-    import (
-        "fmt"
-    )
+import (
+    "fmt"
+)
 
-    func main() {
-        greet()
-    }
+func main() {
+    greet()
+}
 
-    func greet() {
-        var name string
-        fmt.Print("What is your name? ")
-        fmt.Scanln(&name)
-        fmt.Println("Hello, " + name + "!")
-    } 
+func greet() {
+    var name string
+    fmt.Print("What is your name? ")
+    fmt.Scanln(&name)
+    fmt.Println("Hello, " + name + "!")
+} 
 \end{lstlisting}
 
 The result of the executed code is shown in figure \ref{fig:screendump_helloName}

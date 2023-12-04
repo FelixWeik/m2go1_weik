@@ -9,7 +9,7 @@ the IDE automatically formats the code and indents it correctly.
 
 \subsubsection*{Initialize and Print Structs}
 %//TODO erklären wie das printen funktioniert, key-value pairs im struct (werden auch ausgegeben), struct structs müssen implementiert werden, sachen wurden noch nicht implementiert, was macht der & operator
-The result of the initialization and printing of the structs is shown in figure \ref{fig:car_rental_structs}.
+The result of the initialization and printing of the structs is shown in \autoref{fig:car_rental_structs}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/goLang/carRental/carRental_structs.png}
@@ -26,7 +26,7 @@ The function works as follows:
     \item Via \texttt{fmt.Println(rentals)} the array is printed into the console
 \end{enumerate}
 
-The result is shown in figure \ref{fig:car_rental_array_five_rentals}.
+The result is shown in \autoref{fig:car_rental_array_five_rentals}.
 
 The initialization process of an empty array containing five cars in go looks as follows: \texttt{var cars [5]Car}
 Alternatively the array can be created already initialized with \texttt{var cartypes = [5]string\{"Type1", ..., "Type5"\}}
@@ -35,7 +35,7 @@ This notation creates an array of 5 strings representing cartypes.
 A for loop in go ranges from an integer value, usually called "i", to an upper border.
 The value will usually be incremented by one until the upper border is reached. 
 The code within the loop will be executed until i reaches the upper border.
-A correct implementation for five iterations is shown in listing \ref{lst:for_loop_init}.
+A correct implementation for five iterations is shown in \autoref{lst:for_loop_init}.
 
 \begin{lstlisting}[
     language=Golang,
@@ -71,7 +71,7 @@ These invariants are implemented in \texttt{./CarRentalTests/CarRentalTests.go} 
 \subsubsection*{Run Test}
 After running the test function an error occurs. 
 The test, therefore, does not pass.
-The error is shown in figure \ref{fig:car_rental_test_error}.
+The error is shown in \autoref{fig:car_rental_test_error}.
 
 This error is caused due to a false implementation in line 20 of \hfill \linebreak \texttt{./CarRentalTests/CarRentalTests.go}
 In the first test, it checks if the year is $>2000$, yet for correct execution it needs to be $>=2000$.
@@ -86,7 +86,7 @@ In the first test, it checks if the year is $>2000$, yet for correct execution i
 \subsubsection*{Correct Code}
 As mentioned in the subsection above, line 20 is not implemented correctly.
 By changing line 20 from \texttt{if !(d.Year \> 2000)} to \texttt{if !(d.Year \>\= 2000)} the code will execute correctly and the test passes.
-The working tree of the changes is shown in figure \ref{fig:car_rental_test_working_tree}.
+The working tree of the changes is shown in \autoref{fig:car_rental_test_working_tree}.
 
 \begin{figure}[H]
     \centering
@@ -109,6 +109,6 @@ Implementing an invalid test-case the following code is added to the test functi
 	    want:   false,  
 \end{lstlisting}
 
-As shown in listing \ref{lst:invalid_test_case} the month is set to 13, which is invalid.
+As shown in \autoref{lst:invalid_test_case} the month is set to 13, which is invalid.
 Therefore the test should return false.
 The test, however, runs succesfully due to the want value set to false.

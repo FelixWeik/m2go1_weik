@@ -54,37 +54,228 @@ The following attributes are added to the entities:
     \label{fig:extendedEntityDiagram}
 \end{figure}
 
-%//TODO Signatur anpassen, wird funktionlität benötigt?
 \subsubsection*{Adding the Functionality as a Method}
-The chosen signature of the funcion is \texttt{rentACar(date, rental)}.
+The chosen signature of the funcion is \texttt{rentACar(startDate: string, endDate: string, rentalId: int, carId: int): Rental}.
+
 The method works as follows:
-\begin{enumerate}
-    \item The function checks, if the credit card is valid. If not, the function aborts.
-    \item The date object is created with the given start and end date and is given to the function.
-    \item The given rental object is assigned according to the chosen car / rental.
-    \item The algorithm checks, if the car assigned to the rental is available. If not, the function aborts.
-    \item The car is marked as rented.
-    \item The date object is assigned to the rental.
-    \item The rental object is linked to the customer.
-    \item All changes are saved to the objects.
-\end{enumerate}
+First, the function checks if the credit card of the customer is valid.
+If this is not the case, the function aborts.
+Then, the date object is created with the given start and end date.
+The algorithm checks if the car is available for the given time period.
+If this is not the case, the function aborts.
+A new rental object is created with an unique id and is assigned the date object.
+The car is marked as rented and linked to the rental object.
+The rental object is linked to the customer.
+In the end, all changes are saved to the objects and the rental object is returned.
 
 \subsection{Excercise CarRentalExampleData}
 \label{sec:exercise_car_rental_example_data}
 \subsubsection*{Analyze Alice's Rental Request}
-Yes, the request is successful for the following reasons:
-%//TODO Fließtext statt Stichpunktef
-\begin{itemize}
-    \item The car exists
-    \item The car is not rented for the specified time period
-    \item Alice is not registered yet, but will be added to the customers table
-\end{itemize}
+Yes, the request is successful for a number of reasons.
+
+First, the car exists so it can be rented.
+Next, the car is not rented for the specified time period.
+The only rental of the car is from 1.3.00 to 15.03.2000 by Max.
+Finally, Alice is not registered yet, but will be added to the customers table.
+
 Therefore the request is successful and the car is rented to Alice.
 
 \subsubsection*{Add Further Rentals}
-%//TODO Tabellen aus der Aufgabenstellung übernehmen und mit den hinzugefügten Daten füllen
--- Does this need to be done? --
+This section contains the tables for the customers, cars and rentals as specified in the task sheet.
+The task is to add further rentals to the already existing data.
+One of the rentals should be a non-conflicting rental, the other one should be conflicting.
+
+The following data is added to the tables:
+First, Rental6 is added to the rentals table in \autoref{tab:carRentalExampleDataRentals}.
+It is a non-conflicting rental of Car1 by Max from 1.1.05 to 2.2.05.
+Next, Rental7 is added to the rentals table.
+It is a conflicting rental of Car5 by Bob from 3.1.00 to 10.1.00.
+Due to this rental overlapping with Rental5, Rental7 is not a valid rental.
+
+\begin{table}[H]
+    \centering
+    \caption{Customers Table}
+    \label{tab:carRentalExampleDataCustomers}
+    \begin{tabular}{|p{2cm}|p{2cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Customers}} \\
+        \hline
+        \textbf{ID} & \textbf{Name} \\
+        \hline
+        Cus1 & Max \\
+        Cus2 & Bob \\
+        Cus3 & Simon \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Cars Table}
+    \label{tab:carRentalExampleDataCars}
+    \begin{tabular}{|p{2cm}|p{3cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Cars}} \\
+        \hline
+        \textbf{ID} & \textbf{Type} \\
+        \hline
+        Car1 & VW ID.2 \\
+        Car2 & Tesla Model 3 \\
+        Car3 & Seat Leon \\
+        Car4 & Fiat500e \\
+        Car5 & Audi A3 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Rentals Table}    
+    \label{tab:carRentalExampleDataRentals}
+    \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{3cm}|}
+        \hline
+        \multicolumn{5}{|c|}{\textbf{Rentals}} \\
+        \hline
+        \textbf{ID} & \textbf{StartDate} & \textbf{EndDate} & \textbf{CardID} & \textbf{CustomerID} \\        
+        \hline
+        Rental1 & 1.3.00 & 15.3.00 & Car1 & Cus1 \\
+        Rental2 & 3.2.00 & 5.2.00 & Car2 & Cus2 \\
+        Rental3 & 5.1.00 & 1.6.00 & Car3 & Cus2 \\
+        Rental4 & 7.2.00 & 25.3.00 & Car4 & Cus3 \\
+        Rental5 & 3.1.00 & 5.2.00 & Car5 & Cus3 \\
+        Rental6 & 1.1.05 & 2.2.05 & Car1 & Cus1 \\
+        Rental7 & 3.1.00 & 10.1.00 & Car5 & Cus2 \\
+        \hline
+    \end{tabular}
+\end{table}
 
 \subsubsection*{Write YAML Code}
-%//TODO Tabelle von oben übernehmen und in YAML umschreiben
--- Still needs to be done --
+The following YAML-code represents the the data from the tables above.
+YAML is a human-readable data serialization language, similar to JSON.
+The notation specifies an object and the according attributes, storing the data in a key-value format.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={YAML Code representing the Customers Table},
+    label={lst:carRentalExampleDataYaml}
+]
+- id:   Cus1
+  name: Max
+
+- id:   Cus2
+  name: Bob
+  
+- id:   Cus3
+  name: Simon
+\end{lstlisting}
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={YAML Code representing the Cars Table},
+    label={lst:carRentalExampleDataYamlCars}
+]
+- id:   Car1
+  type: VW ID2
+
+- id:   Car2
+  type: Tesla Model 3
+
+- id:   Car3
+  type: Seat Leon
+
+- id:   Car4
+  type: Fiat 500e
+
+- id:   Car5
+  type: Audi A3
+\end{lstlisting}
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={YAML Code representing the Rentals Table},
+    label={lst:carRentalExampleDataYamlRentals}
+]
+-   id: Rental1
+    startdate:
+        day:    1
+        month:  3
+        year:   2000
+    enddate:
+        day:    15
+        month:  3
+        year:   2000
+    carid:      Car1
+    customerid: Cus1
+
+-   id:         Rental2
+    startdate:
+        day:    3
+        month:  2
+        year:   2000
+    enddate:
+        day:    5
+        month:  2
+        year:   2000
+    carid:      Car2
+    customerid: Cus2
+
+-   id:         Rental3
+    startdate:
+        day:    5
+        month:  1
+        year:   2000
+    enddate:
+        day:    1
+        month:  6
+        year:   2000
+    carid:      Car3
+    customerid: Cus2
+
+-   id:         Rental4
+    startdate:
+        day:    7
+        month:  2
+        year:   2000
+    enddate:
+        day:    25
+        month:  3
+        year:   2000
+    carid:      Car4
+    customerid: Cus3
+
+-   id:         Rental5
+    startdate:
+        day:    3
+        month:  1
+        year:   2000
+    enddate:
+        day:    5
+        month:  2
+        year:   2000
+    carid:      Car5
+    customerid: Cus3
+
+-   id:         Rental6
+    startdate:
+        day:    1
+        month:  1
+        year:   2005
+    enddate:
+        day:    1
+        month:  1
+        year:   2000
+    carid:      Car6
+    customerid: Cus4
+
+-   id:         Rental7
+    startdate:
+        day:    3
+        month:  1
+        year:   2000
+    enddate:
+        day:    5
+        month:  2
+        year:   2000
+    carid:      Car5
+    customerid: Cus4
+\end{lstlisting}

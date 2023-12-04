@@ -8,35 +8,34 @@ In our case we assume the startDate to be the 01.01.2000 and the endDate to be t
 
 First we define positive and negative test cases for the \texttt{NewRental} function.
 \begin{lstlisting}[
-    language=Golang,
-    caption={Test Cases for the Rental Context},
-    label={lstlisting:rental_test_cases},
-    numbers=left,
-    numberstyle=\tiny
-    ]
-    // Constraint 1: self.ID -> notEmpty()
-    NewRental("", startDate, endDate, correctCar, correctCustomer) // negative test case
-    NewRental("Rental1", startDate, endDate, correctCar, correctCustomer) // positive test case
+style=kit-cm,
+language=Golang,
+caption={Test Cases for the Rental Context},
+label={lstlisting:rental_test_cases},
+]
+// Constraint 1: self.ID -> notEmpty()
+NewRental("", startDate, endDate, correctCar, correctCustomer) // negative test case
+NewRental("Rental1", startDate, endDate, correctCar, correctCustomer) // positive test case
 
-    // Constraint 2: self.startDate -> notEmty()
-    NewRental("Rental2", date{}, endDate, correctCar, correctCustomer) // negative test case
-    NewRental("Rental2", startDate, endDate, correctCar, correctCustomer) // positive test case
+// Constraint 2: self.startDate -> notEmty()
+NewRental("Rental2", date{}, endDate, correctCar, correctCustomer) // negative test case
+NewRental("Rental2", startDate, endDate, correctCar, correctCustomer) // positive test case
 
-    // Constraint 3: self.endDate -> notEmty()
-    NewRental("Rental3", startDate, date{}, correctCar, correctCustomer) // negative test case
-    NewRental("Rental3", startDate, endDate, correctCar, correctCustomer) // positive test case
+// Constraint 3: self.endDate -> notEmty()
+NewRental("Rental3", startDate, date{}, correctCar, correctCustomer) // negative test case
+NewRental("Rental3", startDate, endDate, correctCar, correctCustomer) // positive test case
 
-    // Constraint 4: self.startDate < self.endDate
-    NewRental("Rental4", endDate, startDate, correctCar, correctCustomer) // negative test case
-    NewRental("Rental4", startDate, endDate, correctCar, correctCustomer) // positive test case
+// Constraint 4: self.startDate < self.endDate
+NewRental("Rental4", endDate, startDate, correctCar, correctCustomer) // negative test case
+NewRental("Rental4", startDate, endDate, correctCar, correctCustomer) // positive test case
 
-    // Constraint 5: self.car -> notEmpty()
-    NewRental("Rental5", startDate, endDate, car{}, correctCustomer) // negative test case
-    NewRental("Rental5", startDate, endDate, correctCar, correctCustomer) // positive test case
+// Constraint 5: self.car -> notEmpty()
+NewRental("Rental5", startDate, endDate, car{}, correctCustomer) // negative test case
+NewRental("Rental5", startDate, endDate, correctCar, correctCustomer) // positive test case
 
-    // Constraint 6: self.customer -> notEmpty()
-    NewRental("Rental6", startDate, endDate, correctCar, customer{}) // negative test case
-    NewRental("Rental6", startDate, endDate, correctCar, correctCustomer) // positive test case
+// Constraint 6: self.customer -> notEmpty()
+NewRental("Rental6", startDate, endDate, correctCar, customer{}) // negative test case
+NewRental("Rental6", startDate, endDate, correctCar, correctCustomer) // positive test case
 \end{lstlisting}
   
 Now, we define positive and negative test cases for the \texttt{rentACar\(\)} function.
@@ -45,27 +44,26 @@ If the function is executed correctly it will return the new rental.
 We specified in the beginning of the section, startDate, endDate, correctCar, and correctCustomer represent correct parameters.
 
 \begin{lstlisting}[
-    language=Golang,
-    caption={Test Cases for the Customer Context},
-    label={lstlisting:customer_test_cases},
-    numbers=left,
-    numberstyle=\tiny
-    ]
-    // Constraint 1: pre: self.rentalID -> not exists
-    rentACar("Rental1", startDate, endDate, correctCar, correctCustomer)
-    rentACar("Rental1", startDate, endDate, correctCar, correctCustomer) // negative test case due to function executing twice
-    rentACar("Rental2", startDate, endDate, correctCar, correctCustomer) // positive test case
+style=kit-cm,
+language=Golang,
+caption={Test Cases for the Customer Context},
+label={lstlisting:customer_test_cases},
+]
+// Constraint 1: pre: self.rentalID -> not exists
+rentACar("Rental1", startDate, endDate, correctCar, correctCustomer)
+rentACar("Rental1", startDate, endDate, correctCar, correctCustomer) // negative test case due to function executing twice
+rentACar("Rental2", startDate, endDate, correctCar, correctCustomer) // positive test case
 
-    // Constraint 2: and Rental.allInstances() -> 
-    //  forAll(r: Rental | r.car = self.car implies(self.endDate < r.endDate or r.Endate > self.startDate))
-    rentACar("Rental3", startDate, endDate, correctCar, correctCustomer)
-    rentACar("Rental4", startDate', endDate, correctCar, correctCustomer') // negative test case due to overlapping dates for the same car
-    rentACar("Rental5", startDate', endDate', correctCar, correctCustomer') // positive test case 
+// Constraint 2: and Rental.allInstances() -> 
+//  forAll(r: Rental | r.car = self.car implies(self.endDate < r.endDate or r.Endate > self.startDate))
+rentACar("Rental3", startDate, endDate, correctCar, correctCustomer)
+rentACar("Rental4", startDate', endDate, correctCar, correctCustomer') // negative test case due to overlapping dates for the same car
+rentACar("Rental5", startDate', endDate', correctCar, correctCustomer') // positive test case 
 
-    // Constraint 3: post: self.rentals -> includes(rental)
-    rentACar("Rental6", startDate, endDate, correctCar, correctCustomer) // positive test case
-    rentACar("Rental7", date{}, endDate, correctCar, correctCustomer) // negative test case => due to constraint 2, the element will not be created and therefore will not appear in the list
-    
+// Constraint 3: post: self.rentals -> includes(rental)
+rentACar("Rental6", startDate, endDate, correctCar, correctCustomer) // positive test case
+rentACar("Rental7", date{}, endDate, correctCar, correctCustomer) // negative test case => due to constraint 2, the element will not be created and therefore will not appear in the list
+
 \end{lstlisting}
 
 \subsubsection*{Analyze Test Structure}

@@ -1,14 +1,28 @@
 \subsection{Excercise GettingStartedWithCarRentalCLI}
 \label{sec:exercise_getting_started_with_car_rental_cli}
 \subsubsection*{Analyze the CLI Parameters}
-After analyzing the use cases presented in section 3.1 of the goLang tasks in table 4.1, the parameters displayed in \autoref{fig:car_rental_cli_parameters} are needed.
+After analyzing the use cases presented in section 3.1 of the goLang tasks in table 4.1, the parameters displayed in \autoref{tab:cli_parameters_car_rental_cli} are needed.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/goLang/carRental/carRental_CLIParameters.png}
-    \caption{CLI Parameters}
-    \label{fig:car_rental_cli_parameters}
-\end{figure}
+\begin{table}
+      \centering
+      \caption{CLI Parameters for CarRentalCLI}
+      \label{tab:cli_parameters_car_rental_cli}
+      \begin{tabular}{|p{4cm}|p{2cm}|p{4cm}|p{5cm}|}
+            \hline
+            \multicolumn{4}{|c|}{\textbf{CLI Parameters for CarRentalCLI}} \\
+            \hline
+            \textbf{Use Case} & \textbf{Command} & \textbf{Input} & \textbf{Output} \\
+            \hline
+            Register as Customer & register & CustomerID, Name & CustomerID / Failure \\
+            \hline
+            Rent a Car & rent & RentalID, CustomerID, CarID, StartDate, EndDate & RentalID / Failure \\
+            \hline
+            Cancel Rental & cancel & RentalID, CustomerID & RentalID / Failure \\
+            \hline
+            Deregister as Customer & deregister & CustomerID & CustomerID / Failure \\
+            \hline
+      \end{tabular}
+\end{table}
 
 \subsubsection*{Describe the Software Architecture}
 The given task starts with three different software components:

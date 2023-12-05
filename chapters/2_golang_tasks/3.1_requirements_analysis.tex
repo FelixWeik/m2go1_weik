@@ -1,16 +1,21 @@
 \subsection{Excercise UseCaseDiagram CarRental}
 \label{sec:exercise_use_case_diagram_car_rental}
-The general functionality of the application CarRental is outlined by Alice's Car Rental story.
+The general functionality of the application CarRental is outlined by Alice's Car Rental story as described in \cite{CM-T-GO} listing 3.1.
 It provides a general overview of the application and the user flow of registering and renting a car.
 
 By using the story, the use cases and actors can be derived.
 The following tasks are based on the story and help deriving the use cases, actors and services modelled in the use case diagram.
 
 \subsubsection*{Derive Use Cases and Actors}
-Goal of this task is to find four use cases and one actor according to the given story "Alice's Car Rental".
+Goal of this task is to find four use cases and one actor according to the given story "Alice's Car Rental" from listing 3.1 in \cite{CM-T-GO}.
 
 % //TODO: Herleitung der vier Use Cases beschreiben
-\autoref{lst:car_rental_use_case_1} was derived from the story given in ... .
+\autoref{lst:car_rental_use_case_1} was derived from line 4 of the given story.
+
+In the story Alice rents a car, a VW ID.2, for a certain time period.
+This is done by entering the rental period and choosing the car from the list of available cars.
+
+After successfully renting the car, the customer is prompted with a rental confirmation and the rental is stored.
 
 \begin{lstlisting}[
     caption={Use Case 1: "Rent a Car"},
@@ -42,7 +47,12 @@ Alternative flows:
     4a1. The flow terminates    
 \end{lstlisting}
 
+\autoref{lst:car_rental_use_case_2} describes the registration process itself.
 
+It was derived from line 3 of the given story.
+In order to use the application, Alice needs to register first.
+
+After successfully registering, Alice can login to the application and rent a car.
 
 \begin{lstlisting}[
     caption={Use Case 2: "Registering Process"},
@@ -69,7 +79,7 @@ Flow:
 1. Customer visits the car rental company's website or opens the app 
 2. Customer is asked to register or login
 3. Customer clicks on "Register"
-4. Customer is prompted for Email, name, drivers license, credit card number, date of birth
+4. Customer is prompted for email, name, drivers license, credit card number, date of birth
 5. A data validation is performed
 6. Customer needs to authenticate his email address
 7. Customer chooses a password and a username
@@ -86,6 +96,14 @@ Alternative flows:
 7b. The provided password does not fulfill the given criteria
     7b1. The customer is asked to choose a stronger password
 \end{lstlisting}
+
+There are two types of cancellation: Cancellation of a rental and cancellation of the registration.
+\autoref{lst:car_rental_use_case_3} describes the cancellation of a rental as described in line 5 and 6 of the given story.
+
+Like Alice in the story, the customer can cancel a rental if he successfully rented a car but does not want to use it anymore.
+The customer can cancel the rental as long as the time interval of the rental has not started yet.
+
+After successfully cancelling the rental, the customer is prompted with a cancellation confirmation.
 
 \begin{lstlisting}[
     style=kit-cm,
@@ -125,6 +143,13 @@ Alternative flows:
 8a. Customer does not confirm the cancellation via email
     8a1. The flow terminates and the rental is not cancelled
 \end{lstlisting}
+
+\autoref{lst:car_rental_use_case_4} describes the cancellation of the registration as described in line 6 of the given story.
+
+In the story, Alice cancels her registration due to personal reasons.
+The customer can cancel the registration if he does not want to use the application anymore.
+
+After successfully cancelling the registration, the customer is prompted with a cancellation confirmation and can neither login nor use the application withouth registering again.
 
 \begin{lstlisting}[
     caption={Use Case 4: "Cancellation of the Registration"},

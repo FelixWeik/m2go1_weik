@@ -1,7 +1,24 @@
 \subsection{Excercise GettingStartedWithCarRentalCLI}
 \label{sec:exercise_getting_started_with_car_rental_cli}
 \subsubsection*{Analyze the CLI Parameters}
-After analyzing the use cases presented in section 3.1 of the goLang tasks in table 4.1, the parameters displayed in \autoref{tab:cli_parameters_car_rental_cli} are needed.
+Goal of this task is to derive input and output parameters for the CLI commands.
+\autoref{tab:cli_parameters_car_rental_cli} is based on the given task sheet and contains the input and output parameters for the CLI commands.
+
+Empty fields are the command for registering as a customer, the input for canceling a rental, and command, input, and output for deregistering as a customer.
+
+The command for registering as a customer is \texttt{register} since it clearly describes the intention and action of the command.
+
+Input for cancelling a rental is the rentalID and the customerID.
+Both values are needed to clearly identify the rental and authenticate the customer.
+If both values are correct, the rental can be cancelled.
+
+The command for deregistering as a customer is \texttt{deregister} since it clearly describes the intention and action of the command.
+Only the customerID is needed as input, since it identifies the customer and the customer can only deregister himself.
+If the deregistration is successful, the customerID is returned to the CLI, showing the value that will be deleted from the yaml file.
+If the deregistration fails, the CLI returns a failure message.
+
+The results of entering the values into the fields are shown in \autoref{tab:cli_parameters_car_rental_cli}.
+The inserted values are underlined.
 
 \begin{table}
       \centering
@@ -13,13 +30,13 @@ After analyzing the use cases presented in section 3.1 of the goLang tasks in ta
             \hline
             \textbf{Use Case} & \textbf{Command} & \textbf{Input} & \textbf{Output} \\
             \hline
-            Register as Customer & register & CustomerID, Name & CustomerID / Failure \\
+            Register as Customer & \underline{register} & CustomerID, Name & CustomerID / Failure \\
             \hline
             Rent a Car & rent & RentalID, CustomerID, CarID, StartDate, EndDate & RentalID / Failure \\
             \hline
-            Cancel Rental & cancel & RentalID, CustomerID & RentalID / Failure \\
+            Cancel Rental & cancel & \underline{RentalID, CustomerID} & RentalID / Failure \\
             \hline
-            Deregister as Customer & deregister & CustomerID & CustomerID / Failure \\
+            Deregister as Customer & \underline{deregister} & \underline{CustomerID} & \underline{CustomerID / Failure} \\
             \hline
       \end{tabular}
 \end{table}
@@ -74,6 +91,9 @@ The given task starts with three different software components:
 \end{itemize}
 
 \subsubsection*{Analyze the Micro Architecture}
+%// TODO Micro Architecture beschreiben / erklären
+The micro architecture of an application describes the internal structure of a single subsystem.
+
 
 \subsubsection*{Start the Go Program CarRentalCLI}
 The output after starting the program successfully is displayed in \autoref{fig:car_rental_cli_successful_rental_max}.
@@ -91,7 +111,13 @@ Otherwise, the program asks for the remaining data, prints an error message, the
 
 \subsection{Excercise AddRegisterAsCustomer}
 \label{sec:exercise_add_register_as_customer}
-\subsubsection*{Why is the Mapper required?}
+\subsubsection*{Add CLI Command}
+%//TODO Prozess und Code vom Hinzufügen des CLI Commands beschreiben
+
+\subsubsection*{Add Entity Mapper}
+%//TODO Prozess und Code vom Hinzufügen des Entity Mappers beschreiben
+
+So, why is a mapper required?
 The general task of a mapper is to enable communication between the application and the database.
 In this case, the database is a yaml file.
 Therefore the mapper can read and write to the yaml files and convert the data to the according entities and vice versa.
@@ -100,6 +126,9 @@ In the use case of registering a new customer, the mapper is called while creati
 The yaml mapper receives the customer object from the function and returns the CustomerPersistenceEntity.
 This entity is then written to the yaml file.
 By writing the entity into the yaml file, the customer is registered and can be used in the application.
+
+\subsubsection*{Implement Operation}
+%//TODO Prozess und Code vom Hinzufügen der Operation beschreiben (Validations nicht vergessen)
 
 \subsubsection*{Register Alice as Customer}
 After running the CLI command to register a new customer, the program asks for the ID of the customer.

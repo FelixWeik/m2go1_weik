@@ -1,8 +1,21 @@
 \subsection{Excercise TestCarRentalCLI}
 \label{sec:exercise_test_car_rental_cli}
+This task is about testing the CarRentalCLI application, to be more specific, the \texttt{RentACar} function.
+
+The \texttt{RentACar} function is located in the \texttt{operations} package in the \hfill \linebreak \texttt{RentACarOperation.go} file.
+It takes the rentalID, the customerID, the carID, stard and endDate as arguments and returns a String and an error.
+
+During its execution it checks the given arguments for validity and checks the pre-condition.
+If the pre-condition is met, the function creates a new rental and adds it to the repository.
+If one of the checks fails, or an error occurs during runtime, the function returns an error.
+
+After successfully creating the new rental by calling the \texttt{repository.CreateRental()} function, a string indicating the success concatinated with the rentalID is returned.
+
+\texttt{RentACarOperation\_text.go} contains the tests and the according data for the testing environments to test the \texttt{RentACar} function.
+The goal of the following tasks is to derive test cases from given OCL constraints, analyze the test structure, add test data, implement and finally run the tests.
 
 \subsubsection*{Derive Test Cases}
-For the sake of simplicity, we asume that a correct car called \texttt{correctCar} and customer called \texttt{correctCustomer} are provided.
+For the sake of simplicity, we asume that a correct car called \texttt{correctCar} and a customer called \texttt{correctCustomer} are provided.
 In the cases where the date is correct we assume the date \texttt{startDate} and \texttt{endDate} represent correct dates.
 In our case we assume the startDate to be the 01.01.2000 and the endDate to be the 02.02.2000.
 
@@ -127,18 +140,179 @@ This is due to the given testing envorionment.
 The rental is already created therefore an error will occur and the test fails.
 
 \subsubsection*{Add Test Data}
-%//TODO Prozess und Code vom Hinzufügen der Testdaten beschreiben
+As mentioned above, \texttt{RentACarOperation\_test.go} implements the tests for the \texttt{RentACar} function.
+
+The function \texttt{SetupMockCarRentalRepository()} implements the constructor of the mock repository.
+It takes no arguments and returns a MockCarRentalRepository.
+
+The function creates arrays of customers, cars and rentals.
+These arrays are then used to initialize the mock repository.
+The mock repository is then returned.
+
+To populate an array, it needs to be flled with the according structs as specified in the model package.
+The structs are initialized in the array.
+An example of the initialization of the customers array is shown in \autoref{lstlisting:customers_array}.
+
+\begin{lstlisting}[
+style=kit-cm,
+language=Golang,
+caption={Initialization Example of the Customers Array},
+label={lstlisting:customers_array},
+]
+customers := []model.Customer{{
+      ID:   "Cus1",
+      Name: "Max",
+}, {
+      ID:   "Cus2",
+      Name: "Bob",
+}, {
+      ID:   "Cus3",
+      Name: "Simon",
+}}
+\end{lstlisting}
+
+If a value is referenced in another struct, the reference is set to the according struct in the different array.
+During the initialization of the rentals array, this occurs, for example, as shown in \autoref{lstlisting:rentals_array}.
+
+\begin{lstlisting}[
+style=kit-cm,
+language=Golang,
+caption={Code Snippet of Initializing the Rentals Array},
+label={lstlisting:rentals_array},
+]
+rentals := []model.Rental{{
+ID: "Rental1",
+StartDate: model.Date{
+      Day:   1,
+      Month: 3,
+      Year:  2000,
+},
+EndDate: model.Date{
+      Day:   15,
+      Month: 3,
+      Year:  2000,
+},
+Car:      cars[0],
+Customer: customers[0],
+}, {
+ID: "Rental2",
+StartDate: model.Date{
+      Day:   3,
+      Month: 2,
+      Year:  2000,
+},
+EndDate: model.Date{
+      Day:   5,
+      Month: 2,
+      Year:  2000,
+},
+Car:      cars[1],
+Customer: customers[1],
+},
+...
+}
+\end{lstlisting}
 
 \subsubsection*{Implement Test Cases}
-%//TODO Prozess und Code vom Hinzufügen der Testfälle beschreiben
+The tests are implemented in the \texttt{TestCarRentalOperations\_RentACar(t \*testing.T)} function.
+The function takes a testing object as an argument and returns nothing.
+
+The function starts by defining the fields and args structs.
+The fields struct defines the repository used in each test and therefore the test environment.
+The args struct defines the arguments needed for the \texttt{RentACar} function - The rentalID, the customerID, the carID, the start and end date.
+
+After that the test cases are implemented in the \texttt{tests} array.
+A test case consists out of the test name, the fields, args, the expected return string and a boolean indicating if an error is expected, called \texttt{wantErr}.
+Just like in \autoref{lstlisting:customers_array} the arrays are initialized with the according structs.
+
+This task is about implementing the test cases specified in \autoref{lstlisting:rental_test_cases} in the \hfill \linebreak \texttt{TestCarRentalOperations\_RentACar}'s \texttt{tests} array.
+A code snippet of two fully implemented test cases is shown in \autoref{lstlisting:test_case_implementation}.
+
+\texttt{PositiveNewRental} specifies a positive test case.
+No errors are expected and the rental is created successfully during execution.
+
+\texttt{NegativeCustomerNotEmpty} checks, if the program aborts if no customerID is prompted by the user.
+An error is expected, therefore the \texttt{wantErr} attribute is set to \texttt{true}.
+If the program exits with an error during this test-case the test suceeds.
+
+\begin{lstlisting}[
+      style=kit-cm,
+      language=Golang,
+      caption={Code Snippet of the Test Case Implementation},
+      label={lstlisting:test_case_implementation},
+]
+tests := []struct {
+      name    string
+      fields  fields
+      args    args
+      want    string
+      wantErr bool
+}{
+      {
+            name:   "PositiveNewRental",
+            fields: fields{repository: SetupMockCarRentalRepository()},
+            args: args{
+                  rentalID:   "Rental2",
+                  customerID: "Cus1",
+                  carID:      "Car5",
+                  startDate: model.Date{
+                        Day:   6,
+                        Month: 2,
+                        Year:  2000,
+                  },
+                  endDate: model.Date{
+                        Day:   8,
+                        Month: 2,
+                        Year:  2000,
+                  },
+            },
+            want:    "Successfully created rental with ID Rental2", // = expected return value
+            wantErr: false, // = no error expected 
+      },
+      {
+            name:   "NegativeCustomerNotEmpty",
+            fields: fields{repository: SetupMockCarRentalRepository()},
+            args: args{
+                  rentalID:   "Rental2",
+                  customerID: "",
+                  carID:      "Car5",
+                  startDate: model.Date{
+                        Day:   6,
+                        Month: 2,
+                        Year:  2000,
+                  },
+                  endDate: model.Date{
+                        Day:   8,
+                        Month: 2,
+                        Year:  2000,
+                  },
+            },
+            want:    "Customer not found", // Error message shown if customer is not found
+            wantErr: true, // = error expected
+      },
+      ... // further test cases
+}
+\end{lstlisting}
 
 \subsection*{Run Tests}
-%//TODO Prozess und Ergebnisse weiter ausführen (wie wird der Code ausgeführt)
-Test testing results are shown in \autoref{fig:carRentalCLI_testingConsoleOutput} and \autoref{fig:carRentalCLI_testingGraphicalOutput}.
+Tests can be started by using Visual Studio Code's graphical features.
+By clicking on the starting button next to the function definition of \texttt{TestCarRentalOperations\_RentACar()}, the function is executed as a test.
 
-The negative test-cases do not fail due to its construction.
-By setting the \texttt{wantErr} value to true, the test will not fail if an error occurs.
-This allows the implementation of negative test cases without the tests failing, which is the desired behaviour.
+VSC offers a "Test Result" bar in the terminal panel, visualizing the tests executed also specifying the starttime, runtime and time of completion.
+This output is shown in \autoref{fig:carRentalCLI_testingConsoleOutput}.
+
+Right next to this bar, a graphical representation of the tests is shown.
+This is shown in \autoref{fig:carRentalCLI_testingGraphicalOutput}.
+The green checkmarks indicate successful tests, while the red crosses indicate failed tests.
+Single tests can be rerun if wanted by clicking on the according test.
+This allows the developer to quickly rerun tests offering a more efficient debugging process.
+
+As mentioned above \autoref{fig:carRentalCLI_testingConsoleOutput} and \autoref{fig:carRentalCLI_testingGraphicalOutput} show the testing results of the tests specified in the previous subtasks.
+
+The first test fails, since it is designed to be a positive test case, however, the rental is already created.
+This leads to an error during execution and the test failing due to the \texttt{wantErr} attribute being set to \texttt{false}.
+
+The other tests succeed, since they are designed to be negative test cases therefore expecting an error during execution.
 
 \begin{figure}
       \centering

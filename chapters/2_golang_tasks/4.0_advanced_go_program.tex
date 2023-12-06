@@ -161,23 +161,55 @@ The code for the new CLI command \texttt{register} is shown in \autoref{lst:car_
 \end{lstlisting}
 
 \subsubsection*{Add Entity Mapper}
-%//TODO Prozess und Code vom Hinzufügen des Entity Mappers beschreiben
-% Implement the entity mapper ConvertCustomerToCustomerPersistenceEntity. Use the mapper in the file CarRentalRepository to create a new customer. Describe why the mapper is required.
-
-
 So, why is a mapper required?
 The general task of a mapper is to enable communication between the application and the database.
 In this case, the database is a yaml file.
 Therefore the mapper can read and write to the yaml files and convert the data to the according entities and vice versa.
 
 In the use case of registering a new customer, the mapper is called while creating a new customer.
-The yaml mapper receives the customer object from the function and returns the CustomerPersistenceEntity.
+This mapper is located in the \texttt{./CustomerMapper.go} file, containing two functions.
+The first function \texttt{ConvertCustomerToCustomerPersistenceEntity} takes a customer object as argument and returns a customer persistence entity containing the same values.
 This entity is then written to the yaml file.
 By writing the entity into the yaml file, the customer is registered and can be used in the application.
 
+The second function \texttt{ConvertCustomerPersistenceEntityToCustomer} takes a customer persistence entity as argument and returns a customer object containing the same values.
+It acts just like the function above, but in the opposite direction.
+
+This task is about implementing the \texttt{ConvertCustomerToCustomerPersistenceEntity} function.
+The code for this function is shown in \autoref{lst:car_rental_cli_mapper_customer_to_customer_persistence_entity}.
+
+\begin{lstlisting}[
+      style=kit-cm,
+      language=Golang,
+      caption={Code for the ConvertCustomerToCustomerPersistenceEntity Function},
+      label={lst:car_rental_cli_mapper_customer_to_customer_persistence_entity},
+]
+// CustomerMapper.go
+// author = Felix Weik
+
+func ConvertCustomerToCustomerPersistenceEntity(customer model.Customer) entities.CustomerPersistenceEntity {
+return entities.CustomerPersistenceEntity{
+      ID:   customer.ID,
+      Name: customer.Name,
+}
+}
+\end{lstlisting}
+
 \subsubsection*{Implement Operation}
-%//TODO Prozess und Code vom Hinzufügen der Operation beschreiben (Validations nicht vergessen)
-% Implement the operation used by the CLI to create a new customer. Use the repository and implement the necessary logic. Do not forget to implement validations
+The registering process is implemented in separate files across the different layers.
+
+The CLI command "register" calls the \texttt{RegisterAsCustomerAction} function starting from the \texttt{CarRentalCLI.go} file.
+This function is located in the \texttt{CliActions.go} file.
+It prints a message to the CLI and collects the customerID and the customerName attributes via other functions from the CLI package.
+
+After that, it calls the \texttt{RegisterAsCustomer} function that takes both collected \hfill \linebreak values as input.
+This function is located in the operations package in the \hfill \linebreak \texttt{RegisterAsCustomerOperation.go} file.
+It validates the input by checking if the customer exists.
+If the input is valid, it calls the \texttt{NewCustomer} and \texttt{CreateCustomer} functions, which are located in the models package.
+These functions will write to the yaml file, storing the new customer.
+
+If an error occurs or the validations fail, the process will abort.
+If the process succeeds, a success message containing the newly created customerID is printed to the CLI.
 
 \subsubsection*{Register Alice as Customer}
 After running the CLI command to register a new customer, the program asks for the ID of the customer.

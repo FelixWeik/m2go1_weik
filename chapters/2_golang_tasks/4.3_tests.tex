@@ -15,9 +15,9 @@ After successfully creating the new rental by calling the \texttt{repository.Cre
 The goal of the following tasks is to derive test cases from given OCL constraints, analyze the test structure, add test data, implement and finally run the tests.
 
 \subsubsection*{Derive Test Cases}
-For the sake of simplicity, we asume that a correct car called \texttt{correctCar} and a customer called \texttt{correctCustomer} are provided.
-In the cases where the date is correct we assume the date \texttt{startDate} and \texttt{endDate} represent correct dates.
-In our case we assume the startDate to be the 01.01.2000 and the endDate to be the 02.02.2000.
+For the sake of simplicity, asume that a correct car called \texttt{correctCar} and a customer called \texttt{correctCustomer} are provided.
+In the cases where the date is correct assume the date \texttt{startDate} and \texttt{endDate} represent correct dates.
+In this example assume the startDate to be the 01.01.2000 and the endDate to be the 02.02.2000.
 
 \autoref{lstlisting:rental_test_cases} defines positive and negative test cases for the \texttt{NewRental} function.
 \begin{lstlisting}[
@@ -51,10 +51,10 @@ NewRental("Rental6", startDate, endDate, correctCar, customer{}) // negative tes
 NewRental("Rental6", startDate, endDate, correctCar, correctCustomer) // positive test case
 \end{lstlisting}
   
-Now, we define positive and negative test cases for the \texttt{rentACar\(\)} function.
+This paragraph designs positive and negative test cases for the \texttt{rentACar\(\)} function.
 This function takes the rentalID, start and endDate, the car, and the customer as arguments.
 If the function is executed correctly it will return the new rental.
-We specified in the beginning of the section, startDate, endDate, correctCar, and correctCustomer represent correct parameters.
+As specified in the beginning of the section, startDate, endDate, correctCar, and correctCustomer represent correct parameters.
 
 \begin{lstlisting}[
 style=kit-cm,

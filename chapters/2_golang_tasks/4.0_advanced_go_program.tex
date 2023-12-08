@@ -56,7 +56,7 @@ The given task starts with three different software components:
     \item Application Logic Layer: CarRentalOperations
     \item Infrastructure Layer: CarRentalRepository
 \end{itemize}
-\subsubsection*{Presentation Layer: CarRentalCLI}
+\paragraph*{Presentation Layer: CarRentalCLI}
 \begin{itemize}
     \item Functionality: This component implements the CLI itself. 
           It creates a new CLI object, runs it, and exits safely if an error occurs.
@@ -70,7 +70,7 @@ The given task starts with three different software components:
           By separating the CLI into a single layer, the commands can be organized systematically and provide great overview.
 \end{itemize}
 
-\subsubsection*{Application Logic Layer: CarRentalOperations}
+\paragraph*{Application Logic Layer: CarRentalOperations}
 \begin{itemize}
     \item Functionality: This component implements the business logic of the application.
           It provides functions for the CLI to call, which then call the according functions from the infrastructure layer.
@@ -83,7 +83,7 @@ The given task starts with three different software components:
           It can be maintained by fixing functions.
 \end{itemize}
 
-\subsubsection*{Infrastructure Layer: CarRentalRepository}
+\paragraph*{Infrastructure Layer: CarRentalRepository}
 \begin{itemize}
     \item Functionality: This component implements yaml mappers and entities. 
           This allows for simple communication between the application and the yaml files.
@@ -99,9 +99,33 @@ The given task starts with three different software components:
 \end{itemize}
 
 \subsubsection*{Analyze the Micro Architecture}
-%// TODO Micro Architecture beschreiben / erklären
 The micro architecture of an application describes the internal structure of a single subsystem.
 
+\autoref{fig:car_rental_cli_micro_architecture} depicts the micro-architecture built on top of the software architecture.
+The focus is the interaction between classes, interfaces and packages within the different layers.
+
+\paragraph*{CLI:}
+The \texttt{CarRentalCLI} handles the user interaction.
+The class \texttt{CarRentalCLI} implements the cli-commands by calling the according functions from the \texttt{CarRentalOperationsInterface}.
+This provides great overview and abstraction, improving the maintainability and scalability of the application.
+
+\paragraph*{Logic:}
+This package is responsibile for managing the state of the application and for performing the business logic.
+The \texttt{CarRentalOperations} class implements the \texttt{CarRentalOperationsInterface} and provides the functions for the \texttt{CarRentalCLI} to call.
+The interface hides the infrastructure-specific details and provides a simple interface for the \texttt{CarRentalCLI} to interact with.
+Both components share the same model, which is defines in the \texttt{model} subpackage.
+
+\paragraph*{Infrastructure:}
+The \texttt{CarRentalRepository} package is responsible for the communication with the yaml files.
+It provides the \texttt{CarRentalRepositoryInterface} which is implemented by the \texttt{CarRentalRepository} class.
+This class is responsible for storing and retrieving data, hiding the infrastructure-specific calls.
+
+\begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRentalCLI/carRentalCLI_MicroArchitecture.png}
+      \caption{Micro Architecture of the CarRentalCLI}
+      \label{fig:car_rental_cli_micro_architecture}
+\end{figure}
 
 \subsubsection*{Start the Go Program CarRentalCLI}
 The output after starting the program successfully is displayed in \autoref{fig:car_rental_cli_successful_rental_max}.

@@ -152,7 +152,7 @@ The test, therefore, does not pass.
 The error is shown in \autoref{fig:car_rental_test_error}.
 
 This error is caused due to a false implementation in line 20 of \hfill \linebreak \texttt{./CarRentalTests/CarRentalTests.go}
-In the first test, it checks if the year is $>2000$, yet for correct execution it needs to be $>=2000$.
+In the first test, it checks if the year is greather than 2000, yet for correct execution it needs to be greather than or equal 2000.
 
 \begin{figure}[H]
     \centering
@@ -173,7 +173,7 @@ The working tree of the changes is shown in \autoref{fig:car_rental_test_working
     \label{fig:car_rental_test_working_tree}
 \end{figure}
 
-\subsubsection*{Negative Test Case}
+\subsubsection*{Invalid Test Case}
 Implementing an invalid test-case the following code is added to the test function:
 \begin{lstlisting}[
 style=kit-cm,

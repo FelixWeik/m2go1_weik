@@ -228,12 +228,9 @@ Just like in \autoref{lstlisting:customers_array} the arrays are initialized wit
 This task is about implementing the test cases specified in \autoref{lstlisting:rental_test_cases} in the \hfill \linebreak \texttt{TestCarRentalOperations\_RentACar}'s \texttt{tests} array.
 A code snippet of two fully implemented test cases is shown in \autoref{lstlisting:test_case_implementation}.
 
-\texttt{PositiveNewRental} specifies a positive test case.
-No errors are expected and the rental is created successfully during execution.
-
-\texttt{NegativeCustomerNotEmpty} checks, if the program aborts if no customerID is prompted by the user.
-An error is expected, therefore the \texttt{wantErr} attribute is set to \texttt{true}.
-If the program exits with an error during this test case the test succeeds.
+\texttt{NegativeRentalsOverlap} is an example of a negative test case.
+A similar rental renting the same car has already been created.
+Since the dates of both rentals overlap, a new rental cannot be created.
 
 \begin{lstlisting}[
       style=kit-cm,
@@ -248,48 +245,28 @@ tests := []struct {
       want    string
       wantErr bool
 }{
-      {
-            name:   "PositiveNewRental",
-            fields: fields{repository: SetupMockCarRentalRepository()},
-            args: args{
-                  rentalID:   "Rental2",
-                  customerID: "Cus1",
-                  carID:      "Car5",
-                  startDate: model.Date{
-                        Day:   6,
-                        Month: 2,
-                        Year:  2000,
-                  },
-                  endDate: model.Date{
-                        Day:   8,
-                        Month: 2,
-                        Year:  2000,
-                  },
-            },
-            want:    "Successfully created rental with ID Rental2", // = expected return value
-            wantErr: false, // = no error expected 
-      },
-      {
-            name:   "NegativeCustomerNotEmpty",
-            fields: fields{repository: SetupMockCarRentalRepository()},
-            args: args{
-                  rentalID:   "Rental2",
-                  customerID: "",
-                  carID:      "Car5",
-                  startDate: model.Date{
-                        Day:   6,
-                        Month: 2,
-                        Year:  2000,
-                  },
-                  endDate: model.Date{
-                        Day:   8,
-                        Month: 2,
-                        Year:  2000,
-                  },
-            },
-            want:    "Customer not found", // Error message shown if the customer is not found
-            wantErr: true, // = error expected
-      },
+      
+		{
+			name:   "NegativeRentalsOverlap",
+			fields: fields{repository: SetupMockCarRentalRepository()},
+			args: args{
+				rentalID:   "Rental6",
+				customerID: "Cus4",
+				carID:      "Car5",
+				startDate: model.Date{
+					Day:   6,
+					Month: 2,
+					Year:  2000,
+				},
+				endDate: model.Date{
+					Day:   12,
+					Month: 3,
+					Year:  2000,
+				},
+			},
+			want:    "",
+			wantErr: true,
+		},
       ... //Further test cases
 }
 \end{lstlisting}

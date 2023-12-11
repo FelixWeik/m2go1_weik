@@ -94,7 +94,7 @@ fmt.Printf("Car: %+v\n", car)
 \subsubsection*{Create an Array of Rentals}
 The function works as follows:
 \begin{enumerate}
-    \item The array \texttt{cartypes} holds the string of five different cartypes
+    \item The array \texttt{cartypes} holds the string of five different car types
     \item The function \texttt{createRentals(id, date, car)} returns five rentals that are appended to the array
     \item Via \texttt{fmt.Println(rentals)} the array is printed into the console
 \end{enumerate}
@@ -137,8 +137,18 @@ A listing is given containing the OCL constraints.
 The goal of this task is to analyze these constraints, check their implementation in go, run the tests and add additional test cases.
 
 \subsubsection*{Analyze OCL Constraints}
-In the given task five invariants are described.
-These invariants are implemented in \texttt{./CarRentalTests/CarRentalTests.go} and executed in\hfill \linebreak \texttt{./CarRentalStructs/CarRentalStructs.go}.
+In the given task four invariants are described.
+These invariants stand under the context of the date object.
+Therefore the invariants are implemented in the date object.
+
+These invariants are implemented in \texttt{./CarRentalTests/CarRentalTests.go} \hfill \linebreak and executed in \texttt{./CarRentalStructs/CarRentalStructs.go}.
+
+The first invariant checks if the year is greater than or equal to 2000.
+The second invariant checks if the month is less than 13.
+The third invariant checks if the month is greater than or equal to 1.
+The fourth invariant checks if the number of days in the month is valid.
+
+The following enumeration depicts the lines of code where the invariants are implemented.
 \begin{enumerate}
     \item \texttt{self.Date.Year >= 2000}: CarRentalTests.go line 20-22
     \item \texttt{self.Date.Month < 13}: CarRentalTests.go line 24-26

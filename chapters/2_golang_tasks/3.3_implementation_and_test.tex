@@ -16,7 +16,7 @@ Struct members can be accessed by using the dot operator after the struct name.
 Structs can be used to store data in a structured way.
 It can also be used for passing and returning multiple values from a function.
 
-Goal of this task is to add the attributes from the entities Car and Rental as specified in \autoref{fig:extendedEntityDiagram} to the structs.
+The goal of this task is to add the attributes from the entities Car and Rental as specified in \autoref{fig:extendedEntityDiagram} to the structs.
 
 After adding the attributes from the entity diagram to the \hfill \newline \texttt{.../golang/CarRental/CarRentalStructs/CarRentalStructs.go} path and saving
 the IDE automatically formats the code and indents it correctly.
@@ -60,14 +60,14 @@ type Date struct {
 \subsubsection*{Initialize and Print Structs}
 Structs are organized in key-value pairs.
 The key is the name of the attribute and the value is the value of the attribute.
-By using the dot operator, this data can be acessed.
-Key of this task is to initialize the structs and print them to the console.
+By using the dot operator, this data can be accessed.
+The key to this task is to initialize the structs and print them to the console.
 
 The code for printing the structs is shown in \autoref{lst:car_rental_print_structs}.
 The \texttt{fmt.Printf()} function is used to print the structs.
-The \texttt{\%+v} is used to print the structs in a human readable way.
+The \texttt{\%+v} is used to print the structs in a human-readable way.
 \texttt{\%v} is a formatting verb used to represent values in a default way.
-Adding the \texttt{+} flag the data is displayd in a structured way, which is particularly useful for structured data like structs.
+Adding the \texttt{+} flag the data is displayed in a structured way, which is particularly useful for structured data like structs.
 The struct-name after the comma defines the struct that will be printed where the placeholder is located.
 
 The result of the initialization and printing of the structs is shown in \autoref{fig:car_rental_structs}.
@@ -107,7 +107,7 @@ This notation creates an array of 5 strings representing cartypes.
 
 A for loop in go ranges from an integer value, usually called "i", to an upper border.
 The value will usually be incremented by one until the upper border is reached. 
-The code within the loop will be executed until i reaches the upper border.
+The code within the loop will be executed until it reaches the upper border.
 A correct implementation for five iterations is shown in \autoref{lst:for_loop_init}.
 
 \begin{lstlisting}[
@@ -117,7 +117,7 @@ caption={Initialization of a For-Loop iterating five Times},
 label={lst:for_loop_init},
 ]
 for i := 0; i < 5; i++ {
-    // run some code
+    // Run some code
 }
 \end{lstlisting}
 
@@ -130,11 +130,11 @@ for i := 0; i < 5; i++ {
 
 \subsection{Excercise CarRentalTests}
 \label{sec:car_rental_tests}
-This task introduces the concept of testing in go.
-It also introduces the Open-Constraint-Language (OCL) and how to implement it in go.
+This task introduces the concept of testing in Go.
+It also introduces the Open-Constraint-Language (OCL) and how to implement it in Go.
 
 A listing is given containing the OCL constraints.
-Goal of this task is to analyze these constraints, check their implementation in go, run the tests and add additional test cases.
+The goal of this task is to analyze these constraints, check their implementation in go, run the tests and add additional test cases.
 
 \subsubsection*{Analyze OCL Constraints}
 In the given task five invariants are described.
@@ -152,7 +152,7 @@ The test, therefore, does not pass.
 The error is shown in \autoref{fig:car_rental_test_error}.
 
 This error is caused due to a false implementation in line 20 of \hfill \linebreak \texttt{./CarRentalTests/CarRentalTests.go}
-In the first test, it checks if the year is greather than 2000, yet for correct execution it needs to be greather than or equal 2000.
+In the first test, it checks if the year is greater than 2000, yet for correct execution, it needs to be greater than or equal to 2000.
 
 \begin{figure}[H]
     \centering
@@ -174,7 +174,7 @@ The working tree of the changes is shown in \autoref{fig:car_rental_test_working
 \end{figure}
 
 \subsubsection*{Invalid Test Case}
-Implementing an invalid test-case the following code is added to the test function:
+Implementing an invalid test case the following code is added to the test function:
 \begin{lstlisting}[
 style=kit-cm,
 language=Golang,
@@ -188,4 +188,4 @@ want:   false,
 
 As shown in \autoref{lst:invalid_test_case} the month is set to 13, which is invalid.
 Therefore the test should return false.
-The test, however, runs succesfully due to the want value set to false.
+The test, however, runs successfully due to the want value set to false.

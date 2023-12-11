@@ -1,13 +1,13 @@
 \subsection{Excercise HelloWorld}
 \label{sec:excercise_hello_world}
-HelloWorld is a time honored tradition in the world of programming.
+HelloWorld is a time-honored tradition in the world of programming.
 It provides a simple way to get started with a new programming language, helping to understand basic syntax and structure.
 The goal of this task is to run and understand the given HelloWorld program.
 
-This helps building a basic foundation of the Golang programming language and helps making sure the enviroment is set up correctly.
+This helps build a basic foundation of the Golang programming language and helps make sure the environment is set up correctly.
 
 \subsubsection*{Run Hello World}
-After following the instruction in \cite{MS-GODEV}, the code is executed by running \texttt{go run main.go} in the terminal.
+After following the instructions in \cite{MS-GODEV}, the code is executed by running \texttt{go run main.go} in the terminal.
 The code was executed twice: The first time the given code was executed leading to the output shown in \autoref{fig:screendump_helloWorld_basicExecution}.
 The second time the code was executed with different text, which can be seen in \autoref{fig:screendump_helloWorld_differentText}.
 
@@ -37,7 +37,7 @@ label={lst:helloWorld},
 // Author: Felix Weik
 
 package main    // package declaration: every executable belongs to the main package
-                // by declaring this package, a executable file is produced after compliation
+                // by declaring this package, an executable file is produced after compilation
 
 import "fmt"    // import the fmt package, a standard library package 
                 // implementing formatted I/O functions
@@ -53,7 +53,7 @@ func main() {   // declares the function main, which is the
 \end{lstlisting}
 
 \subsubsection*{HelloName}
-The goal of this task is to extend the already given HelloWorld program to the HelloName program, prompting the user for a name then showing the given prompt in the output.
+The goal of this task is to extend the already given HelloWorld program to the HelloName program, prompting the user for a name and then showing the given prompt in the output.
 The code is shown in \autoref{lst:helloName}:
 \begin{lstlisting}[
 style=kit-cm,

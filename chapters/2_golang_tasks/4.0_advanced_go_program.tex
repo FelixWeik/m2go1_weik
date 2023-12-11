@@ -9,20 +9,20 @@ The last step is to start the program and to rent a car for Max.
 These tasks will provide a fundamental understanding of the application and its structure.
 
 \subsubsection*{Analyze the CLI Parameters}
-Goal of this task is to derive input and output parameters for the CLI commands.
+The goal of this task is to derive input and output parameters for the CLI commands.
 \autoref{tab:cli_parameters_car_rental_cli} is based on the given task sheet and contains the input and output parameters for the CLI commands.
 
-Empty fields are the command for registering as a customer, the input for canceling a rental, and command, input, and output for deregistering as a customer.
+Empty fields are the command for registering as a customer, the input for canceling a rental, and the command, input, and output for deregistering as a customer.
 
 The command for registering as a customer is \texttt{register} since it clearly describes the intention and action of the command.
 
-Input for cancelling a rental is the rentalID and the customerID.
-Both values are needed to clearly identify the rental and authenticate the customer.
-If both values are correct, the rental can be cancelled.
+Input for canceling a rental is the rental ID and the customer ID.
+Both values are needed to identify the rental and authenticate the customer.
+If both values are correct, the rental can be canceled.
 
 The command for deregistering as a customer is \texttt{deregister} since it clearly describes the intention and action of the command.
-Only the customerID is needed as input, since it identifies the customer and the customer can only deregister himself.
-If the deregistration is successful, the customerID is returned to the CLI, showing the value that will be deleted from the yaml file.
+Only the customer ID is needed as input since it identifies the customer and the customer can only deregister himself.
+If the deregistration is successful, the customer ID is returned to the CLI, showing the value that will be deleted from the yaml file.
 If the deregistration fails, the CLI returns a failure message.
 
 The results of entering the values into the fields are shown in \autoref{tab:cli_parameters_car_rental_cli}.
@@ -62,21 +62,21 @@ The given task starts with three different software components:
           It creates a new CLI object, runs it, and exits safely if an error occurs.
           Furthermore, it implements the CLI commands with the list of according functions a command calls.
     \item Interfaces: The CLI component implements the CarRentalOperationsInterface
-    \item Dependencies: This layer is dependent from the applications logic layer, importing and implementing functions from the logic layer.
+    \item Dependencies: This layer is dependent on the application's logic layer, importing and implementing functions from the logic layer.
     \item Reusability: The layer is reusable since it only implements CLI and commands.
-          By providing a different set of function the CLI implements, one can reuse the CLI in a different context.
+          By providing a different set of functions the CLI implements, one can reuse the CLI in a different context.
     \item Scalability and Maintainability: It can be scaled by adding new commands and functions to the CLI.
           It can be maintained by fixing commands and the according functions.
-          By separating the CLI into a single layer, the commands can be organized systematically and provide great overview.
+          By separating the CLI into a single layer, the commands can be organized systematically and provide a great overview.
 \end{itemize}
 
 \paragraph*{Application Logic Layer: CarRentalOperations}
 \begin{itemize}
     \item Functionality: This component implements the business logic of the application.
-          It provides functions for the CLI to call, which then call the according functions from the infrastructure layer.
+          It provides functions for the CLI to call, which then calls the according functions from the infrastructure layer.
           It also provides the models of the objects, that are used in the application.
     \item Interfaces: This component implements the CarRentalRepositoryInterface and provides the CarRentalOperationsInterface
-    \item Dependencies: This component is dependent from the infrastructure layer and therefore dependent from the layer below.
+    \item Dependencies: This component is dependent on the infrastructure layer and therefore dependent on the layer below.
     \item Reusability: Since this component uses the infrastructure layer, it is not directly reusable.
           It implements a specific set of functions, which cannot be reused in different contexts.
     \item Scalability and Maintainability: It can be scaled by adding new functions to the component.
@@ -90,16 +90,16 @@ The given task starts with three different software components:
           The yaml mappers provide functions to read and write yaml files.
           The entities provide the structure of the yaml files and the structure of the struct the mapper creates.
     \item Interfaces: This component provides the CarRentalRepositoryInterface
-    \item Dependencies: The component is dependent from the provided yaml files, since it reads and writes them.
+    \item Dependencies: The component is dependent on the provided yaml files since it reads and writes them.
           In terms of functionality, no functionality imports from other parts of the application are needed since all functions are implemented in the component itself.
     \item Reusability: This component is reusable since it only implements yaml mappers and entities.
           By providing a different set of entities and mappers, one can reuse the component in a different context.
     \item Scalability and Maintainability: By adding new mappers and entities, the functionality can be extended.
-          By fixing the mappers and entities, the maintainability can be ensured.
+          By fixing the mappers and entities, maintainability can be ensured.
 \end{itemize}
 
 \subsubsection*{Analyze the Micro Architecture}
-The micro architecture of an application describes the internal structure of a single subsystem.
+The micro-architecture of an application describes the internal structure of a single subsystem.
 
 \autoref{fig:car_rental_cli_micro_architecture} depicts the micro-architecture built on top of the software architecture.
 The focus is the interaction between classes, interfaces and packages within the different layers.
@@ -107,13 +107,13 @@ The focus is the interaction between classes, interfaces and packages within the
 \paragraph*{CLI:}
 The \texttt{CarRentalCLI} handles the user interaction.
 The class \texttt{CarRentalCLI} implements the cli-commands by calling the according functions from the \hfill \linebreak \texttt{CarRentalOperationsInterface}.
-This provides great overview and abstraction, improving the maintainability and scalability of the application.
+This provides a great overview and abstraction, improving the maintainability and scalability of the application.
 
 \paragraph*{Logic:}
-This package is responsibile for managing the state of the application and for performing the business logic.
+This package is responsible for managing the state of the application and for performing the business logic.
 The \texttt{CarRentalOperations} class implements the \texttt{CarRentalOperationsInterface} and provides the functions for the \texttt{CarRentalCLI} to call.
 The interface hides the infrastructure-specific details and provides a simple interface for the \texttt{CarRentalCLI} to interact with.
-Both components share the same model, which is defines in the \texttt{model} subpackage.
+Both components share the same model, which is defined in the \texttt{model} subpackage.
 
 \paragraph*{Infrastructure:}
 The \texttt{CarRentalRepository} package is responsible for the communication with the yaml files.
@@ -129,10 +129,10 @@ This class is responsible for storing and retrieving data, hiding the infrastruc
 
 \subsubsection*{Start the Go Program CarRentalCLI}
 The output after starting the program successfully is displayed in \autoref{fig:car_rental_cli_successful_rental_max}.
-The program asks for the id of the customer and the id of the car.
-After entering the ids, the program asks for the start and enddate of the rental by asking for the day, month and year.
+The program asks for the ID of the customer and the ID of the car.
+After entering the IDs, the program asks for the start and end date of the rental by asking for the day, month and year.
 If the data is entered correctly and the rental is successful, the program prints a success message and exits.
-Otherwise, the program asks for the remaining data, prints an error message, the exit-status and exits.
+Otherwise, the program asks for the remaining data and prints an error message, the exit status and exits.
 
 \begin{figure}
       \centering
@@ -151,21 +151,23 @@ After that, an entity mapper is added to the infrastructure layer.
 Then, the operation is implemented including validations.
 The last step is to test the functionality by registering Alice as a customer.
 
-This is a hands on task, which requires to add code to the existing application.
+This is a hands-on task, which requires adding code to the existing application.
 
 \subsubsection*{Add CLI Command}
 The CLI commands are placed in the \texttt{CarRentalCLI.go} file.
 The \texttt{NewCarRentalCLI} function takes \texttt{operations.CarRentalOperations} as input and returns a \texttt{CarRentalCLI} object that can later be executed.
 This function also specifies the commands that can be executed by the CLI.
-The array \texttt{Commands} contains these commands consisting out of the name, the usage, and the according action.
+The array \texttt{Commands} contains these commands consisting of the name, the usage, and the according action.
 
 To add the command for registering a new customer, the array \texttt{Commands} is extended by the command \texttt{register} with the usage \texttt{Register as Customer}.
 The action defines a function taking a CLI-context object as input and returning an error.
 This function calls the according function that executes the code executing the actual task.
 
 The code for the new CLI command \texttt{register} is shown in \autoref{lst:car_rental_cli_command_register}.
+The new customer is created in \autoref{lst:car_rental_cli_create_customer_persistence_entity}.
 
 \begin{lstlisting}[
+      float=h,
       style=kit-cm,
       caption={Code for the CLI Command "register"},
       label={lst:car_rental_cli_command_register},
@@ -184,20 +186,39 @@ The code for the new CLI command \texttt{register} is shown in \autoref{lst:car_
 ... // other commands
 \end{lstlisting}
 
+\begin{lstlisting}[
+      float=h,
+      style=kit-cm,
+      caption={Creating a Customer Persistence Entity},
+      label={lst:car_rental_cli_create_customer_persistence_entity},
+      language=Golang
+]
+// file: CarRentalRepository.go
+...
+func (repository CarRentalRepository) CreateCustomer(customer model.Customer) error {
+	var newCustomer = YAMLMapper.ConvertCustomerToCustomerPersistenceEntity(customer)
+
+	repository.Customers = append(repository.Customers, newCustomer)
+	repository.SaveData()
+	return nil
+}
+...
+\end{lstlisting}
+
 \subsubsection*{Add Entity Mapper}
 So, why is a mapper required?
 The general task of a mapper is to enable communication between the application and the database.
 In this case, the database is a yaml file.
-Therefore the mapper can read and write to the yaml files and convert the data to the according entities and vice versa.
+Therefore the mapper can read and write to the yaml files and convert the data to the corresponding entities and vice versa.
 
 In the use case of registering a new customer, the mapper is called while creating a new customer.
 This mapper is located in the \texttt{./CustomerMapper.go} file, containing two functions.
-The first function \texttt{ConvertCustomerToCustomerPersistenceEntity} takes a customer object as argument and returns a customer persistence entity containing the same values.
+The first function \texttt{ConvertCustomerToCustomerPersistenceEntity} takes a customer object as an argument and returns a customer persistence entity containing the same values.
 This entity is then written to the yaml file.
 By writing the entity into the yaml file, the customer is registered and can be used in the application.
 
-The second function \texttt{ConvertCustomerPersistenceEntityToCustomer} takes a customer persistence entity as argument and returns a customer object containing the same values.
-It acts just like the function above, but in the opposite direction.
+The second function \texttt{ConvertCustomerPersistenceEntityToCustomer} takes a customer persistence entity as an argument and returns a customer object containing the same values.
+It acts just like the function above but in the opposite direction.
 
 This task is about implementing the \texttt{ConvertCustomerToCustomerPersistenceEntity} function.
 The code for this function is shown in \autoref{lst:car_rental_cli_mapper_customer_to_customer_persistence_entity}.
@@ -233,19 +254,19 @@ If the input is valid, it calls the \texttt{NewCustomer} and \texttt{CreateCusto
 These functions will write to the yaml file, storing the new customer.
 
 If an error occurs or the validations fail, the process will abort.
-If the process succeeds, a success message containing the newly created customerID is printed to the CLI.
+If the process succeeds, a success message containing the newly created customer ID is printed to the CLI.
 
 \subsubsection*{Register Alice as Customer}
 After running the CLI command to register a new customer, the program asks for the ID of the customer.
-In this case Alice receives the ID \texttt{Cus5}.
+In this case, Alice receives the ID \texttt{Cus5}.
 After entering the ID, the program asks for the name of the customer, in this case Alice.
-The program exits with a success message and the exit-status as shown in \autoref{fig:car_rental_cli_register_alice}.
+The program exits with a success message and the exit status as shown in \autoref{fig:car_rental_cli_register_alice}.
 
-To register a new rental, the programm starts with \texttt{go run . -- rent}.
+To register a new rental, the program starts with \texttt{go run . --- rent}.
 The program asks for the ID of the rental, here it is \texttt{Rental7}.
 The customer ID for Alice is \texttt{Cus5}.
-After that the start and enddate is entered.
-The program exits with a success message and the exit-status as shown in \autoref{fig:car_rental_cli_rental_alice_successful}.
+After that, the start and end date is entered.
+The program exits with a success message and the exit status as shown in \autoref{fig:car_rental_cli_rental_alice_successful}.
 
 \begin{figure}
       \centering

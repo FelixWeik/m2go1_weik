@@ -93,7 +93,7 @@ It creates the testing environment by implementing the constructor of the mock r
 After the setup, the executable tests are implemented.
 
 % Structure description of the test function TestCarRentalOperations_RentACar
-The implementation of the tests happens in the \texttt{TestCarRentalOperations\_RentACar} function.
+The tests are implemented in the \texttt{TestCarRentalOperations\_RentACar} function.
 The \texttt{fields} struct defines the repository used in each test and therefore the test environment.
 After that, the \texttt{args} struct defines the arguments needed for the \texttt{RentACar} function.
 Now, the test cases are implemented containing the following values:
@@ -135,6 +135,7 @@ This could also be done with the normal repository, however, this would require 
 \end{itemize}
 
 Further benefits and the actual usage and implementation of both the normal and the mock repository are further explained in \autoref{sec:go_repositories}.
+
 As shown all tests pass besides the first test.
 This is due to the given testing environment.
 The rental is already created therefore an error will occur and the test will fail.

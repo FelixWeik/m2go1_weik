@@ -2,7 +2,7 @@
 \label{sec:exercise_getting_started_with_car_rental_cli}
 This task aims to get familiar with the given code and to understand the structure of the application.
 
-First, the CLI parameters are analyzed and complete \autoref{tab:cli_parameters_car_rental_cli}.
+The first task analyzes and completes \autoref{tab:cli_parameters_car_rental_cli}.
 Following that, delving into the architecture involves describing and analyzing software and microarchitecture
 The last step is to start the program and rent a car for Max.
 
@@ -15,7 +15,7 @@ The goal of this task is to derive input and output parameters for the CLI comma
 The empty fields are in the spaces where the command, input, and output are not specified in the task sheet.
 Empty fields are marked with an underline.
 
-The command for registering as a customer is \texttt{register} since it clearly describes the intention and action of the command.
+The command for registering as a customer is chosen to be \texttt{register} since it clearly describes the intention and action of the command.
 
 Input for canceling a rental is the rental ID and the customer ID.
 Both values are needed to identify the rental and authenticate the customer.
@@ -26,8 +26,7 @@ Only the customer ID is needed as input since it identifies the customer.
 If the deregistration is successful, the customer ID is returned to the CLI, showing the value that will be deleted from the yaml file.
 If the deregistration fails, the CLI returns a failure message.
 
-The table with the inserted values is shown in \autoref{tab:cli_parameters_car_rental_cli}.
-The inserted values are underlined.
+The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inserted values are underlined.
 
 \begin{table}
       \centering
@@ -122,6 +121,7 @@ It provides the \texttt{CarRentalRepositoryInterface} which is implemented by th
 This class is responsible for storing and retrieving data, hiding the infrastructure-specific calls.
 The yaml mappers provide functions to read and write yaml files.
 The entities provide the structure of the yaml files and the structure of the struct the mapper creates.
+These files represent the database of the application storing the data.
 
 \begin{figure}[h]
       \centering
@@ -138,7 +138,7 @@ After entering the IDs, the program asks for the start and end date of the renta
 If the data is entered correctly and the rental is successful, the program prints a success message and exits.
 Otherwise, the program asks for the remaining data and prints an error message, the exit status and exits.
 
-The output after successfully starting the program is displayed in \autoref{fig:car_rental_cli_successful_rental_max}.
+The successful execution of the program is displayed in \autoref{fig:car_rental_cli_successful_rental_max}.
 
 \begin{figure}
       \centering
@@ -149,7 +149,7 @@ The output after successfully starting the program is displayed in \autoref{fig:
 
 \subsection{Excercise AddRegisterAsCustomer}
 \label{sec:exercise_add_register_as_customer}
-This task aims to add the functionality to register as a customer.
+This task adds the functionality to register as a customer.
 
 To fulfill this task, the following steps are required:
 First, a CLI command is added to the presentation layer which calls the basic functions to register a new customer.

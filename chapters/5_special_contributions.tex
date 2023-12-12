@@ -3,7 +3,7 @@
 
 \section{Go Environment Variables}
 \label{sec:go_environment_variables}
-This section is executed on an unix-based system, in the author's case it's Ubuntu.
+This section is executed on a Unix-based system, in the author's case it's Ubuntu.
 
 \subsection{Installation}
 During the go installation, one needs to add paths to the environment variables.
@@ -13,7 +13,7 @@ But what is the difference between both files and what exactly does this extra v
 
 \subsection{The .profile File}
 This file is used to set environment variables and configurations for the shell.
-It contains the file paths for commands the system will check for instead of the user typing the full path to the file everytime he wants to execute it.
+It contains the file paths for commands the system will check for instead of the user typing the full path to the file every time he wants to execute it.
 When a user logs into the system, the file is executed to initialize the environment for the user's session.
 The file is located in the user's home directory and is hidden by default.
 
@@ -38,7 +38,7 @@ In the example above, the \texttt{PATH} variable is extended by the path to the 
 
 \section{Go Repositories}
 \label{sec:go_repositories}
-This section explains the benefits and use-cases of repositories in go.
+This section explains the benefits and use cases of repositories in go.
 The go-application \texttt{CarRentalCLI} is used as an example.
 
 \subsection{Repositories}
@@ -53,22 +53,22 @@ Therefore the repository also has access to the yaml mappers and entities.
 \subsubsection*{Implementation in CarRentalCLI}
 The \texttt{CarRentalRepositoryInterface} is implemented by \texttt{CarRentalRepository}.
 This repository is then given to \texttt{CarRentalOperations} in the main function.
-The operations-object then is used in the cli to call the repository's functions and lists.
+The operations object then is used in the cli to call the repository's functions and lists.
 
 \subsubsection*{Benefits}
-While this seeming contra-intuitive at first, this implementation hierarchy provides some great benefits.
+While this seems contra-intuitive at first, this implementation hierarchy provides some great benefits.
 \begin{enumerate}
     \item Abstraction: The cli does not need to know how the data is accessed.
           It only needs to know that the data is accessed by the repository.
-          This allows for easy changes in the data accessing process.
+          This allows for easy changes in the data-accessing process.
     \item Flexibility: The operations object and therefore the cli can be used with different repositories.
-          This allows for easy changes in the data accessing process.
-          Furthermore, the functionality can be switched out if neccessary.
+          This allows for easy changes in the data-accessing process.
+          Furthermore, the functionality can be switched out if necessary.
     \item Scalability: The repository can be extended by adding new functions.
           The operations and the cli can then use these new functions without changing the cli itself.
     \item Encapsulation: The cli does not need to know how the data is accessed.
           It only needs to know that the data is accessed by the repository.
-          This allows for easy changes in the data accessing process.
+          This allows for easy changes in the data-accessing process.
     \item Maintainability: The repository and therefore the cli can be maintained by fixing functions.
     \item Testing: Testing can be easily realized by implementing a mock repository.
           This is further explained in the following section on mock-repositories \ref*{sec:mock_repositories}.
@@ -77,20 +77,20 @@ While this seeming contra-intuitive at first, this implementation hierarchy prov
 \subsection{Mock-Repositories}
 \label{sec:mock_repositories}
 A mock repository is a repository that implements the repository interface but does not access the data.
-It usually is located on the same layer as the actual repository, yet in a different package.
+It usually is located on the same layer as the actual repository yet in a different package.
 
 The mock repository does not import any other packages or modules besides the repository interface or helper packages.
-It only implements the repository interface and provides the lists and functions needed for exectuing correctly.
+It only implements the repository interface and provides the lists and functions needed for executing correctly.
 Furthermore, it does not implement a constructor, since it does not need to initialize any data.
-This is usually done in the test file to create the needed testing-environment.
+This is usually done in the test file to create the needed testing environment.
 
 \subsubsection*{Implementation in CarRentalCLI}
 The mock repository implements the \texttt{CarRentalRepositoryInterface} and provides the lists and functions needed for executing correctly.
 Yet, it does not implement a constructor as the actual repository does.
-This is done in the test file to create the needed testing-environment.
+This is done in the test file to create the needed testing environment.
 
-This mock repository does not access any yaml mapper or writes data to any yaml file.
-It solely writes to the mock-repository's lists and manipulates them.
+This mock repository does not access any yaml mapper or write data to any yaml file.
+It solely writes to the mock repository's lists and manipulates them.
 
 To implement the lists it needs to import the according models.
 Apart from that, it does not import any other packages or modules.
@@ -100,7 +100,7 @@ This process provides similar benefits as the actual repository but also has som
 \begin{enumerate}
     \item Readability: Tests and code of the actual application are separated.
           This allows for better readability and overview.
-    \item No new Dependencies and Datafiles: By solely accessing the lists in the mock-repository, nothing is written to the yaml files.
+    \item No new Dependencies and Datafiles: By solely accessing the lists in the mock repository, nothing is written to the yaml files.
           Therefore, nothing needs to be cleaned up after testing is done.
           Furthermore, testing cannot corrupt the data in the yaml files or block the execution of the application.
 \end{enumerate}

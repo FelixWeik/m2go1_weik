@@ -104,3 +104,99 @@ This process provides similar benefits as the actual repository but also has som
           Therefore, nothing needs to be cleaned up after testing is done.
           Furthermore, testing cannot corrupt the data in the yaml files or block the execution of the application.
 \end{enumerate}
+
+\subsubsection*{Example}
+Let's take a closer look at the differences between an actual repository and the mock repository, by taking a closer look at the \texttt{CarRentalCLI} program and its repositories.
+
+As a first example the \texttt{GetCar} function is used.
+This function takes the car ID as a parameter and returns the car with the corresponding ID.
+
+The code from the mock repository is shown in \autoref{lst:mock_repository_get_car_function}.
+Code from the actual repository is shown in \autoref{lst:repository_get_car_function}.
+
+The mock repository solely iterates over the list of cars and returns the car if it is found.
+Contrary, the actual repository iterates over the list of car persistence entities and converts them to cars.
+This is done by using the yaml mapper.
+The mock repository does not need to import the yaml mapper or the car persistence entity, since it solely operates in its own, non-persistent lists.
+
+\begin{lstlisting}[
+      float=h,
+      style=kit-cm,
+      caption={Mock Repository GetCar Function},
+      label={lst:mock_repository_get_car_function},
+      language=Golang,
+]
+func (repository MockCarRentalRepository) GetCar(carID string) (model.Car, error) {
+for _, car := range repository.Cars {
+      if car.ID == carID {
+            return car, nil
+      }
+}
+return model.Car{}, fmt.Errorf("Could not find car")
+}
+\end{lstlisting}
+
+\begin{lstlisting}[
+      float=h,
+      style=kit-cm,
+      caption={Repository GetCar Function},
+      label={lst:repository_get_car_function},
+      language=Golang,
+]
+func (repository CarRentalRepository) GetCar(carID string) (model.Car, error) {
+for _, car := range repository.Cars {
+      if car.ID == carID {
+            return YAMLMapper.ConvertCarPersistenceEntityToCar(car), nil
+      }
+}
+
+return model.Car{}, fmt.Errorf("Could not find car")
+}
+\end{lstlisting}
+
+The second example is the \texttt{CreateRental} function.
+The function takes a rental as a parameter and adds it to the list of rentals.
+It therefore provides the functionality to save newly created models to the database.
+
+The code from the mock repository is shown in \autoref{lst:mock_repository_create_rental_function}.
+Code from the actual repository is shown in \autoref{lst:repository_create_rental_function}.
+
+The mock repository solely appends the rental to the list of rentals.
+Therefore no further imports besides the Rental model are needed.
+
+Contrary, the actual repository converts the rental to a rental persistence entity before appending it to the list of rentals.
+This is done by using the Rental's yaml mapper.
+After that, the \texttt{SaveData} function is called to save the data to the yaml file.
+Therefore the actual repository needs to import the yaml mapper and the rental persistence entity just for this function.
+
+This enables the repository to save the data persistently by writing it to the yaml file while the mock repository stores its data only during execution.
+In the specific use cases of each repository, running the application for the actual repository and testing for the mock repository, this different functionality is of great worth as mentioned above.
+
+\begin{lstlisting}[
+      float=h,
+      style=kit-cm,
+      caption={Mock Repository CreateRental Function},
+      label={lst:mock_repository_create_rental_function},
+      language=Golang,
+]
+func (repository MockCarRentalRepository) CreateRental(newRental model.Rental) error {
+repository.Rentals = append(repository.Rentals, newRental)
+return nil
+}
+\end{lstlisting}
+
+\begin{lstlisting}[
+      float=h,
+      style=kit-cm,
+      caption={Repository CreateRental Function},
+      label={lst:repository_create_rental_function},
+      language=Golang,
+]
+func (repository CarRentalRepository) CreateRental(rental model.Rental) error {
+var newRental = YAMLMapper.ConvertRentalToRentalPersistenceEntity(rental)
+
+repository.Rentals = append(repository.Rentals, newRental)
+repository.SaveData()
+return nil
+}
+\end{lstlisting}

@@ -4,7 +4,7 @@ This task aims to get familiar with the given code and to understand the structu
 
 First, the CLI parameters are analyzed and complete \autoref{tab:cli_parameters_car_rental_cli}.
 Following that, delving into the architecture involves describing and analyzing software and microarchitecture
-The last step is to start the program and to rent a car for Max.
+The last step is to start the program and rent a car for Max.
 
 These tasks will provide a fundamental understanding of the application and its structure.
 
@@ -12,7 +12,8 @@ These tasks will provide a fundamental understanding of the application and its 
 The goal of this task is to derive input and output parameters for the CLI commands.
 \autoref{tab:cli_parameters_car_rental_cli} is based on the given task sheet and contains the input and output parameters for the CLI commands.
 
-Empty fields are the command for registering as a customer, the input for canceling a rental, and the command, input, and output for deregistering as a customer.
+The empty fields are in the spaces where the command, input, and output are not specified in the task sheet.
+Empty fields are marked with an underline.
 
 The command for registering as a customer is \texttt{register} since it clearly describes the intention and action of the command.
 
@@ -21,11 +22,11 @@ Both values are needed to identify the rental and authenticate the customer.
 If both values are correct, the rental can be canceled.
 
 The command for deregistering as a customer is \texttt{deregister} since it clearly describes the intention and action of the command.
-Only the customer ID is needed as input since it identifies the customer and the customer can only deregister himself.
+Only the customer ID is needed as input since it identifies the customer.
 If the deregistration is successful, the customer ID is returned to the CLI, showing the value that will be deleted from the yaml file.
 If the deregistration fails, the CLI returns a failure message.
 
-The results of entering the values into the fields are shown in \autoref{tab:cli_parameters_car_rental_cli}.
+The table with the inserted values is shown in \autoref{tab:cli_parameters_car_rental_cli}.
 The inserted values are underlined.
 
 \begin{table}
@@ -50,12 +51,14 @@ The inserted values are underlined.
 \end{table}
 
 \subsubsection*{Describe the Software Architecture}
-The given task starts with three different software components:
-\begin{itemize}
-    \item Presentation Layer: CarRentalCLI
-    \item Application Logic Layer: CarRentalOperations
-    \item Infrastructure Layer: CarRentalRepository
-\end{itemize}
+The software architecture of an application describes the structure of the application in terms of components and their interactions.
+
+The given software architecture consists of three different components:
+The presentation layer is represented by the CarRentalCLI.
+The application logic layer is represented by the CarRentalOperations.
+The infrastructure layer is represented by the CarRentalRepository.
+
+These layers are described in the following:
 \paragraph*{Presentation Layer: CarRentalCLI}
 \begin{itemize}
     \item Functionality: This component implements the CLI itself. 
@@ -85,14 +88,12 @@ The given task starts with three different software components:
 
 \paragraph*{Infrastructure Layer: CarRentalRepository}
 \begin{itemize}
-    \item Functionality: This component implements yaml mappers and entities. 
-          This allows for simple communication between the application and the yaml files.
-          The yaml mappers provide functions to read and write yaml files.
-          The entities provide the structure of the yaml files and the structure of the struct the mapper creates.
+    \item Functionality: This component communicates and keeps track of the database. 
+          This allows for simple communication between the application and the database.
     \item Interfaces: This component provides the CarRentalRepositoryInterface
-    \item Dependencies: The component is dependent on the provided yaml files since it reads and writes them.
+    \item Dependencies: The component is dependent on the provided database since it reads and writes to it.
           In terms of functionality, no functionality imports from other parts of the application are needed since all functions are implemented in the component itself.
-    \item Reusability: This component is reusable since it only implements yaml mappers and entities.
+    \item Reusability: This component is reusable since it only implements database communication and entities.
           By providing a different set of entities and mappers, one can reuse the component in a different context.
     \item Scalability and Maintainability: By adding new mappers and entities, the functionality can be extended.
           By fixing the mappers and entities, maintainability can be ensured.
@@ -106,7 +107,7 @@ The focus is the interaction between classes, interfaces and packages within the
 
 \paragraph*{CLI:}
 The \texttt{CarRentalCLI} handles the user interaction.
-The class \texttt{CarRentalCLI} implements the cli-commands by calling the according functions from the \hfill \linebreak \texttt{CarRentalOperationsInterface}.
+The class \texttt{CarRentalCLI} implements the cli commands by calling the according functions from the \hfill \linebreak \texttt{CarRentalOperationsInterface}.
 This provides a great overview and abstraction, improving the maintainability and scalability of the application.
 
 \paragraph*{Logic:}
@@ -119,6 +120,8 @@ Both components share the same model, which is defined in the \texttt{model} sub
 The \texttt{CarRentalRepository} package is responsible for the communication with the yaml files.
 It provides the \texttt{CarRentalRepositoryInterface} which is implemented by the \texttt{CarRentalRepository} class.
 This class is responsible for storing and retrieving data, hiding the infrastructure-specific calls.
+The yaml mappers provide functions to read and write yaml files.
+The entities provide the structure of the yaml files and the structure of the struct the mapper creates.
 
 \begin{figure}[h]
       \centering
@@ -128,11 +131,14 @@ This class is responsible for storing and retrieving data, hiding the infrastruc
 \end{figure}
 
 \subsubsection*{Start the Go Program CarRentalCLI}
-The output after starting the program successfully is displayed in \autoref{fig:car_rental_cli_successful_rental_max}.
+The program is started by running \texttt{go run . --- rent} in the \texttt{./CarRentalCLI} directory.
+
 The program asks for the ID of the customer and the ID of the car.
 After entering the IDs, the program asks for the start and end date of the rental by asking for the day, month and year.
 If the data is entered correctly and the rental is successful, the program prints a success message and exits.
 Otherwise, the program asks for the remaining data and prints an error message, the exit status and exits.
+
+The output after successfully starting the program is displayed in \autoref{fig:car_rental_cli_successful_rental_max}.
 
 \begin{figure}
       \centering
@@ -155,7 +161,7 @@ This is a hands-on task, which requires adding code to the existing application.
 
 \subsubsection*{Add CLI Command}
 The CLI commands are placed in the \texttt{CarRentalCLI.go} file.
-The \texttt{NewCarRentalCLI} function takes \texttt{operations.CarRentalOperations} as input and returns a \texttt{CarRentalCLI} object that can later be executed.
+The \texttt{NewCarRentalCLI} function takes \texttt{operations.CarRentalOperations} as input and returns a \texttt{CarRentalCLI} object that can be executed.
 This function also specifies the commands that can be executed by the CLI.
 The array \texttt{Commands} contains these commands consisting of the name, the usage, and the according action.
 
@@ -224,6 +230,7 @@ This task is about implementing the \texttt{ConvertCustomerToCustomerPersistence
 The code for this function is shown in \autoref{lst:car_rental_cli_mapper_customer_to_customer_persistence_entity}.
 
 \begin{lstlisting}[
+      float=h,
       style=kit-cm,
       language=Golang,
       caption={Code for the ConvertCustomerToCustomerPersistenceEntity Function},

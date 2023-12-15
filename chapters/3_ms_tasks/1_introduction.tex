@@ -30,8 +30,12 @@ This model can be used to better understand the domain and to communicate with s
 The domain model is located in the domain logic layer of the layered architecture.
 Therefore each microservice implements its domain model.
 
-The Domain Logic Layer is the part shaped by domain modeling.
-It contains the domain model and the domain logic.
+Using a layered software architecture, the business logic layer is separated into application logic and domain logic.
+The application logic layer contains the application-specific logic while the domain logic layer contains the domain-specific logic.
+This domain-specific logic is derived from the domain model, enabling the domain knowledge to be encapsulated in the domain logic layer.
+The application logic layer is derived from the analysis of the application requirements, for instance, use cases.
+
+Therefore the domain logic layer is the part of the software architecture that is shaped the most by domain modeling.
 
 \subsubsection*{Modelling of the Architecture}
 To model the architecture of a microservice-based application, UME uses the Unified Modeling Language (UML).

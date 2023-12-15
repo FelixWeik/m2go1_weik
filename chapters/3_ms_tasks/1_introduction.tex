@@ -23,9 +23,35 @@ These systems handle tasks across a network, each node having its local memory a
 Microservices share a similar idea: Splitting an application into smaller, more independent services communicating with each other.
 Each microservice manages its functionalities and data to provide the overall functionality of the application.
 
+\subsubsection*{Domain Modelling}
+A domain model describes selected aspects of a domain in a conceptual model, yet the model should not separate the concept from the implementation.
+This model can be used to better understand the domain and to communicate with stakeholders.
+
+The domain model is located in the domain logic layer of the layered architecture.
+Therefore each microservice implements its domain model.
+
+The Domain Logic Layer is the part shaped by domain modeling.
+It contains the domain model and the domain logic.
+
+\subsubsection*{Modelling of the Architecture}
+To model the architecture of a microservice-based application, UME uses the Unified Modeling Language (UML).
+To create the according diagrams, the UMLet tool is used.
+
+Two modeling views can be distinguished: the tactical and the strategic view.
+
+The strategic modeling provides an overview of the domain model.
+The result is the so-called context map.
+It provides the link to the microservice architecture.
+The context map consists of subdomains and their bounded contexts.
+A bounded context can be seen as a microservice candidate.
+
+Tactical modeling takes a closer look at the entities and their relationships.
+Each bounded context entity models the static relations of the domain entity.
+
 \subsection{Excercise APIStyles}
 \label{sec:api_styles}
 %//TODO: Kurze Einleitung
+
 
 \subsection{Excercise ArchitectureCarRentalAppV1.0}
 \label{sec:architecture_car_rental_app_v1_0}

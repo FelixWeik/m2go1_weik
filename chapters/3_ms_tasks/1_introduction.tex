@@ -56,7 +56,7 @@ Each bounded context entity models the static relations of the domain entity.
 \label{sec:api_styles}
 %//TODO: Kurze Einleitung
 \subsubsection*{REST and gRPC}
-Representational State Transfer (REST) and Remote Procedure Call (gRPC) are two different frameworks and collections of best practices and technologies for building APIs.
+Representational state Transfer (REST) and Remote Procedure Call (gRPC) are two different frameworks and collections of best practices and technologies for building APIs.
 
 The main conceptual difference is the focus and orientation of both concepts:
 REST is resource-oriented.
@@ -69,13 +69,33 @@ These methods can be called by a client with their parameters and return values.
 Both concepts have their legitimate use cases, yet it is important to choose the right one for the given use case.
 
 \subsubsection*{REST Properties}
-%Name and describe the main properties of the API style REST.
+% Name and describe the main properties of the API style REST.
+REST provides a concept of how microservices' APIs should be designed.
+Its main properties are explained in the following.
 
+\paragraph*{Addressable Ressources:}
+As mentioned before, REST is resource-oriented meaning that each resource has a unique identifier, a URL, and can be accessed using the standardized HTTP methods.
+Therefore only a small set of functions is needed to manipulate the resources, offering a uniform interface.
+
+\paragraph*{Stateless Communication:}
+REST is stateless meaning that each request is independent of the previous one.
+The server, therefore, does not need to store any information about the client.
+The client must transfer all the information in the request that is needed to process it to the server.
+This leads to a loss of performance.
+Yet, this is a tradeoff for an increase in scalability and robustness.
+
+\paragraph*{Representation Orientation:}
+This principle strongly relates to resources.
+These resources have to be represented.
+This happens in a standardized format, for instance, JSON or XML.
+The client can choose the format that suits him best.
+MIME, the Multipurpose Internet Mail Extensions standard, defines the different formats used in internet protocols.
 
 \subsubsection*{gRPC Components}
-
+% Name and describe the main components of the gRPC architecture.
 
 \subsubsection*{Use of REST and gRPC in UME}
+% Which API style is appropriate for which type of microservice in the UME approach?
 
 \subsection{Excercise ArchitectureCarRentalAppV1.0}
 \label{sec:architecture_car_rental_app_v1_0}

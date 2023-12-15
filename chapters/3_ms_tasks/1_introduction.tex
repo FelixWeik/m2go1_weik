@@ -69,7 +69,6 @@ These methods can be called by a client with their parameters and return values.
 Both concepts have their legitimate use cases, yet it is important to choose the right one for the given use case.
 
 \subsubsection*{REST Properties}
-% Name and describe the main properties of the API style REST.
 REST provides a concept of how microservices' APIs should be designed.
 Its main properties are explained in the following.
 
@@ -93,9 +92,34 @@ MIME, the Multipurpose Internet Mail Extensions standard, defines the different 
 
 \subsubsection*{gRPC Components}
 % Name and describe the main components of the gRPC architecture.
+gRPC is an open-source remote procedure call system, a competitive alternative to REST.
+As mentioned above, gRPC is based on the idea of defining a service and specifying remotely callable methods.
+
+\autoref{fig:grpc_main_components} shows the main components that will be explained in the following.
+\paragraph*{Proto File:}
+The proto file defines the service and the methods that can be called remotely.
+Before calling a method, a stub needs to be generated.
+This stub is generated from the proto file and contains the method signatures.
+
+\paragraph*{Client:}
+The client is the caller of the remote methods.
+It uses the stub to call the methods.
+The communication between the client and the server uses protobuf messages via HTTP/2.
+
+\paragraph*{Server:}
+The server is the receiver of the remote method calls.
+It implements the methods defined in the proto file.
+After receiving a call, the server executes the method and returns the result to the client.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/microservices/microservices_grpcMainComponents.png}
+    \caption{Main Components of the gRPC Architecture}
+    \label{fig:grpc_main_components}
+\end{figure}
 
 \subsubsection*{Use of REST and gRPC in UME}
-% Which API style is appropriate for which type of microservice in the UME approach?
+% //TODO: Which API style is appropriate for which type of microservice in the UME approach?
 
 \subsection{Excercise ArchitectureCarRentalAppV1.0}
 \label{sec:architecture_car_rental_app_v1_0}

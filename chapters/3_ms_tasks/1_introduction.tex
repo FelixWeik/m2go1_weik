@@ -56,9 +56,20 @@ Each bounded context entity models the static relations of the domain entity.
 \label{sec:api_styles}
 %//TODO: Kurze Einleitung
 \subsubsection*{REST and gRPC}
-Representational State Transfer (REST) and 
+Representational State Transfer (REST) and Remote Procedure Call (gRPC) are two different frameworks and collections of best practices and technologies for building APIs.
+
+The main conceptual difference is the focus and orientation of both concepts:
+REST is resource-oriented.
+Each resource has a unique identifier (URI) and can be accessed using the standardized HTTP methods.
+Therefore, there is only a small set of well-defined methods for manipulating the resources.
+gRPC is procedure, method, or function-oriented.
+It is based on the idea of implementing a service, offering remotely callable methods.
+These methods can be called by a client with their parameters and return values.
+
+Both concepts have their legitimate use cases, yet it is important to choose the right one for the given use case.
 
 \subsubsection*{REST Properties}
+%Name and describe the main properties of the API style REST.
 
 
 \subsubsection*{gRPC Components}

@@ -1,6 +1,9 @@
 \subsection{Excercise UMEGeneralConcepts}
 \label{sec:ume_general_concepts}
-%//TODO: Kurze Einleitung
+% Kurze Einleitung
+This task provides a general overview of the general concepts of the Unified Microservice Engineering (UME) approach.
+The following sections will explain the general architectural style, and the domain modeling process and dive into the modeling of the architecture.
+
 \subsubsection*{Architectural Style}
 The Unified Microservice Engineering approach aligns with the microservices architectural style.
 This involves breaking down an application into smaller, independent services that can be developed, deployed, and scaled separately.
@@ -54,7 +57,10 @@ Each bounded context entity models the static relations of the domain entity.
 
 \subsection{Excercise APIStyles}
 \label{sec:api_styles}
-%//TODO: Kurze Einleitung
+% Kurze Einleitung
+This task focuses on the different API styles used in the UME approach.
+The following sections will explain REST and gRPC and their properties, focusing on their use, the execution, their similarities and their differences.
+
 \subsubsection*{REST and gRPC}
 Representational state Transfer (REST) and Remote Procedure Call (gRPC) are two different frameworks and collections of best practices and technologies for building APIs.
 
@@ -119,7 +125,20 @@ After receiving a call, the server executes the method and returns the result to
 \end{figure}
 
 \subsubsection*{Use of REST and gRPC in UME}
-% //TODO: Which API style is appropriate for which type of microservice in the UME approach?
+% Which API style is appropriate for which type of microservice in the UME approach?
+Each API style applies to different use cases and microservice types.
+Taking a look at a standard DDD-based layered architecture, splitting the logic layer into application and domain logic, different API styles can be used for each logic layer.
+
+The application-logic layer is implemented using an application microservice.
+An application microservice is a microservice that implements the application-specific logic.
+This logic is derived from the analysis of the application requirements, for instance, use cases.
+It communicates with the presentation layer, providing an interface for the UI, and with the domain logic layer, implementing the domain-specific interface.
+Since gRPC focuses on the functions, it is a good fit for the communication between the presentation layer and the application logic layer.
+The presentation layer can call the methods of the application microservice directly, whilst being performant and efficient.
+
+The domain logic layer communicates with the application logic layer by providing an interface and communicates with the database implementing its interface.
+Therefore the communication to both layers is resource-oriented.
+REST is a good fit for this communication, providing a uniform interface for the communication between the layers.
 
 \subsection{Excercise ArchitectureCarRentalAppV1.0}
 \label{sec:architecture_car_rental_app_v1_0}

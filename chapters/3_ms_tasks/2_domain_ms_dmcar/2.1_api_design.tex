@@ -1,0 +1,58 @@
+\section{API Design of DM-Car}
+\label{sec:api_design}
+% Wichtig: Die Ergebnisse sollten klar und konkret beschrieben werden, aber auch nicht allzu überschwänglich
+\subsection{Excercise DomainEntityCarV1.0}
+\label{subsec:domain_entity_car_v1.0}
+\subsubsection*{DDD Pattern}
+Domain-Driven-Design includes a set of patterns solving common problems elegantly.
+Besides the already-known layered architecture pattern, the entity pattern is part of the DDD-core patterns.
+An entity is described to be an object, that is not defined by its attributes, but by a thread of continuity and its identity.
+
+A car is a good example of an entity because it is not defined by its attributes but by its identity.
+In our case, the identity is the VIN (Vehicle Identification Number), the brand and the model.
+The attributes can be the color, the engine, etc.
+Even if the attributes change, the car is still the same entity due to its unique and therefore constant identity.
+
+Therefore the entity pattern is a good choice for the car.
+
+\subsubsection*{Terms Used}
+This section describes the terms used in the \texttt{domain\_entity\_car\_v1.0} file as it is shown in \texttt{gu\_terms\_used}.
+\paragraph*{domain entity:}
+This shows, that this entity is part of the domain.
+\paragraph*{vin:}
+The VIN (Vehicle Identification Number) is a unique identifier for a car.
+It therefore is part of the car's identity.
+\paragraph*{brand:}
+This is the brand of the car.
+It also is part of the car's identity.
+\paragraph*{model:}
+This is the model of the car.
+It is part of the car's identity.
+
+\subsubsection*{Example Data}
+This task adds the example data to the table of example data.
+The example data is given in the task sheet.
+The results are shown in \autoref{tab:example_data_domain_entity_car_v1.0}.
+\begin{table}
+    \centering
+    \caption{Example Data of DomainEntityCarV1.0}
+    \label{tab:example_data_domain_entity_car_v1.0}
+    \begin{tabular}{|p{5cm}|p{2cm}|p{2cm}|}
+        \hline
+        vin & brand & model \\
+        \hline
+        JH4DB1561NS000565 & VW & ID2 \\
+        JN8AZ2NC5B9300256 & VW & ID3 \\
+        2FDKF38G3KCA42390 & Ford & Mustang \\
+        1GBJK39DX6E165432 & Tesla & Model S \\
+        JH4DB1550MS003978 & Audi & A3 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Excercise APIDiagramDMCarV1.0}
+\label{subsec:api_diagram_dm_car_v1.0}
+
+
+\subsection{Excercise PrepareLocalWorkingFolder}
+\label{subsec:prepare_local_working_folder}

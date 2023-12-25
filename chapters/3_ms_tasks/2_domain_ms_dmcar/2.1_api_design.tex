@@ -5,6 +5,7 @@
 \label{subsec:domain_entity_car_v1.0}
 %//TODO Einleitung
 \subsubsection*{DDD Pattern}
+\label{subsubsec:ddd_pattern}
 Domain-Driven-Design includes a set of patterns solving common problems elegantly.
 Besides the already-known layered architecture pattern, the entity pattern is part of the DDD-core patterns.
 An entity is described to be an object, that is not defined by its attributes, but by a thread of continuity and its identity.
@@ -81,9 +82,8 @@ This provides a better separation of concerns by separating the storage and the 
 Yet, the relationship between the collection and the car is not as clear as in the first model.
 However, the second model is more flexible.
 It is easier to change the storage of the cars without changing the logic.
-Therefore both models have their pros and cons.
 
-Therefore 
+Therefore both models have their pros and cons.
 
 \begin{figure}[H]
     \centering
@@ -91,6 +91,19 @@ Therefore
     \caption{Alternative API Diagram of DM-CarV1.0}
     \label{fig:api_diagram_dm_car_alternative}
 \end{figure}
+
+\subsubsection*{API Operations}
+As mentioned in \autoref{subsec:rest_and_grpc} gRPC and ReST are two different approaches to implementing an API.
+Their main difference is their orientation in the way they communicate.
+While gRPC is method-oriented, ReST is resource-oriented.
+Therefore the API operations of gRPC are methods, while the API operations of ReST are resources.
+ReST helps to build a distributed system that handles clearly defined and identifiable resources.
+
+\texttt{DM-CarV1.0} uses the DDD pattern \texttt{Entity}.
+The explanation of this pattern can be found in \autoref{subsubsec:ddd_pattern}.
+Therefore most of the communication in this microservice is entity- or resource-oriented due to car entities being the main part of the microservice and its communication.
+The API orientation therefore lies on the resources.
+This makes ReST the better choice for this microservice.
 
 \subsection{Excercise PrepareLocalWorkingFolder}
 \label{subsec:prepare_local_working_folder}

@@ -1,0 +1,30 @@
+\subsection{OpenAPIDMCar}
+\subsubsection{Markup Language}
+\autoref*{lst:openapi-spec} shows the generic structure of an OpenAPI specification.
+This listing also can be found in the tasks sheet \cite{CM-T-DMC}.
+
+The used language is YAML (YAML Ain't Markup Language).
+An alternative is JSON (JavaScript Object Notation).
+Yet, there are some advantages of YAML over JSON in this context.
+
+YAML is a superset of JSON, which means that every JSON file is also a valid YAML file.
+However, YAML is more readable and easier to write than JSON.
+JSON requires a more complex syntax, which makes it more error-prone.
+The specification only needs to be readable for humans, no machine needs to parse it.
+Therefore, JSON is more suitable for data interchange, while YAML is more suitable for configuration files.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Generic OpenAPI Specification Structure},
+    label={lst:openapi-spec},
+]
+openapi : 3.0.1
+info :
+    title : API Specification < Microservice Name >
+    description : < Description >
+    version : 1.0.0
+tags :
+paths :
+components :
+    schemas :
+\end{lstlisting}

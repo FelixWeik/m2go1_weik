@@ -82,3 +82,16 @@ This allows easy integration of the API into other applications.
 \end{figure}
 
 \subsubsection*{getCar() in OpenAPI Specification}
+The lines 26 to 47 in the OpenAPI specification are relevant for the specification of the \texttt{getCar()} method.
+The specification starts with the path being defined, in this case \texttt{/cras/\{vin\}}.
+
+After that the HTTP methods are defined, here it is only the \texttt{get} method.
+The specification of the method includes the operation ID, a summary, tags, parameters and the responses.
+Yet, not everything is defined in this part.
+
+The schema of the parameters and the responses are defined in the \texttt{components} section.
+In this case, it is \texttt{\#/components/schemas/car}.
+This part of the components defines the car object and its properties.
+Due to the car being reused in multiple places, it is defined in the components section and referenced if necessary.
+
+Therefore lines 26 to 47 define the general structure of the \texttt{getCar()} method, while the schemas are defined in \texttt{components} section, here it is lines 54 to 66.

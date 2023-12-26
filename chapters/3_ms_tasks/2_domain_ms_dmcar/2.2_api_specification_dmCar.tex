@@ -1,5 +1,5 @@
 \subsection{OpenAPIDMCar}
-\subsubsection{Markup Language}
+\subsubsection*{Markup Language}
 \autoref*{lst:openapi-spec} shows the generic structure of an OpenAPI specification.
 This listing also can be found in the tasks sheet \cite{CM-T-DMC}.
 
@@ -14,6 +14,7 @@ The specification only needs to be readable for humans, no machine needs to pars
 Therefore, JSON is more suitable for data interchange, while YAML is more suitable for configuration files.
 
 \begin{lstlisting}[
+    float=h,
     style=kit-cm,
     caption={Generic OpenAPI Specification Structure},
     label={lst:openapi-spec},
@@ -28,3 +29,26 @@ paths :
 components :
     schemas :
 \end{lstlisting}
+
+\subsubsection*{OpenAPI Sections}
+An OpenAPI specification consists of three general sections, each of which is described in the following.
+\paragraph*{Info}
+The \texttt{info} section contains general information about the API.
+This includes the title, a description, the version, host, licensing, and the developers' contact information.
+
+\paragraph*{Paths}
+The \texttt{paths} section contains the API endpoints.
+Each path defines a certain URL and the HTTP methods that can be used on this URL.
+For each method, the request and response parameters are defined.
+This enables simple navigation through the API, as this part provides a map of the API's overall functionality.
+
+\paragraph*{Components}
+The \texttt{components} section contains reusable components.
+This includes schemas, data models, headers, and security schemes.
+Therefore, parts of the specification can be defined once and reused in multiple places.
+This reduces the amount of code, makes the specification more readable and improves the overall documentation quality.
+
+\subsubsection*{Swagger Editor}
+
+
+\subsubsection*{getCar() in OpenAPI Specification}

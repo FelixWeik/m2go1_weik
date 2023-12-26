@@ -118,3 +118,41 @@ The \texttt{figures} folder contains the figures used in the API diagram.
 The \texttt{src} folder contains the source code of the microservice that will be further analyzed in the following paragraph.
 
 \paragraph*{src:}
+Opening the folder, the structure shown in \autoref{fig:ms_dmCar_srcFolderStructure} is found.
+
+\texttt{go.mod} contains the dependencies of the microservice, linking to the used repositories and their versions.
+\texttt{go.sum} contains the checksums of these dependencies, acting as a security measure.
+\texttt{main.go} is the main file of the microservice creating the Postgres database and starting the server.
+This file is compiled into an executable file.
+
+\paragraph*{Relations to the Architectural Diagram:}
+The architectural diagram of the microservice is modeled in the repository, implementing the entities and the according functions.
+
+The collection \texttt{Cars} and the domain entity \texttt{Car} are implemented in the \texttt{Cars.go} and \texttt{Car.go} files respectively.
+Both files can be found in the \texttt{/src/logic/model} folder.
+Both files implement the attributes of the entities, yet they do not implement the methods shown in the diagram.
+
+The methods are implemented separately with each method having its file.
+According files are found in the \texttt{/src/logic/operations} folder.
+Therefore, it is not possible to identify which method belongs to which entity.
+
+The value object \texttt{Vin} used by \texttt{Car} is implemented in the \texttt{Vin.go} file.
+The file also can be found in the \texttt{/src/logic/model} folder.
+It implements the \texttt{IsValidVin()} method checking if a VIN is valid, yet this is not shown in the diagram.
+
+Also, further functionalities like mappers, handlers, etc. are not shown in the diagram.
+However, they are essential for the microservice to work.
+They are implemented in the \texttt{/src/infrastructure} and \texttt{/src/api} folders.
+
+To conclude, general relations between the implementation and the diagram are met.
+\texttt{Cars} is a collection of \texttt{Car} and all entities are implemented as shown in the diagram.
+Yet, methods are not implemented in the entities but in separate files.
+Furthermore, the value object \texttt{Vin} implements further functions not shown in the diagram.
+Also, further functionalities like mappers, handlers, etc. are not shown in the diagram.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/microservices/dmCar/ms_dmCar_srcFolderStructure.png}
+    \caption{Folder Structure of the src Folder}
+    \label{fig:ms_dmCar_srcFolderStructure}
+\end{figure}

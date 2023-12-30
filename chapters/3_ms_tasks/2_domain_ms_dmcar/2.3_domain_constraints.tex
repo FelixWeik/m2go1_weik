@@ -1,5 +1,39 @@
 \subsection{Excercise DomainConstraints}
 \subsubsection*{Analyze the Domain Constraints}
+The constraints describe invariants, post-, and pre-conditions of a certain context that have to be fulfilled.
+This happens in two different contexts: \texttt{Car} and the \texttt{addCar()} method of the \texttt{CarCollection}.
+
+\paragraph*{Context Car:}
+Three invariants have to be fulfilled for a car to be valid.
+
+First, the VIN has to match a certain regular expression.
+This regular expression is defined in the constraint.
+The first 13 characters have to be letters reaching from A to H, J to N, R to Z, P, or digits from 0 to 9.
+The last four characters must be digits from 0 to 9.
+Therefore each VIN is exactly 17 characters long and matches the regular expression.
+
+Second, the brand of the car must not be empty.
+Finally, the model of the car must not be empty.
+
+If all invariants are met, the car is valid.
+
+\paragraph*{Context CarCollection::addCar(car: Car):}
+This constraint focuses on the \texttt{addCar()} method of the \texttt{CarCollection}.
+Here, pre-, and post-conditions are defined.
+
+The pre-condition is executed on all the collection's cars.
+This is done by using the \texttt{forAll()} expression.
+In each iteration, two cars are compared, to be precise their VINs.
+The VINs must not be equal.
+By using the \texttt{forAll} expression, all cars are compared to each other.
+Therefore, every car in the collection must have a unique VIN for the pre-condition to be true.
+
+The post-condition is executed on the car that is added to the collection, the input of the \texttt{addCar()} method.
+It specifies that the car exists in the collection after executing the method.
+This is done by using the \texttt{exists()} expression.
+Therefore, if the post-condition is true, the car has successfully been added to the collection.
+
+If these conditions are met, the \texttt{addCar()} method executes correctly and the car is successfully added to the collection.
 
 \subsubsection*{Derive Test Cases}
 

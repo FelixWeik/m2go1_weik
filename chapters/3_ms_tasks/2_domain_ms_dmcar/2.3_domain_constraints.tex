@@ -2,6 +2,7 @@
 \subsubsection*{Analyze the Domain Constraints}
 The constraints describe invariants, post-, and pre-conditions of a certain context that have to be fulfilled.
 This happens in two different contexts: \texttt{Car} and the \texttt{addCar()} method of the \texttt{CarCollection}.
+The constraints can be found in \autoref*{lst:domain_constraints} which is a copy of Listing 2.2 from the task sheet \cite{CM-T-DMC}.
 
 \paragraph*{Context Car:}
 Three invariants have to be fulfilled for a car to be valid.
@@ -36,5 +37,77 @@ Therefore, if the post-condition is true, the car has successfully been added to
 If these conditions are met, the \texttt{addCar()} method executes correctly and the car is successfully added to the collection.
 
 \subsubsection*{Derive Test Cases}
+This task is about deriving negative and positive test cases from the constraints in \autoref*{lst:domain_constraints}.
+
+\paragraph*{Context Car:}
+Three negative and positive test cases can be derived from the given constraints.
+The results are shown in code-form in \autoref*{lst:test_cases_car}.
+
+The \texttt{newCar()} constructor is assumed to be used to create a new car.
+
+\begin{lstlisting}[
+    float=h,
+    style=kit-cm,
+    caption={Test Cases for the Context Car},
+    label={lst:test_cases_car}, 
+]
+/*
+A car is created by providing a VIN, a brand, and a model.
+Therefore, a car is created by using the newCar(vin, brand, model) constructor.
+*/
+
+// Positive Test Case 1: VIN matches the regular expression
+correctVin1 := "JH4DB1561NS000565"
+correctCar1 := newCar(correctVin1, "VW", "ID2")
+
+// Negative Test Case 1: VIN does not match the regular expression
+incorrectVin1 := "JH4DB1561NS00056"
+incorrectCar1 := newCar(incorrectVin1, "VW", "ID2") // VIN is too short, does not match the regular expression
+
+// Positive Test Case 2: Brand is not empty
+correctVin2 := "JH4DB1561NS000566"
+correctCar2 := newCar(correctVin2, "VW", "ID2")
+
+// Negative Test Case 2: Brand is empty
+incorrectCar2 := newCar(correctVin2, "", "ID2") // brand is empty, does not meet the second constraint
+
+// Positive Test Case 3: Model is not empty
+correctVin3 := "JH4DB1561NS000567"
+correctCar3 := newCar(correctVin3, "VW", "ID2")
+
+// Negative Test Case 3: Model is empty
+incorrectCar3 := newCar(correctVin3, "VW", "") // model is empty, does not meet the third constraint
+\end{lstlisting}
+
+\paragraph*{Context addCar(car: Car):}
+Two three negative and positive test cases can be derived from the given constraints.
+
+First, the pre-condition is tested.
+A positive test case occurs if the VIN of the car that is added to the collection is unique and therefore does not match any of the already stored cars in the collection.
+A negative test case occurs, if the VIN of the car that is added to the collection is not unique and therefore matches the VIN of at least one of the already stored cars in the collection.
+
+Second, the post-condition is tested.
+A positive test case occurs if the car that is added to the collection exists in the collection after the \texttt{addCar()} method has been executed.
+A negative test case occurs if the car that is added to the collection does not exist in the collection after the \texttt{addCar()} method has been executed.
+
+A last set of test cases can be derived by using both the pre-, and post-condition.
+A positive test case occurs if the car that is added to the collection is unique and exists in the collection after the \texttt{addCar()} method has been executed.
+A negative test case occurs if the car that is added to the collection is not unique and does not exist in the collection after the \texttt{addCar()} method has been executed.
 
 \subsubsection*{Add Constraints to the OpenAPI Specification}
+
+\begin{lstlisting}[
+    float=h,
+    style=kit-cm,
+    caption={Domain Constraints},
+    label={lst:domain_constraints}, 
+]
+context Car inv:
+    self.vin.matches(^[A-HJ-NPR-Z0-9]{13}[0-9]{4}$)
+    and self.brand -> notEmpty()
+    and self.model -> notEmpty()
+
+context CarCollection::addCar(car: Car):
+    pre: allInstances() -> forAll(car1, car2: Car | car1.vin <> car2.vin)
+    post: self.getCar -> exists(car)
+\end{lstlisting}

@@ -95,11 +95,18 @@ A positive test case occurs if the car that is added to the collection is unique
 A negative test case occurs if the car that is added to the collection is not unique and does not exist in the collection after the \texttt{addCar()} method has been executed.
 
 \subsubsection*{Add Constraints to the OpenAPI Specification}
+Including the constraints in the API has several advantages.
+
+OCL constraints are valid during the whole object lifecycle.
+Therefore including them in the API specification ensures that the constraints are met during the whole lifecycle of the object.
+This makes the API accept only valid objects, therefore ensuring type safety and the integrity of the data.
+
+% //TODO: Was könnte man hier noch machen?
 
 \begin{lstlisting}[
     float=h,
     style=kit-cm,
-    caption={Domain Constraints},
+    caption={Domain Constraints as found in the Task Sheet},
     label={lst:domain_constraints}, 
 ]
 context Car inv:

@@ -84,7 +84,7 @@ Two three negative and positive test cases can be derived from the given constra
 
 First, the pre-condition is tested.
 A positive test case occurs if the VIN of the car that is added to the collection is unique and therefore does not match any of the already stored cars in the collection.
-A negative test case occurs, if the VIN of the car that is added to the collection is not unique and therefore matches the VIN of at least one of the already stored cars in the collection.
+A negative test case occurs if the VIN of the car that is added to the collection is not unique and therefore matches the VIN of at least one of the already stored cars in the collection.
 
 Second, the post-condition is tested.
 A positive test case occurs if the car that is added to the collection exists in the collection after the \texttt{addCar()} method has been executed.
@@ -102,6 +102,7 @@ Therefore including them in the API specification ensures that the constraints a
 This makes the API accept only valid objects, therefore ensuring type safety and the integrity of the data.
 
 % //TODO: Was könnte man hier noch machen?
+% //TODO: Den Spaß in die API Specification einbauen
 
 \begin{lstlisting}[
     float=h,

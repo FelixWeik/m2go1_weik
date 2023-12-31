@@ -1,5 +1,9 @@
 \subsection{Excercise MicroArchDMCar}
-%//TODO introduction
+This task introduces the microarchitecture of the DM-CarV1.0 microservice.
+First, the general structure of a microarchitecture is explained.
+Then, the structure of the DM-CarV1.0 microarchitecture is shown and explained.
+Finally, the microarchitecture is visualized in VS Code.
+
 \subsubsection*{Parts of a Micro Architecture}
 The microarchitecture specifies the internal code structure of the microservice.
 It plays a major role in the further development and maintenance process whether on the chosen complexity.
@@ -59,32 +63,56 @@ The repositories provide the functions to interact with the database and the in-
 \end{figure}
 
 \subsubsection*{Micro Architecture in VS Code}
+//TODO: ???
+
+%====================================================
 
 \subsection{Excercise LogicPartDMCar}
+This task dives deeper into the microarchitecture of the DM-CarV1.0 microservice.
+Parts of the microarchitecture are explained in greater detail.
+
 \subsubsection*{Content of the Logic Folder}
+% Primary aspects of the logic folder
+As previously explained, the logic folder contains the domain logic of the microservice.
+It implements the API diagram that was shown in the previous tasks.
+% Purpose of different subfolders and their go files?
+The logic folder is separated into two subfolders: the model and the operations.
+The model folder contains the entities and value objects.
+It also contains the \hfill \linebreak \texttt{CarRepositoryInterface} that is implemented in the operations folder.
+Also, the test data, a collection of data for testing, is stored in the model folder.
+Every other file in the model folder contains one entity or value object.
+
+The operations folder contains the operations and their tests.
+Each operation is implemented in a separate file to ensure the separation of concerns.
+Also, each test is implemented in a separate file.
+
+Therefore, the subfolders' task is to separate the entities and value objects from the operations and their tests.
+This ensures the separation of concerns and the single responsibility principle.
+Also, the separation becomes clearer and the code is easier to maintain.
+
 \subsubsection*{Repository Interface}
 \subsubsection*{Operations Interface}
 \subsubsection*{Operation GetCar}
 
-
+%====================================================
 \subsection{Excercise APIPartDMCar}
 \subsubsection*{Content of the API Folder}
 \subsubsection*{Generated Files}
 \subsubsection*{File CarController.go}
 \subsubsection*{Mathod GetCar}
-
+%====================================================
 \subsection{Excercise InfrastructurePartDMCar}
 \subsubsection*{Content of the Infrastructure Folder}
 \subsubsection*{Persistence Entities}
 \subsubsection*{Mappers}
 \subsubsection*{InMemoryRepository}
 
-
+%====================================================
 \subsection{Excercise CSGetCar}
 \subsubsection*{Code Sketch GetCar}
 \subsubsection*{GetCar Flow Through the Code Sketch}
 
-
+%====================================================
 \subsection{Challenge Operation AddCar}
 \subsubsection*{Update API Diagram}
 \subsubsection*{Update API Specification}

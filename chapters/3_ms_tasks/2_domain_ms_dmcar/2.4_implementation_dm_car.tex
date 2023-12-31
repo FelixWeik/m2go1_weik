@@ -1,7 +1,26 @@
 \subsection{Excercise MicroArchDMCar}
 %//TODO introduction
 \subsubsection*{Parts of a Micro Architecture}
+The microarchitecture specifies the internal code structure of the microservice.
+It plays a major role in the further development and maintenance process whether on the chosen complexity.
+The basic structure of a microservice's microarchitecture is divided into three separate parts: the Microservice Requester, the Microservice API, and the Persistency Interface.
+Each of these parts is described in more detail in the following.
 
+\paragraph*{Microservice Requester:}
+The Microservice Requester is the software unit sending requests to the microservice and receiving the microservice's responses.
+This can be the front end or another microservice.
+
+\paragraph*{Microservice API:}
+Each microservice implements and provides an API.
+It is defined by the microservice's specification and is usually based on REST or gRPC depending on the microservice's requirements.
+The API contains the Domain or Application logic, based on the type of microservice.
+It implements the according operations and logic.
+The logic is structured according to the given operations.
+
+\paragraph*{Persistency Interface:}
+This part provides the data elements like entities or value objects.
+These elements can be accessed by the operations.
+This enables decoupling of the interface to the database by which the data elements are stored.
 
 \subsubsection*{Parts of the DM-CarV1.0 Micro Architecture}
 

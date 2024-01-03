@@ -90,16 +90,23 @@ Therefore, the subfolders' task is to separate the entities and value objects fr
 This ensures the separation of concerns and the single responsibility principle.
 Also, the separation becomes clearer and the code is easier to maintain.
 
-% \subsubsection*{Repository Interface}
-% % Description of the CarRepositoryInterface
-% The \texttt{CarRepositoryInterface} provides the function's signatures that are needed to interact with the entities and objects.
-% The functions are implemented in the \texttt{operations} folder and are then used by the \texttt{CarController} to provide the general functions.
-% % Which operations must be provided by a repository implementation
-% The already given functions of the repository are \texttt{GetCar()}, and \texttt{GetCars()}. 
-% \texttt{addCar()} will be implemented in the following tasks.
-% % Why is the interface located in the logic folder
-//TODO fertig machen
+\subsubsection*{Repository Interface}
+% Description of the CarRepositoryInterface
+The \texttt{CarRepositoryInterface} is placed in the \texttt{logic/model} folder.
+It provides the signatures of the functions \texttt{GetCars()} and \texttt{GetCar()}.
+\texttt{AddCar()} will be implemented later.
+
+% Which operations must be provided by a repository implementation
+The \texttt{CarRepositoryInterface} is used to create the \texttt{CarOperations} object, which will later be used to implement the \texttt{CarController} object.
+The \texttt{CarController} will be explained in more detail in \autoref*{sec:operationsInterface}.
+% Why is the interface located in the logic folder
+Each function of the \texttt{CarRepositoryInterface} is implemented in the \texttt{operations} package with each function having a separate file.
+This is done by the \texttt{CarOperations} struct, which calls the functions from the \texttt{operations} package.
+Therefore the \texttt{CarRepositoryInterface} is used to define the functions that are implemented in the \texttt{operations} package and can be called using the \texttt{CarController} struct.
+Thus, it is a good choice to place the \texttt{CarRepositoryInterface} in the \texttt{logic} folder.
+
 \subsubsection*{Operations Interface}
+\label{sec:operationsInterface}
 % Description of the Operations Interface + which operations are provided
 The \texttt{CarOperationsInterface} is placed in the \texttt{logic/model} folder.
 It provides the signatures of the functions \texttt{GetCars()} and \texttt{GetCar()}.
@@ -107,12 +114,16 @@ It provides the signatures of the functions \texttt{GetCars()} and \texttt{GetCa
 The difference between the \texttt{CarRepositoryInterface} and the \texttt{CarOperationsInterface} is the signatures they use:
 While \texttt{GetCars()} has the same signature and return type, \texttt{GetCar} takes a string representing the \texttt{vin} as input, while the \texttt{CarRepositoryInterface} takes the actual \texttt{vin} value object as input.
 % Which struct implements it
-The \texttt{CarOperationsInterface} is used to create a new \texttt{carOperations} object in the main function.
-This object is then used to create a \texttt{CarController} object, which is used to implement the API.
-Therefore, \texttt{CarOperations.go} defines the struct, here it is the \texttt{CarOperations} struct, with the actual functions being implemented in the \texttt{operations} package.
-These functions are then called via the \texttt{CarController}, which is also defined in each of the functions.
+This interface is implemented in the \texttt{controller} package by the \texttt{CarController} struct.
+This happens in the \texttt{CarController.go} file.
+To create a new \texttt{CarController} object, the \texttt{CarOperations} object is needed.
+The \texttt{CarOperations} object was explained in the previous task.
+In \texttt{CarController.go} all the functions of the \texttt{CarOperationsInterface} are implemented.
+They are implemented by calling the functions of the \texttt{CarOperations} object.
+Each function represents a path of the API specification, like \texttt{/cars} or \texttt{/cars/\{vin\}}.
 
-Therefore the \texttt{CarOperationsInterface} is used to define the functions that are implemented in the \texttt{operations} package and can be called using the \texttt{CarController} struct.
+Wrapping things up, the \texttt{CarOperationsInterface} is used to define the functions that are implemented in the \texttt{controller} package and can be called using the \texttt{CarController} struct representing the specified API functions.
+
 \subsubsection*{Operation GetCar}
 
 %====================================================

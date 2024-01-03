@@ -78,7 +78,7 @@ It implements the API diagram that was shown in the previous tasks.
 % Purpose of different subfolders and their go files?
 The logic folder is separated into two subfolders: the model and the operations.
 The model folder contains the entities and value objects.
-It also contains the \hfill \linebreak \texttt{CarRepositoryInterface} that is implemented in the operations folder.
+It also contains the \texttt{CarRepositoryInterface} that is implemented in the operations folder.
 Also, the test data, a collection of data for testing, is stored in the model folder.
 Every other file in the model folder contains one entity or value object.
 
@@ -90,8 +90,29 @@ Therefore, the subfolders' task is to separate the entities and value objects fr
 This ensures the separation of concerns and the single responsibility principle.
 Also, the separation becomes clearer and the code is easier to maintain.
 
-\subsubsection*{Repository Interface}
+% \subsubsection*{Repository Interface}
+% % Description of the CarRepositoryInterface
+% The \texttt{CarRepositoryInterface} provides the function's signatures that are needed to interact with the entities and objects.
+% The functions are implemented in the \texttt{operations} folder and are then used by the \texttt{CarController} to provide the general functions.
+% % Which operations must be provided by a repository implementation
+% The already given functions of the repository are \texttt{GetCar()}, and \texttt{GetCars()}. 
+% \texttt{addCar()} will be implemented in the following tasks.
+% % Why is the interface located in the logic folder
+//TODO fertig machen
 \subsubsection*{Operations Interface}
+% Description of the Operations Interface + which operations are provided
+The \texttt{CarOperationsInterface} is placed in the \texttt{logic/model} folder.
+It provides the signatures of the functions \texttt{GetCars()} and \texttt{GetCar()}.
+\texttt{AddCar()} will be implemented later.
+The difference between the \texttt{CarRepositoryInterface} and the \texttt{CarOperationsInterface} is the signatures they use:
+While \texttt{GetCars()} has the same signature and return type, \texttt{GetCar} takes a string representing the \texttt{vin} as input, while the \texttt{CarRepositoryInterface} takes the actual \texttt{vin} value object as input.
+% Which struct implements it
+The \texttt{CarOperationsInterface} is used to create a new \texttt{carOperations} object in the main function.
+This object is then used to create a \texttt{CarController} object, which is used to implement the API.
+Therefore, \texttt{CarOperations.go} defines the struct, here it is the \texttt{CarOperations} struct, with the actual functions being implemented in the \texttt{operations} package.
+These functions are then called via the \texttt{CarController}, which is also defined in each of the functions.
+
+Therefore the \texttt{CarOperationsInterface} is used to define the functions that are implemented in the \texttt{operations} package and can be called using the \texttt{CarController} struct.
 \subsubsection*{Operation GetCar}
 
 %====================================================

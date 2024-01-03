@@ -93,8 +93,8 @@ Also, the separation becomes clearer and the code is easier to maintain.
 \subsubsection*{Repository Interface}
 % Description of the CarRepositoryInterface
 The \texttt{CarRepositoryInterface} is placed in the \texttt{logic/model} folder.
-It provides the signatures of the functions \texttt{GetCars()} and \texttt{GetCar()}.
-\texttt{AddCar()} will be implemented later.
+It provides the signatures of the functions \texttt{GetCars} and \texttt{GetCar}.
+\texttt{AddCar} will be implemented later.
 
 % Which operations must be provided by a repository implementation
 The \texttt{CarRepositoryInterface} is used to create the \texttt{CarOperations} object, which will later be used to implement the \texttt{CarController} object.
@@ -109,10 +109,10 @@ Thus, it is a good choice to place the \texttt{CarRepositoryInterface} in the \t
 \label{sec:operationsInterface}
 % Description of the Operations Interface + which operations are provided
 The \texttt{CarOperationsInterface} is placed in the \texttt{logic/model} folder.
-It provides the signatures of the functions \texttt{GetCars()} and \texttt{GetCar()}.
-\texttt{AddCar()} will be implemented later.
+It provides the signatures of the functions \texttt{GetCars} and \texttt{GetCar}.
+\texttt{AddCar} will be implemented later.
 The difference between the \texttt{CarRepositoryInterface} and the \texttt{CarOperationsInterface} is the signatures they use:
-While \texttt{GetCars()} has the same signature and return type, \texttt{GetCar} takes a string representing the \texttt{vin} as input, while the \texttt{CarRepositoryInterface} takes the actual \texttt{vin} value object as input.
+While \texttt{GetCars} has the same signature and return type, \texttt{GetCar} takes a string representing the \texttt{vin} as input, while the \texttt{CarRepositoryInterface} takes the actual \texttt{vin} value object as input.
 % Which struct implements it
 This interface is implemented in the \texttt{controller} package by the \texttt{CarController} struct.
 This happens in the \texttt{CarController.go} file.

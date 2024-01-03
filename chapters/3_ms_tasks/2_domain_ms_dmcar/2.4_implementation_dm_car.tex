@@ -98,12 +98,12 @@ It provides the signatures of the functions \texttt{GetCars} and \texttt{GetCar}
 
 % Which operations must be provided by a repository implementation
 The \texttt{CarRepositoryInterface} is used to create the \texttt{CarOperations} object, which will later be used to implement the \texttt{CarController} object.
-The \texttt{CarController} will be explained in more detail in \autoref*{sec:operationsInterface}.
+The \texttt{CarController} will be explained in more detail in the next task.
 % Why is the interface located in the logic folder
 Each function of the \texttt{CarRepositoryInterface} is implemented in the \texttt{operations} package with each function having a separate file.
-This is done by the \texttt{CarOperations} struct, which calls the functions from the \texttt{operations} package.
+This is done by using the \texttt{CarOperations} struct, which calls the functions from the \texttt{operations} package.
 Therefore the \texttt{CarRepositoryInterface} is used to define the functions that are implemented in the \texttt{operations} package and can be called using the \texttt{CarController} struct.
-Thus, it is a good choice to place the \texttt{CarRepositoryInterface} in the \texttt{logic} folder.
+Thus, it is a good choice to place the \texttt{CarRepositoryInterface} in the \texttt{logic} folder to ensure the logic is separated from the different packages.
 
 \subsubsection*{Operations Interface}
 \label{sec:operationsInterface}
@@ -111,8 +111,10 @@ Thus, it is a good choice to place the \texttt{CarRepositoryInterface} in the \t
 The \texttt{CarOperationsInterface} is placed in the \texttt{logic/model} folder.
 It provides the signatures of the functions \texttt{GetCars} and \texttt{GetCar}.
 \texttt{AddCar} will be implemented later.
+
 The difference between the \texttt{CarRepositoryInterface} and the \texttt{CarOperationsInterface} is the signatures they use:
 While \texttt{GetCars} has the same signature and return type, \texttt{GetCar} takes a string representing the \texttt{vin} as input, while the \texttt{CarRepositoryInterface} takes the actual \texttt{vin} value object as input.
+
 % Which struct implements it
 This interface is implemented in the \texttt{controller} package by the \texttt{CarController} struct.
 This happens in the \texttt{CarController.go} file.
@@ -122,7 +124,7 @@ In \texttt{CarController.go} all the functions of the \texttt{CarOperationsInter
 They are implemented by calling the functions of the \texttt{CarOperations} object.
 Each function represents a path of the API specification, like \texttt{/cars} or \texttt{/cars/\{vin\}}.
 
-Wrapping things up, the \texttt{CarOperationsInterface} is used to define the functions that are implemented in the \texttt{controller} package and can be called using the \texttt{CarController} struct representing the specified API functions.
+Wrapping things up, the \texttt{CarOperationsInterface} is used to define the layout of functions representing the API's path implementation.
 
 \subsubsection*{Operation GetCar}
 % Description of the GetCar Structure
@@ -135,16 +137,18 @@ Then, it is checked whether the \texttt{vin} is valid.
 If it is not valid, an error is returned.
 If it is valid, the \texttt{vin} value object is used to retrieve the \texttt{Car} object from the repository.
 If this fails, an error is returned, otherwise the \texttt{Car} object and \texttt{nil} for the error is returned.
+
 % Why is it possible to implement the operation in a separate file
 The implementation of the operations via the \texttt{CarOperations} struct allows the implementation in a different file.
 The \texttt{GetCar} function can be called via the \texttt{CarOperations} struct using the dot notation.
-Therefore, the \texttt{GetCar} function can be called via \texttt{CarOperations.GetCar(vin string)}.
-\texttt{CarOperations} implements the \texttt{CarOperationsInterface} and therefore the \texttt{GetCar} function.
+Therefore, the \texttt{GetCar} function can be called via \hfill \linebreak \texttt{CarOperations.GetCar(vin string)}.
+\texttt{CarOperations} implements the \hfill \linebreak \texttt{CarOperationsInterface} and therefore the \texttt{GetCar} function.
 By creating a \texttt{CarOperations} object, as it is done in the main function, the \texttt{GetCar} function can be called.
 Therefore, it is possible to implement the operation in a separate file.
+
 % Is it reasonable to provide every operation in a separate file
 It is reasonable to provide every operation in a separate file due to the SoC principles.
-Separation of concerns (SoC) means that a microservice should be broken down into smaller, individual components, each handling a single task only.
+Separation of Concerns (SoC) stipulates that a microservice should be broken down into smaller, individual components, each handling a single task only.
 By separating the operations into different files, the SoC principles are followed.
 %====================================================
 \subsection{Excercise APIPartDMCar}

@@ -266,11 +266,29 @@ This folder contains the \texttt{CarPersistenceEntity.go} and the \texttt{Entiti
 \texttt{CarPersistenceEntity.go} defines the car model for persistence and \texttt{EntitiesTestdata.go} provides data for testing.
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/microservices/dmCar/ms_dmCar_infrastructureFolder.png}
+    \includegraphics[width=0.5\textwidth]{figures/microservices/dmCar/ms_dmCar_infrastructureFolder.png}
     \caption{Content of the Infrastructure Folder}
     \label{fig:ms_dmCar_infrastructureFolder}
 \end{figure}
+
 \subsubsection*{Persistence Entities}
+% Which persistence entities exist for DM-Car
+The \texttt{car} model exists for persistence entities.
+It is defined in the \texttt{CarPersistenceEntity.go} file.
+All other entities are based on the \texttt{car} model, thus rendering the necessity to model further persistence entities obsolete.
+
+% How do the persistency entries differ from the model entities
+The persistence entity contains the same properties as the \texttt{car} model from the \texttt{model} folder, yet there are some differences:
+Both entries differ in their usage and their purpose.
+The \texttt{car} model is used to represent the data in the API, while the persistence entity is used to represent the data in the database.
+The persistence entity uses more general data types like \texttt{string} or \texttt{int} instead of value objects to make it easier to store the data in the database.
+That is why the \texttt{car} model contains the \texttt{vin} value object, while the persistence entity contains the \texttt{vin} as a string.
+Furthermore, the persistence entity contains a structure definition using object-relational mapping.
+By using the \texttt{gorm:"primaryKey"} tag, the \texttt{vin} is defined as the primary key of the database.
+There is no need to use this in the \texttt{car} model since the \texttt{vin} is already defined as the identifier of the \texttt{car} model by the function usage.
+
+Therefore, the \texttt{car} persistence entity has a specific structure for database representation.
+This enables a separation between the entities of the database and the API.
 \subsubsection*{Mappers}
 \subsubsection*{InMemoryRepository}
 

@@ -170,10 +170,36 @@ Also, the documentation is improved due to the separation of concerns.
 Therefore it is a good choice to separate the \texttt{api} folder into these two subfolders.
 \subsubsection*{Generated Files}
 % Description of the content of the generated files
+The \texttt{controller} package contains two generated files: \texttt{server.gen.go} and \texttt{server-model.gen.go}.
+Both files contain the primitives to interact with the HTTP API based on the OpenAPI specification.
+An HTTP API is an API that is accessed via HTTP requests, in this case, \texttt{GET} and \texttt{POST} requests.
+However, the functionalities of the \texttt{POST} request will be implemented later. 
 
-% how do those files relate to the API specification
+% Which framework is used
+This API uses the Echo framework, which is a web framework for Go.
+More on the Echo Framework can be found in \autoref*{sec:the_echo_framework}.
 
-% which interface is implemented by CarController
+\paragraph*{server.gen.go}
+This file delivers the functions to add each server route to register the handlers.
+In this case the \texttt{GET} requests for \texttt{/cars} and \texttt{/cars/\{vin\}}.
+The \texttt{main.go} file calls the \texttt{Registerhandler} function with a new echo instance and the set of functions.
+These functions are then called when a request is received.
+Wrapping things up, the \texttt{server.gen.go} file provides the functions to register the handlers for the incoming requests, thus creating the endpoint of the HTTP API.
+
+\paragraph*{server-model.gen.go}
+This file contains the specification of how the data is sent and received.
+In this case, the \texttt{Car} struct is defined.
+It is used to send the \texttt{Car} object as a response after an incoming request.
+Data is sent using JSON format.
+The struct defines the JSON format of the data and its properties.
+Also, the identifier, here it is the \texttt{vin}, is defined.
+
+% How do those files relate to the API specification
+These files are generated based on the OpenAPI specification.
+They define the routes and endpoints of the specification, as well as the data that is sent and received.
+\texttt{server.gen.go} is based on the \texttt{paths} of the specification, while \texttt{server-model.gen.go} is based on the \texttt{components} of the specification.
+They, therefore, represent the specification, thus they are closely related to it.
+
 \subsubsection*{File CarController.go}
 \subsubsection*{Mathod GetCar}
 %====================================================

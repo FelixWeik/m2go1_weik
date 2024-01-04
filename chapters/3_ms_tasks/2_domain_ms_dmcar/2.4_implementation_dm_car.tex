@@ -289,7 +289,22 @@ There is no need to use this in the \texttt{car} model since the \texttt{vin} is
 
 Therefore, the \texttt{car} persistence entity has a specific structure for database representation.
 This enables a separation between the entities of the database and the API.
+
 \subsubsection*{Mappers}
+% Description of the mappers for the CarPersistenceEntity
+% What is the purpose of this mapper
+As mentioned previously, a mapper is used to convert \texttt{car} and \texttt{cars} model objects to persistence entities and vice versa.
+In this case, a \texttt{cars} persistence entry, just like the model entry, is a collection of \texttt{car} entities.
+
+% Why are they required
+The mappers play a crucial role in the microservice.
+It allows the separation of the database from the API, therefore without the mappers the planned microarchitecture would not be possible.
+This enables abstraction and decoupling.
+Furthermore, mappers improve maintainability and flexibility by keeping data transformation localized.
+Also, testing becomes a lot easier due to the isolation of the data transformation logic.
+
+Therefore it is a good choice to use mappers in this microservice.
+
 \subsubsection*{InMemoryRepository}
 
 %====================================================

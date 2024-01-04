@@ -170,7 +170,7 @@ Also, the documentation is improved due to the separation of concerns.
 Therefore it is a good choice to separate the \texttt{api} folder into these two subfolders.
 \subsubsection*{Generated Files}
 % Description of the content of the generated files
-The \texttt{controller} package contains two generated files: \texttt{server.gen.go} and \texttt{server-model.gen.go}.
+The \texttt{controller} package contains two generated files: \texttt{server.gen.go} and \hfill \linebreak \texttt{server-model.gen.go}.
 Both files contain the primitives to interact with the HTTP API based on the OpenAPI specification.
 An HTTP API is an API that is accessed via HTTP requests, in this case, \texttt{GET} and \texttt{POST} requests.
 However, the functionalities of the \texttt{POST} request will be implemented later. 
@@ -215,7 +215,33 @@ The \texttt{server.gen.go} file defines which functions of the \texttt{CarContro
 \texttt{CarController} then passes the requests to the \texttt{logic} package, where the actual implementation of the operations is located.
 Therefore the main difference between the generated files and the \texttt{CarController.go} file is that the generated files define the endpoints of the HTTP API, while the \texttt{CarController} defines the endpoints of the \texttt{logic} layer.
 
-\subsubsection*{Mathod GetCar}
+\subsubsection*{CarController's GetCar Method}
+% Description of the method's signature in CarController
+The \texttt{GetCar} method is implemented in the \texttt{CarController.go} file.
+Its signature is listed in \autoref*{lst:getCarMethodCarController}.
+
+First, the function is called from an existing \texttt{CarController} struct using the dot notation.
+The function takes an \texttt{echo.Context} and a \texttt{vin} as input and returns an error.
+The \texttt{vin} is the identifier of the \texttt{Car} object, that will be used in the further implementation of the function.
+\texttt{echo.Context} is a part of the Echo framework.
+It is an object representing the context of the HTTP request.
+It can contain different kinds of information or data, closely correlated to the HTTP request.
+This can be request information like URL or query parameters, status codes like \texttt{http.StatusOk} and much more.
+Therefore it is an essential part of the function's signature.
+The given context called \texttt{ctx} in the signature will also be used as a return value if the function executes correctly.
+If an error occurs during execution, the error from the called \texttt{GetCar} function is returned.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    float=h,
+    caption={Signature of the GetCar Method in CarController.go},
+    label={lst:getCarMethodCarController}
+]
+// Route: GET /cars/:vin
+func (resource CarController) GetCar(ctx echo.Context, vin Vin) error {
+// Implementation
+}
+\end{lstlisting}
 %====================================================
 \subsection{Excercise InfrastructurePartDMCar}
 \subsubsection*{Content of the Infrastructure Folder}

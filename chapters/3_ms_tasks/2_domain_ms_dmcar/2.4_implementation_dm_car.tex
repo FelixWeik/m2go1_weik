@@ -249,7 +249,27 @@ func (resource CarController) GetCar(ctx echo.Context, vin Vin) error {
 \end{lstlisting}
 %====================================================
 \subsection{Excercise InfrastructurePartDMCar}
+//TODO add introduction
 \subsubsection*{Content of the Infrastructure Folder}
+% Describe primary aspects of the infrastructure folder
+The \texttt{infrastructure} folder contains two files and two additional subfolders: \texttt{mappers} and \texttt{persistenceentities}.
+A screen dump of the folder's structure is shown in \autoref*{fig:ms_dmCar_infrastructureFolder}.
+
+% What is the purpose of the different subfolders
+Each subfolder has its purpose which will be discussed in the following.
+\paragraph*{mappers:}
+This folder contains the \texttt{CarMapper.go} file and its test file.
+It provides the functions to convert \texttt{car} and \texttt{cars} model objects to persistence entities and vice versa.
+
+\paragraph*{persistenceentities:}
+This folder contains the \texttt{CarPersistenceEntity.go} and the \texttt{EntitiesTestdata.go} files.
+\texttt{CarPersistenceEntity.go} defines the car model for persistence and \texttt{EntitiesTestdata.go} provides data for testing.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/microservices/dmCar/ms_dmCar_infrastructureFolder.png}
+    \caption{Content of the Infrastructure Folder}
+    \label{fig:ms_dmCar_infrastructureFolder}
+\end{figure}
 \subsubsection*{Persistence Entities}
 \subsubsection*{Mappers}
 \subsubsection*{InMemoryRepository}

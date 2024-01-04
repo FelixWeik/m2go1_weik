@@ -152,8 +152,28 @@ Separation of Concerns (SoC) stipulates that a microservice should be broken dow
 By separating the operations into different files, the SoC principles are followed.
 %====================================================
 \subsection{Excercise APIPartDMCar}
+//TODO Introduction
 \subsubsection*{Content of the API Folder}
+% Describe primary aspects of the API folder
+The API folder contains two subfolders: \texttt{controller} and \texttt{specification}. \linebreak
+The \texttt{specification} folder contains the OpenAPI specification of the microservice stored in a YAML file.
+\texttt{controller} contains the \texttt{CarController} struct in the \texttt{CarController.go} file and the according test file.
+Furthermore, it contains primitives to interact with the OpenAPI HTTP API.
+Also, a \texttt{MockEchoContext} is provided to mock a running HTTP server for testing purposes.
+It can be used to test the API without starting the microservice.
+
+% What is the purpose of the different folders
+As mentioned previously, the \texttt{api} folder is separated into \texttt{controller} and \texttt{specification}.
+This separation provides a clear structure, providing modularity and separation of concerns due to every package having a clear set of tasks.
+This provides better maintainability, readability and testability.
+Also, the documentation is improved due to the separation of concerns.
+Therefore it is a good choice to separate the \texttt{api} folder into these two subfolders.
 \subsubsection*{Generated Files}
+% Description of the content of the generated files
+
+% how do those files relate to the API specification
+
+% which interface is implemented by CarController
 \subsubsection*{File CarController.go}
 \subsubsection*{Mathod GetCar}
 %====================================================

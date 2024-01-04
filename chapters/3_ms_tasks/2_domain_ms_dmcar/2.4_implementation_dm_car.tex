@@ -201,6 +201,20 @@ They define the routes and endpoints of the specification, as well as the data t
 They, therefore, represent the specification, thus they are closely related to it.
 
 \subsubsection*{File CarController.go}
+% Which interface is implemented by the CarController
+The \texttt{CarController.go} file implements the \texttt{CarOpertionsInterface}.
+The purpose of this interface was explained in detail in the previous tasks.
+
+% Differences between the generated files and the CarController.go file
+Taking a closer look at the \texttt{main.go} file, the differences become clear.
+First, a new car controller is created by calling the \texttt{NewCarController} function.
+This car controller is then passed to the \texttt{RegisterHandlers} function of the generated \texttt{server.gen.go} file.
+This function registers the handlers for the incoming requests.
+Therefore these files work together instead of against each other:
+The \texttt{server.gen.go} file defines which functions of the \texttt{CarController} struct are called when a request is received.
+\texttt{CarController} then passes the requests to the \texttt{logic} package, where the actual implementation of the operations is located.
+Therefore the main difference between the generated files and the \texttt{CarController.go} file is that the generated files define the endpoints of the HTTP API, while the \texttt{CarController} defines the endpoints of the \texttt{logic} layer.
+
 \subsubsection*{Mathod GetCar}
 %====================================================
 \subsection{Excercise InfrastructurePartDMCar}

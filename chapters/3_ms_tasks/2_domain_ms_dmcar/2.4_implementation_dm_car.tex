@@ -307,8 +307,27 @@ Therefore it is a good choice to use mappers in this microservice.
 
 \subsubsection*{InMemoryRepository}
 % Which interface is implemented by InMemoryRepository
+Taking a closer look at the \texttt{InMemoryRepository.go} file, the file does not seem to implement any interface.
+Only the functions' signatures are similar to the \texttt{CarRepositoryInterface} from the \texttt{model} folder.
+However, diving deeper into the \texttt{main} function helps to understand the purpose of the \texttt{InMemoryRepository}:
+
+First, a new \texttt{InMemoryRepository} object is created containing the functions implemented in the \texttt{InMemoryRepository.go} file.
+Then, a new \texttt{CarOperations} object is created.
+This object is created with the \texttt{InMemoryRepository} object as input.
+The \texttt{CarOperations.go} file itself implements the \texttt{CarRepositoryInterface} from the \texttt{model} folder.
+Due to the \texttt{CarOperations} object being created only on the base of the \texttt{CarRepositoryInterface}, the \texttt{InMemoryRepository} must implement the \texttt{CarRepositoryInterface} for correct functionality.
+Therefore the \texttt{InMemoryRepository} implements the \texttt{CarRepositoryInterface}.
+
+The repository is used to store the data of \texttt{cars} in a map in memory.
+The \texttt{InMemoryRepository} struct defines the map of \texttt{car} persistence entities, which is a go intern implementation of a hashmap.
+The \texttt{vin} is used as the key of the map, while the \texttt{car} persistence entity is used as the value.
 
 % Where is the repository initialized and used
+As mentioned before, this repository is initialized in the \texttt{main} function.
+It is the first action of the function.
+After the repository is initialized, the \texttt{CarOperations} object is created with the repository as input.
+The \texttt{CarOperations} object is then used to create the \texttt{CarController} object, which is then used to create the \texttt{RegisterHandler} in the \texttt{server.gen.go} file.
+Therefore, the \texttt{InMemoryRepository} is used to store the data in memory.
 
 %====================================================
 \subsection{Excercise CSGetCar}

@@ -340,6 +340,10 @@ Therefore, the \texttt{InMemoryRepository} is used to store the data in memory.
 Goal of this task is to create a code sketch for the \texttt{GetCar(vin string)} operation in the \texttt{CarOperationsInterface}.
 The sketch is shown in \autoref*{fig:ms_dmCar_getCarCodeSketch}.
 
+The \texttt{CarController} struct is the heart of the microservice.
+It gets the \texttt{CarOperations} struct as input which receives the \texttt{InMemoryRepository} as input.
+//TODO Nochmal alles nachprüfen und Erklärung fertig machen
+
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/microservices/dmCar/ms_dmCar_codeSketchGetCar.png}

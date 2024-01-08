@@ -335,7 +335,11 @@ Therefore, the \texttt{InMemoryRepository} is used to store the data in memory.
 
 %====================================================
 \subsection{Excercise CSGetCar}
-//TODO Add introduction
+This task focuses on the \texttt{GetCar} operation.
+First, a code sketch is created.
+It shows the dependencies and the structure of the microservice based on the \texttt{GetCar} operation.
+Then, the flow of this function through the code sketch is explained.
+
 \subsubsection*{Code Sketch GetCar}
 The goal of this task is to create a code sketch for the \texttt{GetCar(vin string)} operation in the \texttt{CarOperationsInterface}.
 The sketch is shown in \autoref*{fig:ms_dmCar_getCarCodeSketch}.
@@ -349,6 +353,12 @@ These functions are given by the \texttt{CarOperationsInterface}, which also con
 \texttt{GetCars} s implemented by the \texttt{GetCarsOperation.go} file.
 Both, the interface and the implementing file, use the \texttt{Cars} entity specified in the \texttt{model} folder.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/microservices/dmCar/ms_dmCar_codeSketchGetCar.png}
+    \caption{Code Sketch of the GetCar Operation}
+    \label{fig:ms_dmCar_getCarCodeSketch}
+\end{figure}
 \subsubsection*{GetCar Flow Through the Code Sketch}
 During execution, the \texttt{CarController} calls the \texttt{GetCars} operation implemented in the \texttt{GetCarsOperation.go} file.
 
@@ -359,14 +369,6 @@ The \texttt{CarOperationsInterface} implements the function using the \texttt{Ge
 This function then returns the set of cars and an error.
 If the error is equal to \texttt{nil}, \texttt{http.StatuOK} and the set of cars is returned.
 Otherwise the error of the \texttt{operations.GetCars} method is returned.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{figures/microservices/dmCar/ms_dmCar_codeSketchGetCar.png}
-    \caption{Code Sketch of the GetCar Operation}
-    \label{fig:ms_dmCar_getCarCodeSketch}
-\end{figure}
-
 \begin{lstlisting}[
     style=kit-cm,
     caption={main Function of DmCarV1.0},
@@ -389,7 +391,6 @@ func main() {
 }
 \end{lstlisting}
 
-\subsubsection*{GetCar Flow Through the Code Sketch}
 
 %====================================================
 \subsection{Challenge Operation AddCar}

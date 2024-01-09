@@ -395,7 +395,59 @@ func main() {
 %====================================================
 \subsection{Challenge Operation AddCar}
 \subsubsection*{Update API Diagram}
+To update the API diagram, the \texttt{addCar(car: Car)} operation must be added.
+This is done by adding the function into the \texttt{collection} called \texttt{Cars}.
+The function is called \texttt{addCar} and takes a \texttt{Car} object as input.
+%//TODO muss da noch was hin?
 \subsubsection*{Update API Specification}
+To update the API specification to match with the updated API diagram, on changes the \texttt{specification.yaml} file located at \texttt{src\/api\/specification\/}.
+The newly inserted code can be seen in \autoref*{lst:update_api_specification}.
+
+The \texttt{addCar} operation is added to the \texttt{cars} path since it belongs to the \texttt{cars} collection.
+It is a \texttt{POST} request, which means it is used to update a new resource.
+Alternatively one could use a \texttt{PUT} request, yet this would replace the existing resource entirely instead of updating it.
+Therefore a \texttt{POST} is the better choice in this context.
+
+The \texttt{addCar} operation takes a \texttt{car} object as input.
+This object is specified in the \texttt{components\/schemas} section of the specification.
+As responses, the \texttt{addCar} operation returns a \texttt{200} if the operation was successful.
+No content is returned, therefore the \texttt{content} section is empty.
+If the operation fails, a \texttt{404} is returned.
+The \texttt{content} section is empty here as well.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Update of the API Specification},
+    label={lst:update_api_specification},
+    float=h
+]
+...
+paths:
+    /cars:
+        ...
+        post:
+        operationId: AddCar
+        summary: Add existing car to the cars list
+        tags:
+            - Cars
+        parameters:
+            - in: path
+            name: car
+            schema:
+                $ref: '#/components/schemas/car'
+            required: true
+            description: Already existing car object
+        responses:
+            '200':
+            description: Car is added successfully
+            content:
+                application/json: {}
+            '404':
+            description: The provided Car is not valid
+            content:
+                application/json: {}
+        ...
+\end{lstlisting}
 \subsubsection*{Implement Operation AddCar}
 \subsubsection*{Regenerate API Server}
 \subsubsection*{Implement Route at API Controller}

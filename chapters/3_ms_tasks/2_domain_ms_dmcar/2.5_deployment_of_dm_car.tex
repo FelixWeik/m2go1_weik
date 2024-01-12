@@ -193,6 +193,8 @@ The \texttt{.dockerignore} file is used to exclude files and directories when ru
 This is useful to reduce the size of the context and therefore the size of the image.
 The content of the file is shown in \autoref*{lst:dockerignore_file}.
 It excludes the \texttt{specification} folder holding the API specification, the git directory, the \texttt{.gitignore} file, all markdown files, the cache directory, and the Dockerfile itself.
+Furthermore, the \texttt{figures} and \texttt{pages} directories are excluded, which hold the images and the documentation of the project.
+Therefore, only the necessary files for the execution are copied into the image.
 
 \begin{lstlisting}[
     style=kit-cm,
@@ -200,18 +202,32 @@ It excludes the \texttt{specification} folder holding the API specification, the
     label={lst:dockerignore_file},
     float=h
 ]
-controller/specification
-.git
-.gitignore
-*.md
-.cache
+# files
 Dockerfile
+*.md
+.gitignore
+
+# folders
+figures/
+pages/
+.git
+.cache
+src/controller/specification
 \end{lstlisting}
 
 \subsection{Excercise DockerCompose}
 //TODO add introduction
 \subsubsection*{Familiarize with Docker Compose}
+\texttt{docker compose} is a tool for defining and running multi-container Docker applications.
+It uses a YAML file to configure the application's services.
+Then, with a single command, the application's services are created and started.
+This makes it easy to start a multi-container application with a single command.
 
+Within the local deployment phase of the project, \texttt{docker compose} is used to start the DM-Car application.
+After executing the command, the application is running and can be accessed via \texttt{http://localhost:80}.
+Without \texttt{docker compose}, the application would have to be started manually by running the Docker image with the ports exposed and the environment variables set.
+This is not only more time-consuming but also more error-prone.
+Therefore \texttt{docker compose} is a useful tool for local development.
 \subsubsection*{Extend DM-Car Docker Compose File With a Database}
 
 \subsubsection*{Implement Health Check for Database Initialization}

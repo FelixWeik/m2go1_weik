@@ -144,6 +144,32 @@ Now, the Dockerfile will be used to build a Docker image.
 \subsubsection*{Build Docker Image}
 The Docker image is built by running \texttt{docker build -t dm-car:base .} in the project's root directory.
 
+% Explain the parameters
+\texttt{docker build} builds an image from a Dockerfile and a context with the context being the provided path or URL linked to a set of files.
+The image provides the necessary artifacts to run the application.
+This can be, for example, the file system, dependencies, environment variables, and more.
+The \texttt{\-t} flag is used to tag the image with a name and an optional tag in the \texttt{name:tag} format.
+In the case of the provided \texttt{docker build -t dm-car:base .} command, the image is tagged with the name \texttt{dm-car} and the tag \texttt{base}.
+The context is set to the current directory in which the Dockerfile is located and, therefore the root directory of the project.
+
+After running the command we can find the image by running the \texttt{docker image} command in the terminal.
+The output is shown in \autoref{fig:docker_image}.
+
+% What would happen without the flags and the dot
+Just running \texttt{docker build} without any flags or arguments would result in an error.
+Therefore \texttt{docker build .} is the minimum command to build an image.
+It builds the image from the Dockerfile located in the current directory.
+After the building process, the image is given the name \texttt{sha256:} followed by a hash.
+Therefore the image can only be referenced by its hash, which is not very convenient.
+The image also cannot be found using the \texttt{docker image} command.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/microservices/dmCar/ms_dmCar_dockerImages.png}
+    \caption{Docker Image}
+    \label{fig:docker_image}
+\end{figure}
+
 \subsubsection*{Optimize Image}
 
 

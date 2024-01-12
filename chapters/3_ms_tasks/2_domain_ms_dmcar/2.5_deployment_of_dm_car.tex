@@ -229,7 +229,47 @@ Without \texttt{docker compose}, the application would have to be started manual
 This is not only more time-consuming but also more error-prone.
 Therefore \texttt{docker compose} is a useful tool for local development.
 \subsubsection*{Extend DM-Car Docker Compose File With a Database}
+The Postgres database using the \texttt{postgres:15.4} image is added to the Docker Compose file.
+To configure the database, environment variables are used.
+These are \texttt{POSTGRES\_HOST}, \texttt{POSTGRES\_USER}, \texttt{POSTGRES\_PASSWORD}, \texttt{POSTGRES\_PORT}, and \texttt{POSTGRES\_DATABASE}.
+Setting all these variables is necessary to connect to the database.
+These values are set by adding the code shown in \autoref*{lst:docker_compose_postgres} to the Docker Compose file.
 
+After rerunning \texttt{docker-compose up} the \texttt{postgres} service is started additionally to the \texttt{dm-car} service.
+This happens automatically because the \texttt{postgres} service is defined in the Docker Compose file.
+In Docker Desktop, the running containers can be seen in the \texttt{dm-carv10} tab.
+Both containers are running, the \texttt{dm-car}, which has port 80 exposed, and the \texttt{postgres} container.
+This can be seen in \autoref*{fig:docker_compose_up}.
+
+\paragraph*{Importance of Segregating Configuration from Application Logic:}
+Configuration and application logic are distinct concepts of a software system.
+Both serve a different purpose.
+While configuration logic is used to set parameters and values on how a system's components are structured, application logic is used to implement the system's functionality.
+Therefore it is important to segregate configuration from application logic due to the SoC principle.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Added Postgres Service to Docker Compose File},
+    label={lst:docker_compose_postgres},
+    float=h
+]
+...
+postgres:
+image: postgres:15.4
+environment:
+    - POSTGRES_HOST=postgres
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=password
+    - POSTGRES_PORT=5432
+    - POSTGRES_DATABASE=postgres
+\end{lstlisting}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/microservices/dmCar/ms_dmCar_dockerComposePostgres.png}
+    \caption{Docker Desktop after running \texttt{docker-compose up}}
+    \label{fig:docker_compose_up}
+\end{figure}
 \subsubsection*{Implement Health Check for Database Initialization}
 
 \subsubsection*{Extend Postgres Database With Persistent Storage}

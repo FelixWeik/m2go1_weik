@@ -170,10 +170,40 @@ The image also cannot be found using the \texttt{docker image} command.
     \label{fig:docker_image}
 \end{figure}
 
-\subsubsection*{Optimize Image}
-
-
 \subsubsection*{Build Optimized Image}
+After optimizing the Dockerfile, the image is built again.
+The new Dockerfile receives the same name of \texttt{dm-car} and the tag \texttt{optimized}.
+Opening Docker Desktop and looking at the images, there are now two images with the same name but different tags.
+The output is shown in \autoref{fig:docker_image_comparison}.
 
+Comparing both images, the optimized image is about 1.7 MB smaller than the base image.
+Also, the build time is reduced by about 3 seconds.
+
+Therefore the optimized image is better suited for production.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/microservices/dmCar/ms_dmCar_optimizedComparison.png}
+    \caption{Comparison of both Docker Images}
+    \label{fig:docker_image_comparison}
+\end{figure}
 
 \subsubsection*{Define a File .dockerignore}
+The \texttt{.dockerignore} file is used to exclude files and directories when running the \texttt{COPY} instruction.
+This is useful to reduce the size of the context and therefore the size of the image.
+The content of the file is shown in \autoref*{lst:dockerignore_file}.
+It excludes the \texttt{specification} folder holding the API specification, the git directory, the \texttt{.gitignore} file, all markdown files, the cache directory, and the Dockerfile itself.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={.dockerignore File},
+    label={lst:dockerignore_file},
+    float=h
+]
+controller/specification
+.git
+.gitignore
+*.md
+.cache
+Dockerfile
+\end{lstlisting}

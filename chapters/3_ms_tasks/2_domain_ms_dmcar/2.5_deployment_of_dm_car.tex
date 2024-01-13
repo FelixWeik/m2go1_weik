@@ -228,6 +228,7 @@ After executing the command, the application is running and can be accessed via 
 Without \texttt{docker compose}, the application would have to be started manually by running the Docker image with the ports exposed and the environment variables set.
 This is not only more time-consuming but also more error-prone.
 Therefore \texttt{docker compose} is a useful tool for local development.
+
 \subsubsection*{Extend DM-Car Docker Compose File With a Database}
 The Postgres database using the \texttt{postgres:15.4} image is added to the Docker Compose file.
 To configure the database, environment variables are used.
@@ -270,6 +271,62 @@ environment:
     \caption{Docker Desktop after running \texttt{docker-compose up}}
     \label{fig:docker_compose_up}
 \end{figure}
-\subsubsection*{Implement Health Check for Database Initialization}
 
+\subsubsection*{Implement Health Check for Database Initialization}
+Two sections are added to the Docker Compose file to fulfill this task.
+The changes are shown in \autoref*{lst:docker_compose_health_check}.
+
+% Changes on dm-car service
+First, the \texttt{depends\_on} section is added to the \texttt{dm-car} service.
+It ensures, that the \texttt{postgres} service is started before the \texttt{dm-car} service.
+Next, the \texttt{environment} section is added to the \texttt{dm-car} service containing the \texttt{CONDITION} variable.
+The environment section in general defines environment variables for the service.
+In this case, the \texttt{CONDITION} variable is set to \texttt{service\_healthy}.
+This ensures, that the \texttt{dm-car} service is only started if the \texttt{postgres} service is healthy.
+
+% Changes on Postgres service
+The \texttt{postgres} service receives a health check by adding the \texttt{healthcheck} section.
+A health check defines how a container can be tested if it is working correctly.
+With no health checks defined, Docker assumes that the container is healthy and starts it whether it is or not.
+\texttt{test} defines the command that will be executed.
+It is the health check of the container.
+The following attributes specify the tests to be executed in 10-second intervals, trying three times before giving up and waiting for a total of 30 seconds for a return code before declaring the health check as failed.
+
+% Discuss the significance of ensuring the service is fully operational before another dependant service starts
+Ensuring one service is fully operational before starting another dependent service is very significant.
+If the \texttt{dm-car} service is started before the \texttt{postgres} service, the \texttt{dm-car} service will fail to start.
+It needs to connect to the database to run correctly.
+Therefore, the \texttt{postgres} service needs to be started first.
+Also, by starting one service after another, race conditions can be prevented.
+This might happen if both services access the same resources.
+Furthermore, issues due to partial failures can be avoided.
+Services that depend on other services yet start before them might work with incomplete information.
+This can lead to unexpected behavior and errors.
+This also enables the efficient utilization of resources.
+The deployment of services can therefore be optimized.
+
+% How does this contribute to the microservice paradigm
+TODO What is the microservice paradigm?
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Added Health Checks to Docker Compose File},
+    label={lst:docker_compose_health_check},
+    float=h
+]
+services:
+    dm-car:
+        ...
+        depends_on:
+            - postgres
+        environment:
+            - CONDITION=service_healthy
+postgres:
+    ...
+    healthcheck:
+        test: pg_isready -U postgres
+        interval: 10s
+        timeout: 30s
+        retries: 3
+\end{lstlisting}
 \subsubsection*{Extend Postgres Database With Persistent Storage}

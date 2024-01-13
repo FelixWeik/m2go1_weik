@@ -216,7 +216,13 @@ src/controller/specification
 \end{lstlisting}
 
 \subsection{Excercise DockerCompose}
-//TODO add introduction
+Docker Compose is a tool for defining and running multi-container Docker applications.
+It is used in this exercise to start the DM-Car application.
+First, the familiarization with Docker Compose is done.
+Then, the \texttt{dm-car} service is extended with a Postgres database.
+After that, health checks are initialized to ensure the database is fully operational before the \texttt{dm-car} service starts.
+Finally, the Postgres database is extended with persistent storage implemented using a named volume.
+
 \subsubsection*{Familiarize with Docker Compose}
 \texttt{docker compose} is a tool for defining and running multi-container Docker applications.
 It uses a YAML file to configure the application's services.
@@ -267,7 +273,7 @@ environment:
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/microservices/dmCar/ms_dmCar_dockerComposePostgres.png}
+    \includegraphics[width=0.8\textwidth]{figures/microservices/dmCar/ms_dmCar_dockerComposePostgres.png}
     \caption{Docker Desktop after running \texttt{docker-compose up}}
     \label{fig:docker_compose_up}
 \end{figure}
@@ -329,4 +335,39 @@ postgres:
         timeout: 30s
         retries: 3
 \end{lstlisting}
+
 \subsubsection*{Extend Postgres Database With Persistent Storage}
+A volume in general is a mechanism for persisting data generated and used by Docker containers.
+These volumes are completely managed by Docker and exist outside the containers' lifecycle.
+Therefore volumes can be safely shared among multiple containers, they are easy to back up or migrate, and they do not increase the size of the containers using it.
+A named volume is a type of volume that has been given a specific name.
+
+% Code changes
+The code changes adding a named volume to the \texttt{postgres} service in the \texttt{docker-compose} file are shown in \autoref*{lst:docker_compose_named_volume}.
+The volume is called \texttt{postgres-data} and is mounted to the \texttt{/var/lib/postgresql/data} directory of the \texttt{postgres} service.
+This directory is used by Postgres to store its data persistently.
+
+% Importance of backing services in stateless services
+Stateless services, in contrast to stateful services, do not store any client state on the server between requests.
+This means that every request is independent of the previous one.
+Therefore, the service relies on backing services to manage and persist its data.
+Furthermore, using backing services makes sure critical information is not lost between service restarts or failures.
+This enables a certain degree of fault tolerance.
+Also, backing services can be scaled independently of the service itself.
+This allows for a more efficient utilization of resources.
+Therefore the overall performance, maintainability, and scalability of the stateless service can be improved.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Code to Add a Named Volume to the Postgres Service},
+    label={lst:docker_compose_named_volume},
+    float=h
+]
+...
+services:
+  ...
+  postgres:
+    ...
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+\end{lstlisting}

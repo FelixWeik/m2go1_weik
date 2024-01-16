@@ -16,13 +16,18 @@ Each type-name pair is described in a table, in this case, it is the table \text
 % Aus welchen Teilen ist ... hergeleitet
 % AM RentalManagementV1.0
 In the UME approach, an application microservice represents the application's logical layer.
+Each capability leads to one Application Microservice with each use case of this capability leading into one endpoint of the AM.
 It therefore implements the business logic, which is not part of the domain model and therefore application specific.
+
+The analysis of \texttt{CarRental} and \texttt{CarRentalCLI} has the only capability "\texttt{Management of Rentals}".
+Therefore, the application microservice \texttt{AM-RentalManagementV1.0} is derived from this capability.
+
 As mentioned in the task, \texttt{AMRentalManagementV1.0} represents the application logic layer of the \texttt{CarRentalApp} application.
 The analysis artifacts are derived from the already analyzed applications \texttt{CarRentalCLI} and \texttt{CarRental}.
 These artifacts are the use cases and the OCL constraints.
 
 % Operations von AM-RentalManagementV1.0
-The application's operations are derived from the use cases of the \texttt{CarRentalCLI} and \texttt{CarRental} applications.
+The microservice's operations are derived from the use cases of the \texttt{CarRentalCLI} and \texttt{CarRental} applications.
 To be more precise, of the use cases \texttt{Alice's Car Rental}, the use case \texttt{Rent a Car} and the according use case diagram shown in \autoref*{fig:car_rental_use_case_diagram}.
 By taking a closer look at the API diagram of \texttt{AM-RentalManagementV1.0}, the CLI commands used in \texttt{CarRentalCLI} are partly represented as operations.
 In this case, it is the CLI command for renting a car and canceling a rental.

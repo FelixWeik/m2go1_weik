@@ -80,5 +80,15 @@ The application entity \texttt{Car} is used in the application microservice \tex
 Therefore the application entity will be used in the context of a rental, while the domain entity will be used in the context of the CRUD operations.
 
 \subsubsection*{API Style}
-
+This lecture introduces two API styles: gRPC and ReST.
 % Which API style is more appropriate
+As mentioned in \autoref{subsec:rest_and_grpc} gRPC and ReST are two different approaches to implementing an API.
+Their main difference is their orientation in the way they communicate.
+While gRPC is method-oriented, ReST is resource-oriented.
+Therefore the API operations of gRPC are methods, while the API operations of ReST are resources.
+ReST helps to build a distributed system that handles clearly defined and identifiable resources.
+
+\texttt{AM-RentalManagementV1.0} is a microservice that is responsible for managing, therefore creating and canceling, rentals.
+This implies a function-oriented approach, due to the focus on managing instead of providing resources.
+A more performant and efficient way of communication will be preferred over a more resource-oriented approach.
+Therefore, gRPC is the more appropriate API style for \texttt{AM-RentalManagementV1.0}.

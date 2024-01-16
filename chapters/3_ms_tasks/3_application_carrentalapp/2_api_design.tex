@@ -31,5 +31,18 @@ Therefore, it is derived from the general structure and functionality of \texttt
 \end{figure}
 
 \subsubsection*{Versioning of the API Diagram}
+The version numbers are created using C\&M's versioning as specified in \cite{CM-G-Ver}.
+% Explanation of the versioning concept for API diagrams
+The initial version of an AM-API diagram is \texttt{1.0}.
+The version of an AM API is specified for the first time when the diagram is initially created and reviewed.
+It is important to keep the same version for specification and implementation.
+The version number is increased when changes occur in the AM-API diagram.
+% Explain version numbers of AM-RM and the included DM-Car
+Since \texttt{RentalManagementV1.0} and \texttt{DM-CarV1.0} are the initial versions of each microservice, both chosen versions are \texttt{1.0}.
+
+% Which part (X.Y) of the version number is increased when a method RegisterCustomer() is added => what's the new version number
+This task assumes a version number to be structured as \texttt{(X.Y)}.
+According to the mentioned versioning concept, \texttt{Y} changes when a new function is added to the AM-API diagram.
+Therefore, after adding the function \texttt{RegisterCustomer} to the AM-API diagram, the version number is \texttt{1.1}.
 
 \subsubsection*{Relationship between Rental and Car}

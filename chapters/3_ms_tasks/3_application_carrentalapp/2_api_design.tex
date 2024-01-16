@@ -46,6 +46,20 @@ According to the mentioned versioning concept, \texttt{Y} changes when a new fun
 Therefore, after adding the function \texttt{RegisterCustomer} to the AM-API diagram, the version number is \texttt{1.1}.
 
 \subsubsection*{Relationship between Rental and Car}
+% Explain the relationship and type
+% Does it prevent different customers from renting the same car at the same time?
+The \texttt{Rental} to \texttt{Car} relation is a many-to-one relation.
+Therefore, each \texttt{Rental} can only be assigned to exactly one \texttt{Car}.
+Yet, a \texttt{Car} can be assigned to multiple \texttt{Rentals}.
+The cars can be the same or different, which means that multiple rentals can exist for the same \texttt{Car}.
+Due to no function checking if the \texttt{Car} is already rented, it is possible to create overlapping rentals for the same \texttt{Car}.
+
+% If not, how can this be prevented?
+There are some possibilities to prevent overlapping rentals.
+One possibility is to check if the \texttt{Car} is already rented when renting a \texttt{Car}.
+This could be done in the \texttt{rentCar} function of the \texttt{customer} application entity.
+Another possibility is to work with the collection \texttt{Rentals} instead of working with the \texttt{Rental} application entity.
+This way, the collection can check whether the \texttt{Car} is already rented for the given timeslot.
 
 \subsubsection*{Relation of Entities Car}
 

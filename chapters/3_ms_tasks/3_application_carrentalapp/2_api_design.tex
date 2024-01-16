@@ -1,5 +1,6 @@
 \subsection{Excercise APIDIagramAMRentalManagementV1.0}
 TODO Add introduction
+The API diagram of \texttt{AM-RentalManagementV1.0} is shown in \autoref{fig:ad_am-rental_management_v1.0}.
 \subsubsection*{Derivation of the API Diagram}
 An API diagram models the relevant entities depending on the type of API, in this case, \hfill \linebreak \texttt{RentalManagementV1.0} is an application microservice.
 In an AM API diagram, relations between the application entities and the entities from other API diagrams occur.
@@ -62,5 +63,22 @@ Another possibility is to work with the collection \texttt{Rentals} instead of w
 This way, the collection can check whether the \texttt{Car} is already rented for the given timeslot.
 
 \subsubsection*{Relation of Entities Car}
+% Describe the relation between application entity and domain entity car
+This relation is a so-called inheritance relation.
+This means, that the application entity \texttt{Car} inherits the attributes and functions from the domain entity \texttt{Car} and extends it with additional, application-related functions and attributes if necessary.
+Since the domain entity \texttt{Car} gets its attributes and methods from the collection \texttt{Cars} and the value object \texttt{Vin}, the application entity \texttt{Car} also inherits parts of \texttt{Cars} and the value object \texttt{Vin}.
+Thus, the application entity \texttt{Car} is an application-specific specialization of the domain entity \texttt{Car}.
+
+% How do they relate
+Both microservices relate in their attributes.
+Since the application entity \texttt{Car} inherits from the domain entity \texttt{Car}, they both share the same attributes.
+
+% What are the differences
+They differ in their context and therefore their usage.
+The domain entity \texttt{Car} is used in the domain microservice \texttt{DM-CarV1.0} which is responsible for CRUD operations provided by the collection \texttt{Cars}.
+The application entity \texttt{Car} is used in the application microservice \texttt{AM-RentalManagementV1.0} which is responsible for renting and canceling rentals.
+Therefore the application entity will be used in the context of a rental, while the domain entity will be used in the context of the CRUD operations.
 
 \subsubsection*{API Style}
+
+% Which API style is more appropriate

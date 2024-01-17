@@ -23,7 +23,7 @@ The usual setup is separated into two files:
         Files like \texttt{/etc/profile} are used to set up the environment for all users.
         These files are executed when any user logs in.
     \item User-specific configuration:
-        Each user has their own profile configuration file.
+        Each user has their profile configuration file.
         This file is located in the user's home directory like \texttt{\$HOME/.profile} or \texttt{\$HOME/.bashrc}.
         These files are executed when the specific user logs in.
 \end{enumerate}
@@ -203,4 +203,65 @@ return nil
 
 \section{The Echo Framework}
 \label{sec:the_echo_framework}
-//TODO explain echo framework
+\subsection{Definition}
+Echo is an open-source, high-performance, lightweight framework specialized in building web applications in Go.
+It is a great choice for building RESTful APIs.
+Echo was founded in 2015 by LabStack and is maintained until today by the LabStack team and the open-source community.
+
+\subsection{Echo's Use in \texttt{DM-CarV1}}
+\texttt{DM-CarV1} uses the echo framework to build a ReSTful API.
+This domain microservice was described in \autoref*{sec:domain_microservice_dm_car}.
+A code snippet of \texttt{dm-car}'s main function \texttt{main.go} is shown in \autoref{lst:echo_framework_example}.
+
+First, the Echo framework is imported from the \texttt{github.com/labstack/echo/v4} github repository.
+This is currently the latest version of the framework.
+\texttt{e} is then initialized as a new echo instance.
+This is done by calling the \texttt{New()} function on the echo package.
+This instance can be used to define routes, include middleware, and start the web server.
+
+TODO HIER WEITERMACHEN
+
+\begin{lstlisting}[
+      float=h,
+      style=kit-cm,
+      caption={Echo Framework Example in \texttt{DM-CarV1}},
+      label={lst:echo_framework_example},
+      language=Golang,
+]
+// file main.go
+
+package main
+
+import (
+	...
+	"github.com/labstack/echo/v4"
+)
+
+func main() {
+inMemoryRepository := infrastructure.InMemoryRepository(...)
+
+carOperations := ...
+
+// Create the CarOperations and the CarController
+carsResource := controller.NewCarController(carOperations)
+
+// Register the CarController with the server for handling it's routes
+e := echo.New()
+controller.RegisterHandlers(e, &carsResource)
+
+// Start the server
+portEnv := os.Getenv("PORT")
+if portEnv == "" {
+      portEnv = "80"
+}
+
+var portNumber, err = strconv.Atoi(portEnv)
+if err != nil {
+      e.Logger.Fatal("The port number configuration is incorrect. Did you set the environment variable PORT?")
+}
+var port = flag.Int("port", portNumber, "Port for local server")
+e.Logger.Fatal(e.Start(fmt.Sprintf("0.0.0.0:%d", *port)))
+}
+\end{lstlisting}
+
+\subsection{Alternatives to Echo}

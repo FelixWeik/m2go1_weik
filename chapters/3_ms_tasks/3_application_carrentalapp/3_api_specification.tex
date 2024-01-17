@@ -2,7 +2,17 @@
 TODO: add an introduction
 
 \subsubsection*{Specification Language}
+% Describe which API specification language is used for gRPC
+gRPC uses the protocol buffer language to define the API specification.
+The protocol buffer language is platform-independent and language-agnostic.
+Using this language, data structures and services can be defined.
 
+The API specification is defined in a \texttt{.proto} file serving as the groundwork for the implementation of the client- and server-implementation.
+The \texttt{.proto} file is compiled by a protobuf compiler to generate the client- and server-side code.
+This code then defines the data structures and service stubs of the \texttt{.proto} file.
+
+
+% Explain the language in the context of gRPC
 \subsubsection*{Constructing gRPC Services}
 
 \subsubsection*{Map Enumerations to gRPC Enums}

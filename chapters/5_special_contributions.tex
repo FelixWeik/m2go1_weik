@@ -204,8 +204,8 @@ return nil
 \section{The Echo Framework}
 \label{sec:the_echo_framework}
 \subsection{Definition}
-Echo is an open-source, high-performance, lightweight framework specialized in building web applications in Go.
-It is a great choice for building RESTful APIs.
+According to its documentation \cite{ECH-DOC}, Echo is an open-source, high-performance, lightweight framework specialized in building web applications in Go.
+It is a great choice for building RESTful APIs due to its simple API, powerful routing tools and its middleware support.
 Echo was founded in 2015 by LabStack and is maintained until today by the LabStack team and the open-source community.
 
 \subsection{Echo's Use in \texttt{DM-CarV1}}
@@ -218,8 +218,21 @@ This is currently the latest version of the framework.
 \texttt{e} is then initialized as a new echo instance.
 This is done by calling the \texttt{New()} function on the echo package.
 This instance can be used to define routes, include middleware, and start the web server.
+In this example, \texttt{controller.RegisterHandlers(e, \&carsResource)} is called to register both \texttt{GET} routes for both the \texttt{GetCar} and \texttt{GetCars} functions.
+This is done by calling the \texttt{router.GET} function on the echo package.
+The function takes the URL path and the handler function as parameters.
+The handler function then is called when the URL path is called.
+The last part of the code snippet is used to start the web server.
+This is done by calling the \texttt{Start} function on the echo package.
+The function takes the port number as a parameter, in this case, it is a formatted string containing the port number.
+Then, the server is started by calling the \texttt{Start} function on the echo instance \texttt{e}.
+\texttt{e.Logger.Fatal} is a logger object assigned to the echo instance \texttt{e}.
+It is used to log errors and messages.
+Here it uses the \texttt{Fatal} function to print a fatal error and exit the program if the server cannot be started.
 
-TODO HIER WEITERMACHEN
+After the server is started, it listens for incoming requests on the specified port.
+It then uses the defined routes to handle the incoming requests.
+More on the workflow after the server has been started can be found in \autoref*{subsec:echo_basic_workflow}.
 
 \begin{lstlisting}[
       float=h,
@@ -264,4 +277,46 @@ e.Logger.Fatal(e.Start(fmt.Sprintf("0.0.0.0:%d", *port)))
 }
 \end{lstlisting}
 
+\subsection{Basic Workflow}
+\label{subsec:echo_basic_workflow}
+After the server has been started successfully, it listens for incoming requests on the specified port.
+It then uses the defined routes to handle the incoming requests.
+The basic workflow of the echo framework is as follows.
+
+\paragraph*{1. Request Processing:}
+If an incoming request is received, the echo instance checks if the request matches any of the defined routes.
+If it does, the echo instance calls the corresponding handler function.
+The handler receives a \texttt{Context} instance, containing information about the current request like the parameters of the URL, or the complete URL of the request.
+The handler is then executed and returns a response, however, the echo instance does not send the response to the client yet.
+
+\paragraph*{2. Middleware Processing:}
+After the handler has been executed, the echo instance checks if any middleware has been defined.
+Middleware can be used for tasks such as authentication, logging or error handling.
+This allows for easy implementation of these tasks without having to implement them in every handler function.
+
+\paragraph*{3. Response Processing:}
+In this step, the echo instance creates a response to be sent back to the client.
+This can be an HTML page, a JSON object, or any other type of response.
+The echo instance then sends the response back to the client.
+
+\paragraph*{4. Server Continuation:}
+The server remains active, waiting for further requests.
+If a shutdown is requested manually or an error occurs, the server is stopped and the program is exited.
+
 \subsection{Alternatives to Echo}
+This section briefly lists two alternatives to the echo framework.
+Both frameworks are used to build web applications and ReSTful APIs in Go and are open source.
+
+\paragraph*{Gin}
+Gin is a web framework written in Go.
+It is known for its fast and minimalistic design.
+Due to its simplicity, it is easy to learn and use.
+It also supports middleware and routing, yet it does not provide the variety of middleware and routing tools that echo does.
+More on this topic can be found in Gin's documentation \cite{GIN-DOC}.
+
+\paragraph*{Iris}
+Iris also is a web framework written in Go.
+It is feature-rich and provides a lot of tools for building web applications, thus being more complex than Gin and Echo.
+It also provides a lot of middleware and routing tools.
+Also, due to its complexity, it may have a bigger overhead and therefore less performance than Gin and Echo.
+More on this topic can be found in Iris' documentation \cite{IRI-DOC}.

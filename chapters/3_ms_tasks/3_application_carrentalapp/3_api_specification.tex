@@ -3,7 +3,7 @@ TODO: add an introduction
 
 \subsubsection*{Specification Language}
 % Describe which API specification language is used for gRPC
-gRPC uses the protocol buffer language to define the API specification.
+gRPC uses the protocol buffer language to define the API specification \cite{PRO-DOC}.
 The protocol buffer language is platform-independent and language-agnostic.
 Using this language, data structures and services can be defined.
 
@@ -11,8 +11,18 @@ The API specification is defined in a \texttt{.proto} file serving as the ground
 The \texttt{.proto} file is compiled by a protobuf compiler to generate the client- and server-side code.
 This code then defines the data structures and service stubs of the \texttt{.proto} file.
 
+In the \texttt{.proto} file, messages and services can be defined.
+Messages are used to define data structures.
+They rank optional and required fields, specifying how the data will be serialized.
+After compiling a message using the protobuf compiler, the message can be used as a class in the target language.
+This class can then be used to create instances of the message, serializing and deserializing them.
+The serialized data can then be used for transmission, persisting or storing.
+A service defines remote procedures.
+They hold one or several functions, specifying the parameters and return values of the function.
+The logic of the function can be directly implemented in the service definition, or it can be implemented in a separate class.
+The service can then be used to create a server stub and a client stub.
+Therewith, the service can be used to implement a server and a client, enabling communication by specifying the remote procedure calls.
 
-% Explain the language in the context of gRPC
 \subsubsection*{Constructing gRPC Services}
 
 \subsubsection*{Map Enumerations to gRPC Enums}

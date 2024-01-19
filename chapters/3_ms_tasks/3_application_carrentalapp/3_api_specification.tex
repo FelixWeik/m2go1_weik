@@ -110,7 +110,40 @@ message Customer {
 ...
 \end{lstlisting}
 \subsubsection*{Map Enumerations to gRPC Enums}
+% How are enumerations in the API diagram mapped to gRPC enums
+As explained above, each enumeration from the API diagram is mapped to a gRPC enum type.
+Each value of the enumeration is then mapped to a gRPC enum value.
+% Why is it important to set default values for gRPC enums
+A default value is set at zero with the other values being incremented by one.
+This is important due to the way gRPC handles enums.
+If a value is not set, the default value is used.
+Therefore the default value should be set carefully.
 
+% Provide an example of mapping enumeration VehicleCategory from API diagram to gRPC enums
+Assume there is an enumeration \texttt{VehicleCategory} with the values \texttt{Compact}, \texttt{Midsize}, \texttt{Fullsize} and \texttt{Luxury}.
+Now a default value must be set, \texttt{UNSPECIFIED} is chosen in this example.
+Therefore \texttt{UNSPECIFIED} is mapped to the value zero with the other values following.
+If a \texttt{Car} is now assigned an unspecified \texttt{VehicleCategory}, it will be set to \texttt{UNSPECIFIED}.
+A code example is provided in the following
+
+\begin{lstlisting}[
+    style = kit-cm,
+    caption = {Example of a \texttt{.proto} File representing the Enumeration \texttt{VehicleCategory}},
+    label = {lst:proto_vehicle_category},
+    float = h
+]
+...
+
+enum VehicleCategory {
+    UNSPECIFIED = 0;
+    COMPACT = 1;
+    MIDSIZED = 2;
+    FULLSIZED = 3;
+    LUXURY = 4;
+}
+
+...
+\end{lstlisting}
 \subsubsection*{Translate Entities and Value Objects to gRPC Messages}
 
 \subsubsection*{Transfer Parameters for gRPC Function}

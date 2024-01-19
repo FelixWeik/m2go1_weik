@@ -24,7 +24,91 @@ The service can then be used to create a server stub and a client stub.
 Therewith, the service can be used to implement a server and a client, enabling communication by specifying the remote procedure calls.
 
 \subsubsection*{Constructing gRPC Services}
+% Which parts of the API diagram are mapped to gRPC services and why?
+% How are methods within an application entity transformed into gRPC functions according to the guideline?
+The guidelines on deriving gRPC specifications are provided in the \hfill \linebreak \texttt{1.EngineeringKnowledge > 1.UMEPhases} GitLab Repository \cite{CM-G-RPC}.
+It defines certain rules on how and what to derive from a given API diagram into the gRPC specification.
+First, each entity or collection that houses gRPC functions is mapped to a gRPC service.
+The service is named after the entity or collection with the suffix \texttt{Service} or \texttt{CollectionService}.
+Also, the gRPC functions are named after the corresponding methods of the entity or collection.
+Next, each enumeration is mapped to a gRPC enumeration with each value being translated to a gRPC enumeration value.
+Then, each entity is mapped to a gRPC message having the same name and attributes as the entity.
+Finally, each input and output parameter of the defined gRPC functions is defined as a single message.
+Each message contains the attributes of the input or output parameter.
+These messages are named after the corresponding method with the suffix \texttt{Request} or \texttt{Response}.
+They are then used as input or output parameters of the corresponding gRPC function. \linebreak
+This enables the implementation of the gRPC service.
+Without proper implementation, the gRPC service will not be able to handle remote procedure calls or serialize and deserialize data properly.
 
+% Describe the mapping with the application entity Customer from the API diagram AM-RentalManagementV1.0 to the corresponding methods of a gRPC service
+A code snippet of \texttt{AM-RentalManagementV1.0}'s \texttt{.proto} file is shown in Listing \autoref{lst:proto_customer_service}.
+The according API diagram is shown in \autoref{fig:ad_am-rental_management_v1.0}.
+In the API diagram, the \texttt{Customer} application entity holds three functions and two attributes.
+Therefore, the \texttt{Customer} application entity is mapped to a gRPC service named \texttt{CustomerService} holding three gRPC functions.
+Here, each function is named after the corresponding method, with input and output parameters named as described above.
+Each input and output parameter is defined in a single message holding the attributes of the original function.
+Afterward, the \texttt{Customer} application entity is mapped to a message named \texttt{Customer} holding two attributes.
+This concludes the derivation of the \texttt{Customer} application entity into the protobuf gRPC specification.
+
+\begin{lstlisting}[
+    style = kit-cm,
+    caption = {Code Snippet of \texttt{AM-RentalManagementV1.0}'s \texttt{.proto} File},
+    label = {lst:proto_customer_service}
+]
+//AM-RentalManagementV1.0
+syntax = "proto3";
+
+package rentalmanagement;
+
+option go_package = "./pb";
+
+import "google/protobuf/timestamp.proto";
+
+...
+
+service CustomerService{
+    rpc RentCar(RentCarRequest) returns (RentCarResponse) {}
+    rpc ListRentals(ListRentalsRequest) returns (ListRentalsResponse) {}
+    rpc CancelRental(CancelRentalRequest) returns (CancelRentalResponse) {}
+}
+
+message RentCarRequest {
+    google.protobuf.Timestamp startDate = 1;
+    google.protobuf.Timestamp endDate = 2;
+    Vin vin = 3;
+    string customerId = 4;
+}
+
+message RentCarResponse {
+    Rental rental = 1;
+    ErrorDetail error = 2;
+}
+
+message ListRentalsRequest {
+    string customerId = 1;
+}
+
+message ListRentalsResponse {
+    repeated Rental rentals = 1;
+    ErrorDetail error = 2;
+}
+
+message CancelRentalRequest {
+    string rentalId = 1;
+}
+
+message CancelRentalResponse {
+    bool result = 1;
+    ErrorDetail error = 2;
+}
+
+message Customer {
+    string customerId = 1;
+    string name = 2;
+}
+
+...
+\end{lstlisting}
 \subsubsection*{Map Enumerations to gRPC Enums}
 
 \subsubsection*{Translate Entities and Value Objects to gRPC Messages}

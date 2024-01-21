@@ -210,4 +210,67 @@ message Car {
     }
 }
 \end{lstlisting}
+
 \subsubsection*{Transfer Parameters for gRPC Function}
+% How are input and output parameters from methods transferred to fields within the corresponding request/response message?
+As mentioned above, each input and output parameter of the functions defined in the API diagram are modeled as messages.
+Therefore, each parameter is transferred to a new message holding the attributes of the parameter.
+\autoref{lst:proto_customer_service} provides a great example.
+
+% Clarify the rationale behind generating a response message for each method
+Several reasons exist for generating a response message for each method.
+First, it provides clear communication with each method communicating the expected structure of the response.
+Second, the separation of concerns is preserved.
+By defining unique response messages for each method, it is clear what kind of data to expect from the return call therefore separating the concerns of the method from the concerns of the response.
+Next, response messages can be extended with additional or different attributes.
+This enables the extension of the response message without changing the method itself.
+Also, versioning and compatibility become easier due to fields being added or removed without affecting existing clients.
+Therefore an older client can still consume responses with fewer fields.
+Finally, the general readability of the \texttt{.proto} file is improved by dedicating a message to each response.
+Therefore the rationale behind generating a response message for each method is clear.
+
+% Illustrative example of request and response messages for a gRPC method
+An illustrative example of a request and response message for an RPC method is \texttt{listAvailableCars} from the \texttt{Rentals} collection.
+This function receives two \texttt{Date} objects as input parameters and returns a list of \texttt{Car} objects.
+First, the message \texttt{Rentals} is defined.
+It is called \texttt{RentalsCollectionService} and holds the \texttt{listAvailableCars} function.
+The function is defined as \texttt{rpc listAvailableCars(ListAvailableCarsRequest) returns (ListAvailableCarsResponse)}.
+Next, the input and output messages are defined.
+This happens in the same \texttt{.proto} file.
+Both messages are named after the initial function, in this case \texttt{ListAvailableCarsRequest} and \texttt{ListAvailableCarsResponse}.
+The input holds two attributes, both representing the \texttt{Date} object.
+In this case, it is represented by the \texttt{google.protobuf.Timestamp} class that represents a timestamp, which is a specific point in time. 
+Therefore, it is the perfect already built-in datatype for the \texttt{Date} object.
+Next, the response message is defined.
+It holds a list of \texttt{Car} objects, with the list being represented by the \texttt{repeated} keyword.
+This built-in keyword is used to define repeated fields, which then are used to represent lists.
+The \texttt{error} attribute is defined as an \texttt{ErrorDetail} object.
+It is a value object that holds an error code and an error message.
+This represents the functions returning information on the error if an error occurs.
+This concludes the derivation of the \texttt{listAvailableCars} function into the protobuf gRPC specification.
+During execution of the function, the input parameters are serialized into a \texttt{ListAvailableCarsRequest} object and the output parameters are serialized into a \texttt{ListAvailableCarsResponse} object.
+These objects are then used for transmission, persisting or storing.
+This interconnects the \texttt{.proto} file with the implementation of the gRPC service.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Code Snippet of \texttt{AM-RentalManagementV1.0}'s \texttt{.proto} File},
+    label={lst:proto_response_message},
+    float=h
+]
+...
+service RentalsCollectionService {
+    rpc ListAvailableCars(ListAvailableCarsRequest) returns (ListAvailableCarsResponse) {}
+}
+
+message ListAvailableCarsRequest {  
+    google.protobuf.Timestamp startDate = 1;
+    google.protobuf.Timestamp endDate = 2;
+}
+
+message ListAvailableCarsResponse {
+    repeated Car cars = 1;
+    ErrorDetail error = 2;
+}
+...
+\end{lstlisting}

@@ -37,6 +37,7 @@ Finally, each input and output parameter of the defined gRPC functions is define
 Each message contains the attributes of the input or output parameter.
 These messages are named after the corresponding method with the suffix \texttt{Request} or \texttt{Response}.
 They are then used as input or output parameters of the corresponding gRPC function. \linebreak
+All the other value objects and entities are mapped to gRPC messages.
 This enables the implementation of the gRPC service.
 Without proper implementation, the gRPC service will not be able to handle remote procedure calls or serialize and deserialize data properly.
 
@@ -124,7 +125,7 @@ Assume there is an enumeration \texttt{VehicleCategory} with the values \texttt{
 Now a default value must be set, \texttt{UNSPECIFIED} is chosen in this example.
 Therefore \texttt{UNSPECIFIED} is mapped to the value zero with the other values following.
 If a \texttt{Car} is now assigned an unspecified \texttt{VehicleCategory}, it will be set to \texttt{UNSPECIFIED}.
-A code example is provided in the following
+A code example implementing the \texttt{VehicleCategory} enumeration is shown in Listing \autoref{lst:proto_vehicle_category}.
 
 \begin{lstlisting}[
     style = kit-cm,
@@ -133,7 +134,6 @@ A code example is provided in the following
     float = h
 ]
 ...
-
 enum VehicleCategory {
     UNSPECIFIED = 0;
     COMPACT = 1;
@@ -141,9 +141,73 @@ enum VehicleCategory {
     FULLSIZED = 3;
     LUXURY = 4;
 }
-
 ...
 \end{lstlisting}
 \subsubsection*{Translate Entities and Value Objects to gRPC Messages}
+% Identify modeling elements that will be transferred from the API diagram to gRPC messages
+As mentioned above, each entity or collection is modeled as a message.
+It holds only the attributes since its methods are already modeled in the according service.
+Also, each input and output parameter of the services' functions are modeled as messages.
+Therefore, the application entities \texttt{Customer} and \texttt{Car} as well as the \texttt{Rental} collection will be modeled as messages holding their attributes.
+All of the functions' input and output parameters that these three objects hold will be modeled as messages.
+For example the input and output parameters of \texttt{rentCar} in the \texttt{Customer} application entity will be modeled as two distinct messages holding the input and return parameters.
 
+% What attributes are encompassed within the message derived from the application entity 
+\autoref{lst:proto_car_service} shows a code snippet of \texttt{AM-RentalManagementV1.0}'s \texttt{.proto} file specifying the \texttt{Car} message.
+In the API diagram, the \texttt{Car} application entity inherits the domain entity \texttt{Car} from the \texttt{DM-CarV1.0} domain microservice.
+Therefore, the \texttt{Car} message holds the same attributes as the \texttt{Car} domain entity does.
+These attributes are then specified in the \texttt{.proto} file.
+Also, the datatypes of the attributes are preserved.
+The \texttt{Vin} value object is also modeled as a message, serving as a datatype for \texttt{Car}'s attribute \texttt{vin}.
+
+% Discuss strategy for managing simple and complex identifier attributes in gRPC messages for entities
+An example of a simple identifier attribute is the \texttt{vin} attribute of the \texttt{Car} message.
+It is modeled as a string without any further nesting.
+It will be used as the unique identifier for the \texttt{Car} message.
+In the mentioned guideline on deriving gRPC specifications \cite{CM-G-RPC}, more complex identifier attributes will be modeled as nested messages within the message that will be identified.
+This nested message will then be used as a datatype for the identifier attribute.
+An example of a more complex, nested identifier attribute is shown in Listing \autoref{lst:proto_nested_identifier}.
+
+Several alternatives are possible:
+First, the identifier attribute can be modeled as a message, yet without nesting.
+This is the case for the \texttt{vin} attribute of the \texttt{Car} message.
+This enables the reusability of the identifier attribute, since in \autoref{lst:proto_nested_identifier} the \texttt{Identifier} cannot be reused by other messages.
+Second, one could compromise and model the identifier attribute as a simple datatype.
+This would enable the reusability of the identifier attribute, yet information will be lost.
+Also, the \texttt{vin} attribute for example will not be a reusable, unified datatype then.
+Therefore, modeling the identifier attribute as a message without nesting is the best solution.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Code Snippet of \texttt{AM-RentalManagementV1.0}'s \texttt{.proto} File},
+    label={lst:proto_car_service}
+    float=h
+]
+message Car {
+    Vin vin = 1;
+    string brand = 2;
+    string model = 3;
+    int32 pricePerDay = 4;
+}
+
+message Vin {
+    string vin = 1;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Code Snippet showing a Nested Identifier Message from \cite{CM-G-RPC}},
+    label={lst:proto_nested_identifier},
+    float=h
+]
+message Car {
+    Identifier id = 1;
+    // other attributes
+    message Identifier {
+        string vin = 1;
+        string registrationNumber = 2;
+    }
+}
+\end{lstlisting}
 \subsubsection*{Transfer Parameters for gRPC Function}

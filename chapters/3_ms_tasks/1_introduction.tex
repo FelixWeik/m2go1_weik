@@ -101,15 +101,17 @@ As mentioned above, gRPC is based on the idea of defining a service and specifyi
 
 \autoref{fig:grpc_main_components} from \cite{CM-T-DES} shows the main components that will be explained in the following.
 
-\paragraph*{Proto File:}
-The proto file defines the service and the methods that can be called remotely.
+\paragraph*{\texttt{.proto} File:}
+The proto file defines the services, the messages, and the methods that can be called remotely.
 Before calling a method, a stub needs to be generated.
-This stub is generated from the proto file and contains the method signatures.
+This stub is generated from the \texttt{.proto} file and contains the method signatures.
+The generation of the stub is done by the gRPC compiler.
+This allows flexibility and independence of the used programming language.
 
 \paragraph*{Client:}
 The client is the caller of the remote methods.
 It uses the stub to call the methods.
-The communication between the client and the server uses protobuf messages via HTTP/2.
+The communication between the client and the server uses \texttt{protobuf} messages via HTTP/2.
 
 \paragraph*{Server:}
 The server is the receiver of the remote method calls.

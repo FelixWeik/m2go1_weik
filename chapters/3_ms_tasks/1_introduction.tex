@@ -92,12 +92,19 @@ This principle strongly relates to resources.
 These resources have to be represented.
 This happens in a standardized format, for instance, JSON or XML.
 The client can choose the format that suits him best.
-MIME, the Multipurpose Internet Mail Extensions standard, defines the different formats used in internet protocols.
+MIME, the Multipurpose Internet Mail Extensions standard, defines the different formats used in Internet protocols.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/microservices/microservices_grpcMainComponents.png}
+    \caption{Main Components of the gRPC Architecture}
+    \label{fig:grpc_main_components}
+\end{figure}
 
 \subsubsection*{gRPC Components}
 % Name and describe the main components of the gRPC architecture.
 gRPC is an open-source remote procedure call system, a competitive alternative to ReST.
-As mentioned above, gRPC is based on the idea of defining a service and specifying remotely callable methods.
+As mentioned above, gRPC is based on the idea of defining services and specifying remotely callable methods.
 
 \autoref{fig:grpc_main_components} from \cite{CM-T-DES} shows the main components that will be explained in the following.
 
@@ -113,19 +120,12 @@ The client is the caller of the remote methods.
 It uses the stub to call the methods.
 The communication between the client and the server uses \texttt{protobuf} messages via HTTP/2.
 \texttt{protobuf} is Google's mechanism to serialize data, making data more lightweight and easier to store, persist and transfer.
-More on this topic can be found in the official documentation \url{https://protobuf.dev/overview/}.
+More on this topic can be found in the official documentation: \url{https://protobuf.dev/overview/}.
 
 \paragraph*{Server:}
 The server is the receiver of the remote method calls.
 It holds the functions defined as services in the \texttt{.proto} file.
 After receiving a call, the server executes the method and returns the result to the client, again via HTTP/2.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/microservices/microservices_grpcMainComponents.png}
-    \caption{Main Components of the gRPC Architecture}
-    \label{fig:grpc_main_components}
-\end{figure}
 
 \subsubsection*{Use of ReST and gRPC in UME}
 % Which API style is appropriate for which type of microservice in the UME approach?
@@ -185,7 +185,7 @@ The systemPlusSoftware-diagram is shown in \autoref{fig:system_plus_software_car
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/microservices/introduction/ms_intro_spsdCarRentalV1.png}
+    \includegraphics[width=0.5\textwidth]{figures/microservices/dmCar/ms_dmCar_SPScarRental.png}
     \caption{SystemPlusSoftware Diagram of the Car Rental App V1.0}
     \label{fig:system_plus_software_car_rental_app_v1}
 \end{figure}

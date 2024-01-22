@@ -1,8 +1,7 @@
 \subsection{Excercise UMEGeneralConcepts}
 \label{sec:ume_general_concepts}
-% Kurze Einleitung
 This task provides a general overview of the general concepts of the Unified Microservice Engineering (UME) approach.
-The following sections will explain the general architectural style, and the domain modeling process and dive into the modeling of the architecture.
+The following sections will explain the general architectural style, the domain modeling process, and the modeling of the architecture.
 
 \subsubsection*{Architectural Style}
 The Unified Microservice Engineering approach aligns with the microservices architectural style.
@@ -42,18 +41,17 @@ Therefore the domain logic layer is the part of the software architecture that i
 
 \subsubsection*{Modelling of the Architecture}
 To model the architecture of a microservice-based application, UME uses the Unified Modeling Language (UML).
-To create the according diagrams, the UMLet tool is used.
+To create the according diagrams, the UMLet tool \cite{UML-WEB} is used.
 
-Two modeling views can be distinguished: the tactical and the strategic view.
+Two general views are distinguished: The \textbf{Application Software View} and the \textbf{Application System View}.
+Both views have an artifact as their main result.
+The application software view takes a logical approach and focuses on the software architecture.
+Its artifact is the \textbf{Component Diagram}.
+The application system view takes a physical approach and focuses on the system architecture.
+Its artifact is the \textbf{Deployment Diagram}.
 
-The strategic modeling provides an overview of the domain model.
-The result is the so-called context map.
-It provides the link to the microservice architecture.
-The context map consists of subdomains and their bounded contexts.
-A bounded context can be seen as a microservice candidate.
-
-Tactical modeling takes a closer look at the entities and their relationships.
-Each bounded context entity models the static relations of the domain entity.
+Both diagrams can be combined by using the \textbf{SystemPlusSoftware Diagram}.
+It combines both the Component and the Deployment Diagram by putting the logical components into the physical nodes.
 
 \subsection{Excercise APIStyles}
 \label{sec:api_styles}

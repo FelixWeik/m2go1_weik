@@ -112,11 +112,13 @@ This allows flexibility and independence of the used programming language.
 The client is the caller of the remote methods.
 It uses the stub to call the methods.
 The communication between the client and the server uses \texttt{protobuf} messages via HTTP/2.
+\texttt{protobuf} is Google's mechanism to serialize data, making data more lightweight and easier to store, persist and transfer.
+More on this topic can be found in the official documentation \url{https://protobuf.dev/overview/}.
 
 \paragraph*{Server:}
 The server is the receiver of the remote method calls.
-It implements the methods defined in the proto file.
-After receiving a call, the server executes the method and returns the result to the client.
+It holds the functions defined as services in the \texttt{.proto} file.
+After receiving a call, the server executes the method and returns the result to the client, again via HTTP/2.
 
 \begin{figure}
     \centering
@@ -138,6 +140,7 @@ Since gRPC focuses on the functions, it is a good fit for the communication betw
 The presentation layer can call the methods of the application microservice directly, whilst being performant and efficient.
 
 The domain logic layer communicates with the application logic layer by providing an interface and communicates with the database implementing its interface.
+Most implemented methods are CRUD (Create, Read, Update, Delete) methods.
 Therefore the communication to both layers is resource-oriented.
 ReST is a good fit for this communication, providing a uniform interface for the communication between the layers.
 

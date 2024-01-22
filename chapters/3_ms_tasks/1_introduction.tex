@@ -146,16 +146,18 @@ ReST is a good fit for this communication, providing a uniform interface for the
 
 \subsection{Excercise ArchitectureCarRentalAppV1.0}
 \label{sec:architecture_car_rental_app_v1_0}
-%//TODO: Kurze Einleitung
 \subsubsection*{Documentation Repository}
 The documentation repository can be found at \url{https://gitlab.kit.edu/kit/cm/teaching/carrentalapp/0.doccarrentalappv1}.
 It is called \texttt{0.DocCarRentalAppV1} and contains the documentation of the Car Rental App V1.0.
+It comprises three directories and a \texttt{README.md} file.
 The structure is shown in \autoref{fig:doc_repo_car_rental_app_v1}.
+The folders are structured as follows:
 
-The documentation is structured as follows:
 \paragraph*{Figures:}
 This folder contains all the figures representing the component-, architecture-, systemPlusSoftware -, and deployment diagrams.
 It contains the first and second versions of each diagram respectively.
+The figures are stored as \texttt{.png} files.
+These files are then used in the documentation.
 \paragraph*{Pages:}
 This folder contains all the pages of the documentation.
 They are kept in separate markdown files for better readability and maintainability.
@@ -163,8 +165,8 @@ Most of them also are structured into first and second versions respectively.
 The readme file in the root folder links to the pages stored in this folder if there is a reference.
 \paragraph*{Umlet:}
 This folder contains the UMLet files of the diagrams.
-They are the same diagrams as in the figures folder, yet they can be edited using the UMLet tool.
-Therefore the figures folder contains the exported images of the UMLet files.
+These files are stored as \texttt{.uxf} files and can therefore be edited using the UMLet tool.
+The figures folder holds the exported images of the diagrams from this folder.
 It also holds a \texttt{.gitkeep} file to keep the folder in the repository even if it is empty.
 
 \begin{figure}

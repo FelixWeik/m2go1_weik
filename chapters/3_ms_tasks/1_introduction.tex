@@ -55,16 +55,15 @@ It combines both the Component and the Deployment Diagram by putting the logical
 
 \subsection{Excercise APIStyles}
 \label{sec:api_styles}
-% Kurze Einleitung
 This task focuses on the different API styles used in the UME approach.
-The following sections will explain REST and gRPC and their properties, focusing on their use, the execution, their similarities and their differences.
+The following sections will explain ReST and gRPC and their properties, focusing on their usage, execution, similarities and differences.
 
-\subsubsection*{REST and gRPC}
+\subsubsection*{ReST and gRPC}
 \label{subsec:rest_and_grpc}
-Representational state Transfer (REST) and Remote Procedure Call (gRPC) are two different frameworks and collections of best practices and technologies for building APIs.
+Representational state Transfer (ReST) and Remote Procedure Call (gRPC) are two different frameworks and collections of best practices and technologies for building APIs.
 
 The main conceptual difference is the focus and orientation of both concepts:
-REST is resource-oriented.
+ReST is resource-oriented.
 Each resource has a unique identifier (URI) and can be accessed using the standardized HTTP methods.
 Therefore, there is only a small set of well-defined methods for manipulating the resources.
 gRPC is procedure, method, or function-oriented.
@@ -73,16 +72,16 @@ These methods can be called by a client with their parameters and return values.
 
 Both concepts have their legitimate use cases, yet it is important to choose the right one for the given use case.
 
-\subsubsection*{REST Properties}
-REST provides a concept of how microservices' APIs should be designed.
+\subsubsection*{ReST Properties}
+ReST provides a concept of how microservices' APIs should be designed.
 Its main properties are explained in the following.
 
 \paragraph*{Addressable Ressources:}
-As mentioned before, REST is resource-oriented meaning that each resource has a unique identifier, a URL, and can be accessed using the standardized HTTP methods.
+As mentioned before, ReST is resource-oriented meaning that each resource has a unique identifier, a URL, and can be accessed using the standardized HTTP methods.
 Therefore only a small set of functions is needed to manipulate the resources, offering a uniform interface.
 
 \paragraph*{Stateless Communication:}
-REST is stateless meaning that each request is independent of the previous one.
+ReST is stateless meaning that each request is independent of the previous one.
 The server, therefore, does not need to store any information about the client.
 The client must transfer all the information in the request that is needed to process it to the server.
 This leads to a loss of performance.
@@ -97,7 +96,7 @@ MIME, the Multipurpose Internet Mail Extensions standard, defines the different 
 
 \subsubsection*{gRPC Components}
 % Name and describe the main components of the gRPC architecture.
-gRPC is an open-source remote procedure call system, a competitive alternative to REST.
+gRPC is an open-source remote procedure call system, a competitive alternative to ReST.
 As mentioned above, gRPC is based on the idea of defining a service and specifying remotely callable methods.
 
 \autoref{fig:grpc_main_components} from \cite{CM-T-DES} shows the main components that will be explained in the following.
@@ -124,7 +123,7 @@ After receiving a call, the server executes the method and returns the result to
     \label{fig:grpc_main_components}
 \end{figure}
 
-\subsubsection*{Use of REST and gRPC in UME}
+\subsubsection*{Use of ReST and gRPC in UME}
 % Which API style is appropriate for which type of microservice in the UME approach?
 Each API style applies to different use cases and microservice types.
 Taking a look at a standard DDD-based layered architecture, splitting the logic layer into application and domain logic, different API styles can be used for each logic layer.
@@ -138,7 +137,7 @@ The presentation layer can call the methods of the application microservice dire
 
 The domain logic layer communicates with the application logic layer by providing an interface and communicates with the database implementing its interface.
 Therefore the communication to both layers is resource-oriented.
-REST is a good fit for this communication, providing a uniform interface for the communication between the layers.
+ReST is a good fit for this communication, providing a uniform interface for the communication between the layers.
 
 \subsection{Excercise ArchitectureCarRentalAppV1.0}
 \label{sec:architecture_car_rental_app_v1_0}

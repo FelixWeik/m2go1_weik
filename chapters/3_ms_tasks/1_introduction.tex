@@ -183,7 +183,14 @@ It is a component diagram, showing the components representing the different lay
 They can be separated into the presentation layer (UI), the application logic layer (application microservice), the domain logic layer (domain microservice), and the infrastructure layer (databases).
 
 \subsubsection*{Extension of the Architecture}
-The systemPlusSoftware-diagram is shown in \autoref{fig:system_plus_software_car_rental_app_v1}.
+\texttt{CarRentalAppV1.0}'s deployment diagram is shown in \autoref{fig:system_plus_software_car_rental_app_v1}.
+Each component is deployed as a separate and independent microservice.
+The deployment is defined by a dedicated Docker file.
+These files specify dependencies and the overall environment for each component.
+Therefore, each component can be containerized and deployed seamlessly within the same Kubernetes cluster.
+Each cluster can be hosted on any chosen cloud provider.
+This gives a certain flexibility in terms of deployment options.
+
 
 \begin{figure}
     \centering

@@ -2,7 +2,7 @@
 \subsubsection*{Analyze the Domain Constraints}
 The constraints describe invariants, post-, and pre-conditions of a certain context that have to be fulfilled.
 This happens in two different contexts: \texttt{Car} and the \texttt{addCar()} method of the \texttt{CarCollection}.
-The constraints can be found in \autoref*{lst:domain_constraints} which is a copy of Listing 2.2 from the task sheet \cite{CM-T-DMC}.
+The constraints can be found in \autoref{lst:domain_constraints} which is a copy of Listing 2.2 from the task sheet \cite{CM-T-DMC}.
 
 \paragraph*{Context Car:}
 Three invariants have to be fulfilled for a car to be valid.
@@ -13,8 +13,7 @@ The first 13 characters have to be letters reaching from A to H, J to N, R to Z,
 The last four characters must be digits from 0 to 9.
 Therefore each VIN is exactly 17 characters long and matches the regular expression.
 
-Second, the brand of the car must not be empty.
-Finally, the model of the car must not be empty.
+The succeeding two constraints demand the \texttt{brand} and \texttt{model} of the car not to be empty.
 
 If all invariants are met, the car is valid.
 
@@ -37,11 +36,11 @@ Therefore, if the post-condition is true, the car has successfully been added to
 If these conditions are met, the \texttt{addCar()} method executes correctly and the car is successfully added to the collection.
 
 \subsubsection*{Derive Test Cases}
-This task is about deriving negative and positive test cases from the constraints in \autoref*{lst:domain_constraints}.
+This task is about deriving negative and positive test cases from the constraints in \autoref{lst:domain_constraints}.
 
 \paragraph*{Context Car:}
 Three negative and positive test cases can be derived from the given constraints.
-The results are shown in code-form in \autoref*{lst:test_cases_car}.
+The results are shown in code-form in \autoref{lst:test_cases_car}.
 
 The \texttt{newCar()} constructor is assumed to be used to create a new car.
 

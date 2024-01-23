@@ -51,30 +51,27 @@ An OpenAPI specification consists of three general sections, each of which is de
 \end{description}
 
 \subsubsection*{Swagger Editor}
-A screenshot of the Swagger Editor UI is shown in \autoref{fig:ms_dmCar_swaggerEditorUI}.
+A screenshot of the Swagger Editor UI \cite{SWA-EDI} is shown in \autoref{fig:ms_dmCar_swaggerEditorUI}.
 
 The left side of the UI shows the code, in this case, the OpenAPI specification written in YAML.
 The right side shows the rendered specification.
 The top bar provides further functionalities that will be explained in the following.
 
-\texttt{File} provides the functionalities to import and export the specification.
-The file also can be downloaded.
-
-\texttt{Edit} allows the user to clear the file or convert it into a JSON file.
-
-\texttt{Insert} provides the functionalities to insert a new path, definition, or security scheme.
-This allows the user to quickly create a new endpoint or data model without having to write the code manually.
-
-\texttt{Generate Server} creates server code containing the defined endpoints, routes, parameters and models from the specification.
-This code can be downloaded as a ZIP file and in different programming languages.
-This provides a quick way to create a basic server that can be extended with the actual functionality.
-
-\texttt{Generate Client} generates client code.
-This code uses the defined endpoints and models to send requests to the API, handling the request and response parameters.
-The code can be downloaded as a ZIP file and in different programming languages.
-This allows easy integration of the API into other applications.
-
-\texttt{About} provides information and documentation about the Swagger Editor and access to the GitHub repository.
+\begin{description}
+    \item[File] provides the functionalities to import and export the specification.
+                The file also can be downloaded.
+    \item[Edit] allows the user to clear the file or convert it into a JSON file.
+    \item[Insert] provides the functionalities to insert a new path, definition, or security scheme.
+                This allows the user to quickly create a new endpoint or data model without having to write the code manually.
+    \item[Generate Server] creates server code containing the defined endpoints, routes, parameters and models from the specification.
+                This code can be downloaded as a ZIP file and in different programming languages.
+                This provides a quick way to create a basic server that can be extended with the actual functionality.
+    \item[Generate Client] generates client code.
+                This code uses the defined endpoints and models to send requests to the API, handling the request and response parameters.
+                The code can be downloaded as a ZIP file and in different programming languages.
+                This allows easy integration of the API into other applications.
+    \item[About] provides information and documentation about the Swagger Editor and access to the GitHub repository.
+\end{description}
 
 \begin{figure}
     \centering
@@ -84,7 +81,7 @@ This allows easy integration of the API into other applications.
 \end{figure}
 
 \subsubsection*{getCar() in OpenAPI Specification}
-The lines 26 to 47 in the OpenAPI specification are relevant for the specification of the \texttt{getCar()} method.
+The lines 26 to 47 in the OpenAPI specification are relevant for the specification of the "\texttt{getCar()}" method.
 The specification starts with the path being defined, in this case \texttt{/cras/\{vin\}}.
 
 After that the HTTP methods are defined, here it is only the \texttt{get} method.

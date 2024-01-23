@@ -37,21 +37,18 @@ components :
 
 \subsubsection*{OpenAPI Sections}
 An OpenAPI specification consists of three general sections, each of which is described in the following.
-\paragraph*{Info}
-The \texttt{info} section contains general information about the API.
-This includes the title, a description, the version, host, licensing, and the developers' contact information.
-
-\paragraph*{Paths}
-The \texttt{paths} section contains the API endpoints.
-Each path defines a certain URL and the HTTP methods that can be used on this URL.
-For each method, the request and response parameters are defined.
-This enables simple navigation through the API, as this part provides a map of the API's overall functionality.
-
-\paragraph*{Components}
-The \texttt{components} section contains reusable components.
-This includes schemas, data models, headers, and security schemes.
-Therefore, parts of the specification can be defined once and reused in multiple places.
-This reduces the amount of code, makes the specification more readable and improves the overall documentation quality.
+\begin{description}
+    \item[info] The \texttt{info} section contains general information about the API, also called metadata.
+                This includes the title, a description, the version, host, licensing, and the developers' contact information.
+    \item[paths] The \texttt{paths} section contains the API endpoints.
+                Each path defines a certain URL and the HTTP methods that can be used on this URL.
+                For each method, the request and response parameters are defined.
+                This enables simple navigation through the API, as this part provides a map of the API's overall functionality.
+    \item[components] The \texttt{components} section contains reusable components.
+                This includes schemas, data models, headers, examples, and security schemes.
+                Therefore, parts of the specification can be defined once and reused in multiple places.
+                This reduces the amount of code, makes the specification more readable and improves the overall documentation quality.
+\end{description}
 
 \subsubsection*{Swagger Editor}
 A screenshot of the Swagger Editor UI is shown in \autoref{fig:ms_dmCar_swaggerEditorUI}.

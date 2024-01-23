@@ -20,20 +20,17 @@ This concludes, the DDD pattern entity is an appropriate choice in this context.
 
 \subsubsection*{Terms Used}
 This section describes the terms used in the \texttt{domain\_entity\_car\_v1.0} file as it is shown in \texttt{gu\_terms\_used}.
-\paragraph*{Domain Entity:}
-This shows, that this entity is part of the domain.
-\paragraph*{Car:}
-\texttt{Car} is part of the domain. 
-It represents a car that can be used application-agnostically in various applications related to the domain.
-\paragraph*{Vin:}
-The VIN (Vehicle Identification Number) is a unique identifier for a car.
-It therefore is part of the car's identity.
-\paragraph*{Brand:}
-This is the brand of the car.
-It also is part of the car's identity.
-\paragraph*{Model:}
-This is the model of the car.
-It is part of the car's identity.
+\begin{description}
+    \item[Domain Entity:] This shows, that this entity is part of the domain.
+    \item[Car:] \texttt{Car} is part of the domain.
+                It represents a car that can be used application-agnostically in various applications related to the domain.
+    \item[Vin:] The VIN (Vehicle Identification Number) is a unique identifier for a car.
+                It therefore is part of the car's identity.
+    \item[Brand:] This is the brand of the car.
+                It also is part of the car's identity.
+    \item[Model:] This is the model of the car.
+                It is part of the car's identity.
+\end{description}
 
 \subsubsection*{Example Data}
 This task adds the example data to the table of example data.
@@ -65,16 +62,16 @@ After that, the different API styles ReST and gRPC are introduced.
 It is discussed which one is more appropriate in this context.
 \subsubsection*{Relationship Between Cars and Car}
 % Description of the Relationship
-The \texttt{api\_diagram\_dm-car\_v1.0} file in the \texttt{pages} folder describes the relationship of the collection cars and the domain entity car.
+The \texttt{api\_diagram\_dm-car\_v1.0} file in the \texttt{pages} folder describes the relationship between the collection \texttt{cars} and the domain entity \texttt{car}.
 It provides a clear overview of the domain microservice \texttt{DM-CarV1.0}.
 
-As mentioned \texttt{Cars} is a collection of \texttt{Car}.
+As mentioned, \texttt{Cars} is a collection of \texttt{Car}.
 It therefore contains a list of \texttt{Car} objects.
 Furthermore, the collection of cars provides the methods used in each car entity.
-\texttt{getCar(vin: Vin): Car} takes a VIN and returns the car with the given VIN.
-\texttt{getCars(): Car[]} takes no parameters and returns the list of all cars held by the collection.
+"\texttt{getCar(vin: Vin): Car}" takes a VIN and returns the car with the given VIN.
+"\texttt{getCars(): Car[]}" takes no parameters and returns the list of all cars held by the collection.
 
-This is a 1 to n relationship, with the collection being the 1 and the car being the n.
+This is a 1-to-many relationship, with the collection being the 1 and the car being the n.
 N can be zero.
 Therefore the collection is unique and can be empty.
 
@@ -84,7 +81,7 @@ The alternative modeling of the relationship is shown in \autoref{fig:api_diagra
 It also uses the collection of cars and the car entity.
 Yet, instead of providing the methods in the collection, the methods are provided by using the factory software pattern.
 The factory \texttt{CarFactory} implements the \texttt{ICarFactory} interface.
-The factory provides the methods \texttt{getCar(vin: Vin): Car} that were provided by the collection in the first model.
+The factory provides the methods "\texttt{getCar(vin: Vin): Car}" that were provided by the collection in the first model.
 Therefore the collection is only used to store the cars.
 This provides a better separation of concerns by separating the storage and the logic.
 Yet, the relationship between the collection and the car is not as clear as in the first model.

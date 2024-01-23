@@ -8,6 +8,7 @@ Finally, the example data is added to the table of example data, that can be fou
 \subsubsection*{DDD Pattern}
 \label{subsubsec:ddd_pattern}
 Domain-Driven-Design includes a set of patterns solving common problems elegantly.
+These patterns are not necessarily new, yet they are grouped working in a new context.
 Besides the already-known layered architecture pattern, the entity pattern is part of the DDD-core patterns.
 An entity is described to be an object, that is not defined by its attributes, but by a thread of continuity and its identity.
 
@@ -19,15 +20,18 @@ This concludes, the DDD pattern entity is an appropriate choice in this context.
 
 \subsubsection*{Terms Used}
 This section describes the terms used in the \texttt{domain\_entity\_car\_v1.0} file as it is shown in \texttt{gu\_terms\_used}.
-\paragraph*{domain entity:}
+\paragraph*{Domain Entity:}
 This shows, that this entity is part of the domain.
-\paragraph*{vin:}
+\paragraph*{Car:}
+\texttt{Car} is part of the domain. 
+It represents a car that can be used application-agnostically in various applications related to the domain.
+\paragraph*{Vin:}
 The VIN (Vehicle Identification Number) is a unique identifier for a car.
 It therefore is part of the car's identity.
-\paragraph*{brand:}
+\paragraph*{Brand:}
 This is the brand of the car.
 It also is part of the car's identity.
-\paragraph*{model:}
+\paragraph*{Model:}
 This is the model of the car.
 It is part of the car's identity.
 

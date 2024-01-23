@@ -99,9 +99,13 @@ Including the constraints in the API has several advantages.
 OCL constraints are valid during the whole object lifecycle.
 Therefore including them in the API specification ensures that the constraints are met during the whole lifecycle of the object.
 This makes the API accept only valid objects, therefore ensuring type safety and the integrity of the data.
+Furthermore, having the constraints defined in the API specification helps the developer or stakeholders to understand what kind of data is expected by the API.
+Therefore, this prevents invalid data from being sent to the API.
 
-% //TODO: Was könnte man hier noch machen?
-% //TODO: Den Spaß in die API Specification einbauen
+To include the constraints, the schema can be extended.
+This can be done by requiring \texttt{brand} and \texttt{model} to have a minimal length, for example, one character.
+Also, the "\texttt{getCars()}" method can be extended by requiring no two \texttt{Car} objects in the response to be similar.
+This can be done by setting the \texttt{uniqueItems} property to \texttt{true}.
 
 \begin{lstlisting}[
     float=h,

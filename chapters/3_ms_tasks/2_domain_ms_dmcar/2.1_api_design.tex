@@ -117,7 +117,7 @@ The following section describes the relations to the architectural diagram from 
 
 \paragraph*{General Folder Structure:}
 Opening the root folder of the repository, three folders and a \texttt{README.md} file is found.
-The \texttt{README.md} file contains a short on how to set up the database and run the domain microservice.
+The \texttt{README.md} file contains a short description of how to set up the database and run the domain microservice.
 \texttt{pages} contains the API diagram of the microservice.
 The \texttt{figures} folder contains the figures used in the API diagram. 
 The \texttt{src} folder contains the source code of the microservice that will be further analyzed in the following paragraph.
@@ -132,6 +132,7 @@ This file is compiled into an executable file.
 
 \paragraph*{Relations to the Architectural Diagram:}
 The architectural diagram of the microservice is modeled in the repository, implementing the entities and the according functions.
+Therefore, this repository contains the implementation of the domain microservice \texttt{DM-CarV1.0} inside the domain logic layer of the application.
 
 The collection \texttt{Cars} and the domain entity \texttt{Car} are implemented in the \texttt{Cars.go} and \texttt{Car.go} files respectively.
 Both files can be found in the \texttt{/src/logic/model} folder.
@@ -143,7 +144,7 @@ Therefore, it is not possible to identify which method belongs to which entity.
 
 The value object \texttt{Vin} used by \texttt{Car} is implemented in the \texttt{Vin.go} file.
 The file also can be found in the \texttt{/src/logic/model} folder.
-It implements the \texttt{IsValidVin()} method checking if a VIN is valid, yet this is not shown in the diagram.
+It implements the "\texttt{IsValidVin()}" method checking if a VIN is valid, yet this is not shown in the diagram.
 
 Also, further functionalities like mappers, handlers, etc. are not shown in the diagram.
 However, they are essential for the microservice to work.

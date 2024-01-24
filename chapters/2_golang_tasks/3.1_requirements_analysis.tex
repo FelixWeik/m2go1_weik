@@ -204,18 +204,12 @@ The use case diagram is shown in \autoref{fig:car_rental_use_case_diagram}.
     \label{fig:umlet_folder_structure}
 \end{figure}
 
-It uses so-called services to abstract the implementation of the application.
-By providing services, the implementation of the application can be changed without changing the use cases.
-
-The registration service is used to register a customer.
-It provides the user interface and structures to interact with the customer.
-The registration service itself uses the authentification service to provide the customer with a secure way to authenticate himself, for example by two-factor authentification.
-It also uses the cancellation service to cancel the registration if the customer wants to do so.
-
-The rental service is used to rent a car.
-It interacts with the location service, providing the location of the customer and the cars and displaying it on a map.
-It also uses the cancellation service to cancel the rental if the customer wants to do so.
-The car usage service is used to provide the customer with information about the car, for example, if the car is available, the current fuel level or the current mileage.
+\autoref{fig:car_rental_use_case_diagram} illustrates the use cases and their relationships.
+If an user wants to rent a car, the user must be a registered customer.
+Therefore, \texttt{Customer Registration} is included in the \texttt{Rent A Car} use case.
+Following the same logic, one cannot cancel a rental without renting it first.
+This explains the extension-relation between \texttt{Rental Cancellation} and \texttt{Rent A Car}.
+The same applies for \texttt{Customer Registration} and \texttt{Registration Cancellation}.
 
 \begin{figure}
     \centering

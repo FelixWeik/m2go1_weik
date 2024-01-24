@@ -6,7 +6,7 @@ The goal is to apply the described concept described in the tasks above to the g
 By creating structs and arrays a general understanding of the concept of storing and accessing data is developed.
 
 \subsubsection*{Add the Attributes to Structs}
-According to \cite{W3-STR}, a struct creates a collection of members of different types into a single object.
+According to \cite{W3S-STR}, a struct creates a collection of members of different types into a single object.
 The difference to arrays is that the members can be of different types.
 
 A struct can be defined by using the keyword \texttt{type} followed by the name of the struct and the keyword \texttt{struct}.
@@ -34,26 +34,24 @@ label={lst:car_rental_structs}
 type Customer struct {
 	id         int
 	Name       string
-	creditCard bool
 	rentals    []Rental
 }
 
 type Rental struct {
-	id   int
-	date Date
-	car  Car
+	id          int
+	startDate   Date
+    endDate     Date
 }
 
 type Car struct {
-	id      int
-	carType string
-	rented  bool
-	price   float32
+	id          int
+	carType     string
 }
 
 type Date struct {
-	startDate string
-	endDate   string
+	day         int 
+    month       int 
+    year        int 
 }
 \end{lstlisting}
 

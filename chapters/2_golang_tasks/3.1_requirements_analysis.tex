@@ -222,7 +222,7 @@ The same applies for \texttt{Customer Registration} and \texttt{Registration Can
 \label{sec:exercise_use_case_rent_a_car}
 \subsubsection*{Alice's Car Rental}
 This task aims to complete the use-case story "Rent a Car" for Alice.
-This is done by adding the given data from the story to the use-case story.
+This is done by adding the given data from the story to the flows.
 
 The completed use-case story is shown in \autoref{lst:alices_car_rental_use_case_1}.
 
@@ -231,6 +231,13 @@ style=kit-cm,
 caption={Alice's Version of Use Case 1},
 label={lst:alices_car_rental_use_case_1},
 ]
+Preconditions:
+    - Alice is a registered customer
+
+Postconditions:
+    - Alice has rented a car for the chosen time interval
+    - The rental is stored in the system's database
+
 1. Alice calls the application CarRental.
 2. Alice enters 01.01.00 as a start date and 02.02.00 as the end date as the rental period
 3. The system shows a list of the cars that are available at the selected rental period

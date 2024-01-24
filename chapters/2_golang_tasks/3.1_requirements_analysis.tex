@@ -10,7 +10,6 @@ The story is shown in \autoref{fig:car_rental_use_case_diagram}.
 \subsubsection*{Derive Use Cases and Actors}
 The goal of this task is to find four use cases and one actor according to the given story "Alice's Car Rental" from listing 3.1 in \cite{CM-T-GO}.
 
-% //TODO: Herleitung der vier Use Cases beschreiben
 \autoref{lst:car_rental_use_case_1} was derived from line 4 of the given story.
 
 In the story Alice rents a car, a VW ID.2, for a certain period.
@@ -196,14 +195,14 @@ The installation of the standalone version of UMLet is carried out as follows:
 \end{enumerate}
 
 A screen dump of the folder structure of the extracted archive is shown in \autoref{fig:umlet_folder_structure}.
+The use case diagram is shown in \autoref{fig:car_rental_use_case_diagram}.
+
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRental_umletInstallation.png}
-    \caption{Folder structure of the extracted UMLet archive}
+    \caption{Folder Structure of the Extracted UMLet Archive}
     \label{fig:umlet_folder_structure}
 \end{figure}
-
-The use case diagram is shown in \autoref{fig:car_rental_use_case_diagram}.
 
 It uses so-called services to abstract the implementation of the application.
 By providing services, the implementation of the application can be changed without changing the use cases.
@@ -218,11 +217,10 @@ It interacts with the location service, providing the location of the customer a
 It also uses the cancellation service to cancel the rental if the customer wants to do so.
 The car usage service is used to provide the customer with information about the car, for example, if the car is available, the current fuel level or the current mileage.
 
-The services' interactions are displayed in the use case diagram utilizing the arrows and the corresponding labels.
-\begin{figure}[H]
+\begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRental_umlDiagram.png}
-    \caption{Use Case Diagram of the Car Rental Application}
+    \includegraphics[width=0.7\textwidth]{figures/goLang/carRental/carRental_umlDiagram.png}
+    \caption{Use Case Diagram of the \textbf{Best Rental} Application}
     \label{fig:car_rental_use_case_diagram}
 \end{figure}
 

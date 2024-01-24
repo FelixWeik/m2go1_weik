@@ -64,8 +64,8 @@ Parts of the microarchitecture are explained in greater detail.
 
 \subsubsection*{Content of the Logic Folder}
 % Primary aspects of the logic folder
-As previously explained, the logic folder contains the domain logic of the microservice.
-It implements the API diagram that was shown in the previous tasks.
+As previously explained, the logic folder contains the business logic of the microservice.
+Since \texttt{DM-CarV1.0} is a domain microservice, it implements the domain logic.
 % Purpose of different subfolders and their go files?
 The logic folder is separated into two subfolders: the model and the operations.
 The model folder contains the entities and value objects.
@@ -74,6 +74,7 @@ Also, the test data, a collection of data for testing, is stored in the model fo
 Every other file in the model folder contains one entity or value object.
 
 The operations folder contains the operations and their tests.
+\texttt{model}'s entities are used by the operations.
 Each operation is implemented in a separate file to ensure the separation of concerns.
 Also, each test is implemented in a separate file.
 
@@ -84,16 +85,14 @@ Also, the separation becomes clearer and the code is easier to maintain.
 \subsubsection*{Repository Interface}
 % Description of the CarRepositoryInterface
 The \texttt{CarRepositoryInterface} is placed in the \texttt{logic/model} folder.
-It provides the signatures of the functions \texttt{GetCars} and \texttt{GetCar}.
-\texttt{AddCar} will be implemented later.
+It provides the signatures of the functions "\texttt{GetCars}" and "\texttt{GetCar}".
+"\texttt{AddCar}" will be implemented later.
 
 % Which operations must be provided by a repository implementation
-The \texttt{CarRepositoryInterface} is used to create the \texttt{CarOperations} object, which will later be used to implement the \texttt{CarController} object.
-The \texttt{CarController} will be explained in more detail in the next task.
+The \texttt{CarRepositoryInterface} is used to create the \texttt{CarOperations} object, which implements the interface.
 % Why is the interface located in the logic folder
 Each function of the \texttt{CarRepositoryInterface} is implemented in the \texttt{operations} package with each function having a separate file.
 This is done by using the \texttt{CarOperations} struct, which calls the functions from the \texttt{operations} package.
-Therefore the \texttt{CarRepositoryInterface} is used to define the functions that are implemented in the \texttt{operations} package and can be called using the \texttt{CarController} struct.
 Thus, it is a good choice to place the \texttt{CarRepositoryInterface} in the \texttt{logic} folder to ensure the logic is separated from the different packages.
 
 \subsubsection*{Operations Interface}

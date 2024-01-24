@@ -9,6 +9,22 @@ A microservice architecture divides a system into three distributed system parts
 These term will be explained in the following.
 
 \begin{description}
+    \item[API:] The API defines the endpoints of the microservice.
+                This is done by specifying paths and the according methods each path uses.
+                Therefore the API defines the operations the microservice exposes to the client.
+    \item[Logic:] The Logic part implements the API's operations.
+                It provides a well-defined interface, offering access to the methods.
+                This separates the API endpoints from the actual implementation.
+    \item[Infrastructure:] This part is used to implement the logic part, yet it not part of the business logic.
+                It offers connectivity to databases, message queues, or other microservices and is therefore an essential part of the microservice architecture.
+\end{description}
+
+\subsubsection*{Parts of the DM-CarV1.0 Micro Architecture}
+The general structure of a microarchitecture has been explained in the previous section.
+This task applies the general structure to the DM-CarV1.0 microservice.
+The structure of the DM-CarV1.0 microarchitecture is shown in \autoref{fig:ms_dmCar_microArchitecture}.
+
+\begin{description}
     \item[API:] The API defines the methods for the specified API endpoints. 
                 These methods are then mapped to the HTTP methods and paths.
                 In the case of the \texttt{CarController} struct, this happens using the \texttt{echo} framework.
@@ -21,28 +37,6 @@ These term will be explained in the following.
                 Here implementations for in-memory and PostGreSQL databases can be found.
                 The model is then mapped to persistence entities that are compatible with the given infrastructure.
 \end{description}
-
-\subsubsection*{Parts of the DM-CarV1.0 Micro Architecture}
-The general structure of a microarchitecture has been explained in the previous section.
-This task applies the general structure to the DM-CarV1.0 microservice.
-The structure of the DM-CarV1.0 microarchitecture is shown in \autoref{fig:ms_dmCar_microArchitecture}.
-
-\paragraph*{Microservice Requester:}
-The DM-CarV1.0 microservice does not have a requester in this implementation.
-Yet, another microservice or the front end could be the requester if the microservice is used in a real-world scenario or the microservice is extended.
-Therefore the requester is not included in the graphics.
-
-\paragraph*{Microservice API:}
-The microservice API consists of the controller and the specification.
-The specification is the OpenAPI specification of the microservice and describes the endpoints and operations of the microservice.
-The controller implements the paths of the specification by calling the operations from the operations package.
-
-\paragraph*{Models and Operations:}
-This layer implements the domain logic of the microservice.
-It contains the operations and the models.
-The model package contains the entities and value objects as specified in the API diagram.
-The operations package contains the operations and their according tests.
-Each operation is implemented in a separate file to ensure the separation of concerns.
 
 \paragraph*{Persistency Interface:}
 The persistency interface is implemented in the \texttt{infrastructure} package.

@@ -147,7 +147,7 @@ First, the content of the API folder is explained.
 Then, the generated files are explained.
 Afterwards, the \texttt{CarController.go} file and its differences from the generated files are explained.
 Finally, the \texttt{GetCar} method of the \texttt{CarController} is explained.
-Also, the Echo framework is quickly introduced, further details can be found in \autoref*{sec:the_echo_framework}.
+Also, the Echo framework is quickly introduced, further details can be found in \autoref{sec:the_echo_framework}.
 \subsubsection*{Content of the API Folder}
 % Describe primary aspects of the API folder
 The API folder contains two subfolders: \texttt{controller} and \texttt{specification}. \linebreak
@@ -172,7 +172,7 @@ However, the functionalities of the \texttt{POST} request will be implemented la
 
 % Which framework is used
 This API uses the Echo framework, which is a web framework for Go.
-More on the Echo Framework can be found in \autoref*{sec:the_echo_framework}.
+More on the Echo Framework can be found in \autoref{sec:the_echo_framework}.
 
 \paragraph*{server.gen.go}
 This file delivers the functions to add each server route to register the handlers.
@@ -213,7 +213,7 @@ Therefore the main difference between the generated files and the \texttt{CarCon
 \subsubsection*{CarController's GetCar Method}
 % Description of the method's signature in CarController
 The \texttt{GetCar} method is implemented in the \texttt{CarController.go} file.
-Its signature is listed in \autoref*{lst:getCarMethodCarController}.
+Its signature is listed in \autoref{lst:getCarMethodCarController}.
 
 First, the function is called from an existing \texttt{CarController} struct using the dot notation.
 The function takes an \texttt{echo.Context} and a \texttt{vin} as input and returns an error.
@@ -247,7 +247,7 @@ Finally, the \texttt{InMemoryRepository}, its implementation and its usage is ex
 \subsubsection*{Content of the Infrastructure Folder}
 % Describe primary aspects of the infrastructure folder
 The \texttt{infrastructure} folder contains two files and two additional subfolders: \texttt{mappers} and \texttt{persistenceentities}.
-A screen dump of the folder's structure is shown in \autoref*{fig:ms_dmCar_infrastructureFolder}.
+A screen dump of the folder's structure is shown in \autoref{fig:ms_dmCar_infrastructureFolder}.
 
 % What is the purpose of the different subfolders
 Each subfolder has its purpose which will be discussed in the following.
@@ -332,12 +332,12 @@ Then, the flow of this function through the code sketch is explained.
 
 \subsubsection*{Code Sketch GetCar}
 The goal of this task is to create a code sketch for the \texttt{GetCar(vin string)} operation in the \texttt{CarOperationsInterface}.
-The sketch is shown in \autoref*{fig:ms_dmCar_getCarCodeSketch}.
+The sketch is shown in \autoref{fig:ms_dmCar_getCarCodeSketch}.
 
 The \texttt{CarController} is the heart of the microservice:
 It calls the implemented functions.
 To create a \texttt{CarController}, it needs the \texttt{CarOperations} struct as input, which needs the \texttt{InMemoryRepository} as input.
-This is done in the \texttt{main} function displayed in \autoref*{lst:main_function_dm_car}.
+This is done in the \texttt{main} function displayed in \autoref{lst:main_function_dm_car}.
 
 These functions are given by the \texttt{CarOperationsInterface}, which also contains the \texttt{GetCars} function.
 \texttt{GetCars} s implemented by the \texttt{GetCarsOperation.go} file.
@@ -391,7 +391,7 @@ The function is called \texttt{addCar} and takes a \texttt{Car} object as input.
 %//TODO muss da noch was hin?
 \subsubsection*{Update API Specification}
 To update the API specification to match with the updated API diagram, on changes the \texttt{specification.yaml} file located at \texttt{src\/api\/specification\/}.
-The newly inserted code can be seen in \autoref*{lst:update_api_specification}.
+The newly inserted code can be seen in \autoref{lst:update_api_specification}.
 
 The \texttt{addCar} operation is added to the \texttt{cars} path since it belongs to the \texttt{cars} collection.
 It is a \texttt{POST} request, which means it is used to update a new resource.

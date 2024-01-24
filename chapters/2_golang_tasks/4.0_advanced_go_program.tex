@@ -17,9 +17,10 @@ Empty fields are marked with an underline.
 
 The command for registering as a customer is chosen to be \texttt{register} since it clearly describes the intention and action of the command.
 
-Input for canceling a rental is the rental ID and the customer ID.
-Both values are needed to identify the rental and authenticate the customer.
-If both values are correct, the rental can be canceled.
+Input for cancelling a rental is the \texttt{RentalID}.
+This is needed to identify the rental to cancel.
+If the cancellation process is successful, the input \texttt{RentalID} is returned.
+Else, an error is returned.
 
 The command for deregistering as a customer is \texttt{deregister} since it clearly describes the intention and action of the command.
 Only the customer ID is needed as input since it identifies the customer.
@@ -28,7 +29,7 @@ If the deregistration fails, the CLI returns a failure message.
 
 The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inserted values are underlined.
 
-\begin{table}
+\begin{table}[h]
       \centering
       \caption{CLI Parameters for CarRentalCLI}
       \label{tab:cli_parameters_car_rental_cli}
@@ -42,7 +43,7 @@ The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inse
             \hline
             Rent a Car & rent & RentalID, CustomerID, CarID, StartDate, EndDate & RentalID / Failure \\
             \hline
-            Cancel Rental & cancel & \underline{RentalID, CustomerID} & RentalID / Failure \\
+            Cancel Rental & cancel & \underline{RentalID} & RentalID / Failure \\
             \hline
             Deregister as Customer & \underline{deregister} & \underline{CustomerID} & \underline{CustomerID / Failure} \\
             \hline

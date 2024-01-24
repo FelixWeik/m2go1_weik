@@ -187,6 +187,9 @@ The general task of a mapper is to enable communication between the application 
 In this case, the database is a yaml file.
 Therefore the mapper can read and write to the yaml files and convert the data to the corresponding entities and vice versa.
 
+Also, mappers are important in terms of decoupling.
+They give the possibility to switch the infrastructure layer by adjusting the mappers only.
+
 In the use case of registering a new customer, the mapper is called while creating a new customer.
 This mapper is located in the \texttt{./CustomerMapper.go} file, containing two functions.
 The first function \texttt{ConvertCustomerToCustomerPersistenceEntity} takes a customer object as an argument and returns a customer persistence entity containing the same values.

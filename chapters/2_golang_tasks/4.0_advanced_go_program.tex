@@ -35,9 +35,8 @@ The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inse
       \label{tab:cli_parameters_car_rental_cli}
       \begin{tabular}{|p{4cm}|p{2cm}|p{4cm}|p{5cm}|}
             \hline
-            \multicolumn{4}{|c|}{\textbf{CLI Parameters for CarRentalCLI}} \\
-            \hline
             \textbf{Use Case} & \textbf{Command} & \textbf{Input} & \textbf{Output} \\
+            \hline
             \hline
             Register as Customer & \underline{register} & CustomerID, Name & CustomerID / Failure \\
             \hline
@@ -51,53 +50,23 @@ The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inse
 \end{table}
 
 \subsubsection*{Describe the Software Architecture}
-The software architecture of an application describes the structure of the application in terms of components and their interactions.
+The UML in Figure 4.1 of the tasks sheet describes the software architecture.
+Three layers are defined, each of them is implemented by one component.
+The components of each layer only have access to the components of the layer below.
+Each of these components will be explained in the following.
 
-The given software architecture consists of three different components:
-The presentation layer is represented by the CarRentalCLI.
-The application logic layer is represented by the CarRentalOperations.
-The infrastructure layer is represented by the CarRentalRepository.
-
-These layers are described in the following:
-\paragraph*{Presentation Layer: CarRentalCLI}
-\begin{itemize}
-    \item Functionality: This component implements the CLI itself. 
-          It creates a new CLI object, runs it, and exits safely if an error occurs.
-          Furthermore, it implements the CLI commands with the list of according functions a command calls.
-    \item Interfaces: The CLI component implements the CarRentalOperationsInterface
-    \item Dependencies: This layer is dependent on the application's logic layer, importing and implementing functions from the logic layer.
-    \item Reusability: The layer is reusable since it only implements CLI and commands.
-          By providing a different set of functions the CLI implements, one can reuse the CLI in a different context.
-    \item Scalability and Maintainability: It can be scaled by adding new commands and functions to the CLI.
-          It can be maintained by fixing commands and the according functions.
-          By separating the CLI into a single layer, the commands can be organized systematically and provide a great overview.
-\end{itemize}
-
-\paragraph*{Application Logic Layer: CarRentalOperations}
-\begin{itemize}
-    \item Functionality: This component implements the business logic of the application.
-          It provides functions for the CLI to call, which then calls the according functions from the infrastructure layer.
-          It also provides the models of the objects, that are used in the application.
-    \item Interfaces: This component implements the CarRentalRepositoryInterface and provides the CarRentalOperationsInterface
-    \item Dependencies: This component is dependent on the infrastructure layer and therefore dependent on the layer below.
-    \item Reusability: Since this component uses the infrastructure layer, it is not directly reusable.
-          It implements a specific set of functions, which cannot be reused in different contexts.
-    \item Scalability and Maintainability: It can be scaled by adding new functions to the component.
-          It can be maintained by fixing functions.
-\end{itemize}
-
-\paragraph*{Infrastructure Layer: CarRentalRepository}
-\begin{itemize}
-    \item Functionality: This component communicates and keeps track of the database. 
-          This allows for simple communication between the application and the database.
-    \item Interfaces: This component provides the CarRentalRepositoryInterface
-    \item Dependencies: The component is dependent on the provided database since it reads and writes to it.
-          In terms of functionality, no functionality imports from other parts of the application are needed since all functions are implemented in the component itself.
-    \item Reusability: This component is reusable since it only implements database communication and entities.
-          By providing a different set of entities and mappers, one can reuse the component in a different context.
-    \item Scalability and Maintainability: By adding new mappers and entities, the functionality can be extended.
-          By fixing the mappers and entities, maintainability can be ensured.
-\end{itemize}
+\begin{description}
+      \item[CarRentalCLI (Presentation Layer):] 
+                  This component handles the user interaction.
+                  It implements input and output operations, thus being implemented in the presentation layer.
+                  Its operations stem from the \texttt{CarRentalOperationsInterface}.
+      \item[CarRentalOperations (Application Logic Layer):]
+                  This component implements the \texttt{CarRentalOperationsInterface}.
+                  This includes managing the application state and performing the requested operations.
+      \item[CarRentalRepository (Infrastructure Layer):]
+                  This component is part of the infrastructure layer, ensuring data persistency.
+                  Therefore, it persists data, exposing functionality to store and retreive data.
+\end{description}
 
 \subsubsection*{Analyze the Micro Architecture}
 The micro-architecture of an application describes the internal structure of a single subsystem.

@@ -38,13 +38,6 @@ The structure of the DM-CarV1.0 microarchitecture is shown in \autoref{fig:ms_dm
                 The model is then mapped to persistence entities that are compatible with the given infrastructure.
 \end{description}
 
-\paragraph*{Persistency Interface:}
-The persistency interface is implemented in the \texttt{infrastructure} package.
-It contains the mappers, the persistence entities, and the repositories.
-The mappers provide the functions to convert \texttt{car} and \texttt{cars} model objects to persistence entities and vice versa.
-The persistence entities are the entities that are stored in the database.
-The repositories provide the functions to interact with the database and the in-memory repository.
-
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/microservices/dmCar/ms_dmCar_microArchitecture.png}
@@ -53,7 +46,15 @@ The repositories provide the functions to interact with the database and the in-
 \end{figure}
 
 \subsubsection*{Micro Architecture in VS Code}
-//TODO: ???
+Opening the \texttt{dm-carv1.0} repository in VS-Code, the folder structure shown in \autoref{fig:micro_architecture_vs_code} can be found. 
+It clearly shows the microservice-architecture explained in both previous sections.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/microservices/dmCar/ms_dmCar_vsCodeStructure.png}
+    \caption{\texttt{DM-CarV1.0}'s Micro Architecture in VSCode}
+    \label{fig:micro_architecture_vs_code}
+\end{figure}
 
 %====================================================
 

@@ -493,5 +493,34 @@ return ctx.JSON(http.StatusOK, car)
 }
 \end{lstlisting}
 
-% \subsubsection*{Complete Repository Implementation}
+\subsubsection*{Complete Repository Implementation}
+The finished implementation can be seen on GitLab commit \texttt{2ada728e97eb6c486964a37ea8aed4086ce47066} and in \autoref{lst:addCarMethodInMemoryRepository}.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Implementation of the AddCar Method in InMemoryRepository.go},
+    label={lst:addCarMethodInMemoryRepository}
+]
+func (repository *InMemoryRepository) AddCar(car model.Car) (model.Car, error) {
+// Check, if car is already persisted
+_, ok := repository.Cars[car.Vin.Vin]
+if ok {
+    return model.Car{}, errors.New("car has already been added")
+}
+
+// convert car to CarPersistenceEntity
+carPers := mappers.ConvertCarToCarPersistenceEntity(car)
+
+// add CarPersistenceEntity to repository
+repository.Cars[car.Vin.Vin] = carPers
+
+// Check, if car has been added successfully
+_, ok = repository.Cars[car.Vin.Vin]
+if ok {
+    return car, nil
+}
+
+return model.Car{}, errors.New("car already exists")
+}
+\end{lstlisting}
 % \subsubsection*{Run Microservice}

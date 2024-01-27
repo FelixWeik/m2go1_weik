@@ -41,12 +41,11 @@ First, each entity or collection that houses gRPC functions is mapped to a gRPC 
 The service is named after the entity or collection with the suffix \texttt{Service} or \texttt{CollectionService}.
 Also, the gRPC functions are named after the corresponding methods of the entity or collection.
 Next, each enumeration is mapped to a gRPC enumeration with each value being translated to a gRPC enumeration value.
-Then, each entity is mapped to a gRPC message having the same name and attributes as the entity.
+Then, each entity and each value object is mapped to a gRPC message having the same name and attributes as the entity.
 Finally, each input and output parameter of the defined gRPC functions is defined as a single message.
 Each message contains the attributes of the input or output parameter.
 These messages are named after the corresponding method with the suffix \texttt{Request} or \texttt{Response}.
-They are then used as input or output parameters of the corresponding gRPC function. \linebreak
-All the other value objects and entities are mapped to gRPC messages.
+They are then used as input or output parameters of the corresponding gRPC function.
 This enables the implementation of the gRPC service.
 Without proper implementation, the gRPC service will not be able to handle remote procedure calls or serialize and deserialize data properly.
 

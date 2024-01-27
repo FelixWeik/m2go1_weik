@@ -41,9 +41,24 @@ Calls to \texttt{DM-Car} are modeled as ReST calls, being specified by the HTTP 
 
 \subsubsection*{Orchestration Between AM-Rentalmanagement and DM-Car}
 % What triggers the orchestration diagram of "Rent a Car"
+Two possibilities occur to trigger the orchestration diagram.
+The first possibility is calling "\texttt{listAvailableCars}".
+After the call is done, the second call is possible.
+According to the specification of the orchestration diagram \cite{CM-G-ORC}, the gRPC call to \texttt{rentCar} is by the customer, who selects one of the listed cars to rent.
+Therefore the call is triggered by the customer and therefore by the UI.
 
-% Illustrate data flow between am-rentalManagement and dm-car in the orchestration
-
+% Illustrate data flow between AM-RentalManagement and DM-Car in the orchestration
+The data flow is as follows:
+First, the RPC call is initiated to the application microservice.
+The microservice then tries to get the requested car by calling the \texttt{GET} method on the \texttt{/cars/\{vin\}} path of the domain microservice.
+After the domain microservice retrieves the car, it returns it to the application microservice which then creates the rental.
+The termination of the function is decided whether creating the rental was successful or not. 
 % What are possible responses from the orchestration diagram before termination
-
+Here, two responses of the \texttt{rentCar} function are possible.
+The responses are given by the AM and are modeled according to the outcome of \texttt{Create Rental}.
+The first response is "\texttt{Create Error Message}".
+It is triggered if an error during the creation of the rental occurs, for example, if the rental is currently not possible.
+The operation then terminates prompting the error message.
+The second response is a composite of the HTTP \texttt{OK} status code and the newly created rental. 
 % How does UI-CarRental differentiate between the different responses
+The UI therefore can differentiate between the responses by the given error.

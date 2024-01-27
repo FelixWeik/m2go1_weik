@@ -476,12 +476,19 @@ oapi-codegen -package=controller -generate server  src/api/specification/openapi
 % Describe the implementation of CarController.go
 The finished implementation of the \texttt{AddCar} function in the \texttt{CarController.go} file is shown in \autoref{lst:addCarMethodCarController}.
 
-%//TODO weiter ausführen
+First, the function is called from an existing \texttt{CarController} struct using the dot notation.
+The function takes an \texttt{echo.Context} and a \texttt{vin} as input and returns an error.
+The \texttt{vin} is the identifier of the \texttt{Car} object, it is used to call the \texttt{AddCar} function from the \texttt{CarOperationsInterface}.
+This function returns a \texttt{Car} object and an error.
+Additionally, it handles the conversion of the \texttt{vin} to a \texttt{vin} value object and the OCL constraints.
+If the error is equal to \texttt{nil}, \texttt{http.StatuOK} and the added \texttt{Car} object is returned.
+Otherwise the error of the \texttt{operations.AddCar} method is returned.
 
 \begin{lstlisting}[
     style=kit-cm,
     caption={Implementation of the AddCar Method in CarController.go},
-    label={lst:addCarMethodCarController}
+    label={lst:addCarMethodCarController},
+    float=h
 ]
 // Route: POST /cars/{vin}
 func (resource CarController) AddCar(ctx echo.Context, vin string) error {
@@ -494,7 +501,7 @@ return ctx.JSON(http.StatusOK, car)
 \end{lstlisting}
 
 \subsubsection*{Complete Repository Implementation}
-The finished implementation can be seen on GitLab commit \texttt{2ada728e97eb6c486964a37ea8aed4086ce47066} and in \autoref{lst:addCarMethodInMemoryRepository}.
+The finished implementation can be seen on GitLab and in \autoref{lst:addCarMethodInMemoryRepository}.
 
 \begin{lstlisting}[
     style=kit-cm,

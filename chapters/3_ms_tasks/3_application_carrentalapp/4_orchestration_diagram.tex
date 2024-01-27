@@ -27,9 +27,17 @@ The calls are modeled according to the chosen API style and therefore the chosen
 
 % Differences between calls to AM-RentalManagement and DM-Car
 The orchestration diagram \texttt{RentACarV1.0} is located in the GitLab instance \cite{CM-G-ORC}.
+A copy of the API diagram is shown in \autoref{fig:ms_rentalManagement_orchestrationAddACar}.
 The explained differences can be seen here.
 Calls to \texttt{AM-RentalManagement} are modeled as gRPC calls, having "\texttt{rpc}" as a label followed by the function's name and the parameters without datatypes.
 Calls to \texttt{DM-Car} are modeled as ReST calls, being specified by the HTTP method and the exposed path.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/microservices/rentalManagement/ms_rentalManagement_orchestrationAddACar.png}
+    \caption{Orchestration Diagram RentACarV1.0 (AM-RentalManagementV1.0)}
+    \label{fig:ms_rentalManagement_orchestrationAddACar}
+\end{figure}
 
 \subsubsection*{Orchestration Between AM-Rentalmanagement and DM-Car}
 % What triggers the orchestration diagram of "Rent a Car"

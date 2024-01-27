@@ -287,5 +287,45 @@ message ListAvailableCarsResponse {
 \subsection{Challenge gRPCAMRentalManagementV1.0}
 \subsubsection*{Extend gRPC Specification by RegisterCustomer and DeregisterCustomer}
 % Which messages and services are added to the gRPC specification
+As modeled in the API diagram \texttt{AM-RentalManagementV1.1}, the \texttt{Customers} collection holds two functions, \texttt{registerCustomer} and \texttt{deregisterCustomer}.
+Therefore, four messages, two for each function, and a service containing two functions are added to the \texttt{.proto} file.
+The code snippet adding the service and messages is shown in \autoref{lst:proto_register_deregister_customer}.
+
+The \texttt{CustomersCollectionService} represents the \texttt{Customers} collection.
+It holds both functions, \texttt{registerCustomer} and \texttt{deregisterCustomer}.
+Both functions have an input and output message that are modeled as described in the guideline.
+These messages are then defined too.
+They hold the attributes of the input and output parameters of the functions plus an \texttt{ErrorDetail} object representing the error.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Code to Add \texttt{registerCustomer} and \texttt{deregisterCustomer}},
+    label={lst:proto_register_deregister_customer},
+    float=h
+]
+... 
+service CustomersCollectionService {
+    rpc RegisterCustomer(RegisterCustomerRequest) returns (RegisterCustomerResponse) {}
+    rpc DeregisterCustomer(DeregisterCustomerRequest) returns (DeregisterCustomerResponse) {}
+}
+
+message RegisterCustomerRequest{
+    string name = 1;
+}
+
+message RegisterCustomerResponse{
+    Customer customer = 1;
+    ErrorDetail error = 2;
+}
+
+message DeregisterCustomerRequest{
+    string customerId = 1;
+}
+
+message DeregisterCustomerResponse{
+    ErrorDetail error = 1;
+}
+...
+\end{lstlisting}
 \subsubsection*{Extend gRPC Specification by pricePerDay}
 

@@ -11,10 +11,25 @@ The activity flow is derived from the use case "\texttt{Rent a Car}" as defined 
 
 \subsubsection*{API Calls}
 % Where are the API calls located in the orchestration diagram
-
-% differences between calls to am-rentalManagement and dm-car
-
+The API calls are located before calling each microservice.
+The first call is started from the \texttt{starting point}, modeled as a full circle.
+The starting point usually calls the application microservice.
 % List all API calls, and explain the purpose of each
+The calls are modeled according to the chosen API style and therefore the chosen microservice type:
+\begin{description}
+    \item[Application Microservices] are called using gRPC requests.
+        In the orchestration diagram, the call is displayed by an arrow.
+        The arrow is labeled with "\texttt{rpc}", the name of the function and the parameters without datatype and return value. 
+    \item[Domain Microservices] are called using ReST requests.
+        The corresponding call is modeled by adding the HTTP method and the endpoint.
+    \item[External Systems] are added by the term "\texttt{Request}" and the required information derived from the information requirements.
+\end{description}
+
+% Differences between calls to AM-RentalManagement and DM-Car
+The orchestration diagram \texttt{RentACarV1.0} is located in the GitLab instance \cite{CM-G-ORC}.
+The explained differences can be seen here.
+Calls to \texttt{AM-RentalManagement} are modeled as gRPC calls, having "\texttt{rpc}" as a label followed by the function's name and the parameters without datatypes.
+Calls to \texttt{DM-Car} are modeled as ReST calls, being specified by the HTTP method and the exposed path.
 
 \subsubsection*{Orchestration Between AM-Rentalmanagement and DM-Car}
 % What triggers the orchestration diagram of "Rent a Car"

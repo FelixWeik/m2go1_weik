@@ -284,10 +284,10 @@ message ListAvailableCarsResponse {
 ...
 \end{lstlisting}
 
-\subsection{Challenge gRPCAMRentalManagementV1.0}
+\subsection{Challenge gRPCAMRentalManagementV1.1}
 \subsubsection*{Extend gRPC Specification by RegisterCustomer and DeregisterCustomer}
 % Which messages and services are added to the gRPC specification
-As modeled in the API diagram \texttt{AM-RentalManagementV1.1}, the \texttt{Customers} collection holds two functions, \texttt{registerCustomer} and \texttt{deregisterCustomer}.
+As modeled in the API diagram \texttt{AM-RentalManagementV1.1}, the \texttt{Customers} collection holds both functions, \texttt{registerCustomer} and \texttt{deregisterCustomer}.
 Therefore, four messages, two for each function, and a service containing two functions are added to the \texttt{.proto} file.
 The code snippet adding the service and messages is shown in \autoref{lst:proto_register_deregister_customer}.
 

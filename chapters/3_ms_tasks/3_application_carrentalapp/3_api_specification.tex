@@ -17,19 +17,20 @@ Using this language, data structures and services can be defined.
 
 The API specification is defined in a \texttt{.proto} file serving as the groundwork for the implementation of the client- and server-implementation.
 The \texttt{.proto} file is compiled by a protobuf compiler to generate the client- and server-side code.
-This code then defines the data structures and service stubs of the \texttt{.proto} file.
 
-In the \texttt{.proto} file, messages and services can be defined.
-Messages are used to define data structures.
-They rank optional and required fields, specifying how the data will be serialized.
-After compiling a message using the protobuf compiler, the message can be used as a class in the target language.
-This class can then be used to create instances of the message, serializing and deserializing them.
-The serialized data can then be used for transmission, persisting or storing.
-A service defines remote procedures.
-They hold one or several functions, specifying the parameters and return values of the function.
-The logic of the function can be directly implemented in the service definition, or it can be implemented in a separate class.
-The service can then be used to create a server stub and a client stub.
-Therewith, the service can be used to implement a server and a client, enabling communication by specifying the remote procedure calls.
+In the \texttt{.proto} file, messages and services can be defined
+\begin{description}
+    \item[Messages] are used to define data structures.
+    They rank optional and required fields, specifying how the data will be serialized.
+    After compiling a message using the protobuf compiler, the message can be used as a class in the target language.
+    This class can then be used to create instances of the message, serializing and deserializing them.
+    The serialized data can then be used for transmission, persisting or storing. 
+    \item[Services] are used to define remote procedures.
+    They hold one or several functions, specifying the parameters and return values of the function.
+    The logic of the function can be directly implemented in the service definition, or it can be implemented separately.
+    The service can then be used to create a server stub and a client stub.
+    Therewith, the service can be used to implement a server and a client, enabling communication by specifying the remote procedure calls.
+\end{description}
 
 \subsubsection*{Constructing gRPC Services}
 % Which parts of the API diagram are mapped to gRPC services and why?
@@ -153,7 +154,7 @@ enum VehicleCategory {
 \end{lstlisting}
 \subsubsection*{Translate Entities and Value Objects to gRPC Messages}
 % Identify modeling elements that will be transferred from the API diagram to gRPC messages
-As mentioned above, each entity or collection is modeled as a message.
+As mentioned above, each entity is modeled as a message.
 It holds only the attributes since its methods are already modeled in the according service.
 Also, each input and output parameter of the services' functions are modeled as messages.
 Therefore, the application entities \texttt{Customer} and \texttt{Car} as well as the \texttt{Rental} collection will be modeled as messages holding their attributes.
@@ -282,3 +283,9 @@ message ListAvailableCarsResponse {
 }
 ...
 \end{lstlisting}
+
+\subsection{Challenge gRPCAMRentalManagementV1.0}
+\subsubsection*{Extend gRPC Specification by RegisterCustomer and DeregisterCustomer}
+% Which messages and services are added to the gRPC specification
+\subsubsection*{Extend gRPC Specification by pricePerDay}
+

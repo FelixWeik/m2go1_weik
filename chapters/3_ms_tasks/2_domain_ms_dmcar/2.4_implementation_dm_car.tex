@@ -372,7 +372,6 @@ func main() {
     // Create the PostgresRepository
     // This also establishes the connection to the database
     carOperations := operations.NewCarOperations(&inMemoryRepository)
-    // //TODO Challenge DatabaseConnection
 
     // Create the CarOperations and the CarController
     carsResource := controller.NewCarController(carOperations)

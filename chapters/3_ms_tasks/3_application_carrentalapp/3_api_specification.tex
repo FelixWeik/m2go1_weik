@@ -328,4 +328,39 @@ message DeregisterCustomerResponse{
 ...
 \end{lstlisting}
 \subsubsection*{Extend gRPC Specification by pricePerDay}
+% Describe the implementation of pricePerDay
+To add \texttt{pricePerDay} as input attribute to \texttt{ListAvailableCars} the \texttt{ListAvailableCarsRequest} message is extended.
+Therefore, only the \texttt{ListAvailableCarsRequest} message is changed.
+The code snippet adding the \texttt{pricePerDay} attribute is shown in \autoref{lst:proto_price_per_day}.
 
+\texttt{pricePerDay} is modeled as a \texttt{money} message.
+This message is nested within the \texttt{ListAvailableCarsRequest} message since it is only used within this message.
+It holds two attributes, \texttt{euro} and \texttt{cent}, representing the price per day in Euro.
+The \texttt{money} message is then used as an attribute of the \texttt{ListAvailableCarsRequest} message. 
+
+% How will this modification impact existing messages and services within the specification
+% What are the changes to be made
+Changes can be made according to the next adjustments to the API diagram.
+If the \texttt{pricePerDay} attribute is added to other functions, unnesting the \texttt{money} message is necessary.
+This will make it reusable for other functions.
+Also, the \texttt{money} message can be extended with other attributes, such as \texttt{currency} or \texttt{tax}.
+This will make it more inclusive for users outside of the Eurozone.
+Therefore, further changes can be made if the \texttt{pricePerDay} attribute is added to other functions.
+
+\begin{lstlisting}[
+    style=kit-cm,
+    caption={Code to Add \texttt{pricePerDay} to \texttt{ListAvailableCars}},
+    label={lst:proto_price_per_day},
+    float=h
+]
+...
+message ListAvailableCarsRequest {  
+    ...
+    money pricePerDay = 3;
+    message money {
+        uint64 euro = 1;
+        uint32 cent = 2;
+    }
+}
+...
+\end{lstlisting}

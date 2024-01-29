@@ -15,10 +15,25 @@ Also, the generated files of the ReST implementation are much shorter than in th
 
 \subsubsection*{Interfaces Implementation}
 % Which interfaces are implemented by CustomerController and RentalsCollectionController
+The \texttt{CustomerController} implements the \texttt{CustomerOperationsInterface} provided by the \texttt{operations} package.
+The struct also contains the \texttt{UnimplmentedCustomerServiceServer} provided by the \texttt{pb} package in the \texttt{controller/pb} subfolder.
+The \texttt{RentalsCollectionController} implements the \texttt{RentalsCollectionOperationsInterface} also provided by the \texttt{operations} package.
+The according struct contains the \texttt{UnimplementedRentalsCollectionServiceServer} provided by the \texttt{pb} package in the \texttt{controller/pb} subfolder as well.
 
 % How do the interfaces relate to the protobuf specification
+Both interfaces relate to the protobuf specification.
+The \texttt{CustomerOperationsInterface} contains the functions specified in the \texttt{CustomerService} of the protobuf specification.
+The specified input and output parameters are defined for the functions as well.
+The \texttt{RentalsCollectionOperationsInterface} contains the functions specified in the \texttt{RentalsCollectionService} of the protobuf specification.
+Here too, the specified input and output parameters are defined for the functions.
 
 % Why does the CustomerController contain the entry pb.UnimplmentedCustomerServiceServer
+The \texttt{api_specification_am_rental_management_grpc.pb.go} contains two types of CustomerServiceServer: \texttt{CustomerServiceServer} and \texttt{UnimplementedCustomerServiceServer}.
+While the first one is an interface, the second one is a struct, yet both contain the functions implementing the interface.
+The \texttt{UnimplementedCustomerServiceServer} contains the functions that throw an error, telling the user that the function is not implemented yet.
+Therefore, the \texttt{UnimplementedCustomerServiceServer} stubs the interface until the interface is finally implemented.
+Every time the function is called, the error is thrown, and the program will exit safely.
+Thus, the \texttt{CustomerController} contains the \texttt{UnimplementedCustomerServiceServer} to stub the interface.
 
 \subsubsection*{Mappers}
 % Why are there mappers between the API controller and the logic

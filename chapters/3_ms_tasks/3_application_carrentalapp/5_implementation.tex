@@ -28,7 +28,7 @@ The \texttt{RentalsCollectionOperationsInterface} contains the functions specifi
 Here too, the specified input and output parameters are defined for the functions.
 
 % Why does the CustomerController contain the entry pb.UnimplmentedCustomerServiceServer
-The \texttt{api_specification_am_rental_management_grpc.pb.go} contains two types of CustomerServiceServer: \texttt{CustomerServiceServer} and \texttt{UnimplementedCustomerServiceServer}.
+The \texttt{api\_specification\_am\_rental\_management\_grpc.pb.go} contains two types of CustomerServiceServer: \texttt{CustomerServiceServer} and \texttt{UnimplementedCustomerServiceServer}.
 While the first one is an interface, the second one is a struct, yet both contain the functions implementing the interface.
 The \texttt{UnimplementedCustomerServiceServer} contains the functions that throw an error, telling the user that the function is not implemented yet.
 Therefore, the \texttt{UnimplementedCustomerServiceServer} stubs the interface until the interface is finally implemented.
@@ -37,5 +37,19 @@ Thus, the \texttt{CustomerController} contains the \texttt{UnimplementedCustomer
 
 \subsubsection*{Mappers}
 % Why are there mappers between the API controller and the logic
+The gRPC implementation contains two mappers in the \texttt{api/controller/mappers} subfolder: \texttt{ModelToProtobufMapper} and \texttt{ProtobufToModelMapper}.
+Each file contains the functions to convert serialized protobuf data to models and vice versa.
+Since gRPC communicates via serialized protobuf data, the mappers are required to convert the communication data to data the application can work with.
+The ReST implementation does not need these mappers since it communicates with JSON data, which can be converted to models directly.
+Therefore, these mappers are necessary for proper communication between the gRPC API and the application logic.
 
 % Which data is transformed
+The functionalities of each file are listed in the following:
+\begin{description}
+    \item[ModelToProtobufMapper] \hfill \\
+        This file provides the functionalities to convert models to serialized protobuf data.
+        To be more precise, it converts the models \texttt{car}, \texttt{rental}, and \texttt{date} to the according protobuf messages.
+    \item[ProtobufToModelMapper]  \hfill \\
+        This file provides the functionality to convert incoming serialized protobuf data to the according models.
+        It contains one function converting a \texttt{timestamp} to a \texttt{Time} struct the application.
+\end{description}

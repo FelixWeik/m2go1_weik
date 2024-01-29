@@ -50,8 +50,8 @@ This enables the implementation of the gRPC service.
 Without proper implementation, the gRPC service will not be able to handle remote procedure calls or serialize and deserialize data properly.
 
 % Describe the mapping with the application entity Customer from the API diagram AM-RentalManagementV1.0 to the corresponding methods of a gRPC service
-A code snippet of \texttt{AM-RentalManagementV1.0}'s \texttt{.proto} file is shown in Listing \autoref{lst:proto_customer_service}.
-The according API diagram is shown in \autoref{fig:ad_am-rental_management_v1.0}.
+A code snippet of \texttt{AM-RentalManagementV1.0}'s \texttt{.proto} file is shown in \autoref{lst:proto_customer_service}.
+The according to API diagram is shown in \autoref{fig:ad_am-rental_management_v1.0}.
 In the API diagram, the \texttt{Customer} application entity holds three functions and two attributes.
 Therefore, the \texttt{Customer} application entity is mapped to a gRPC service named \texttt{CustomerService} holding three gRPC functions.
 Here, each function is named after the corresponding method, with input and output parameters named as described above.
@@ -133,7 +133,7 @@ Assume there is an enumeration \texttt{VehicleCategory} with the values \texttt{
 Now a default value must be set, \texttt{UNSPECIFIED} is chosen in this example.
 Therefore \texttt{UNSPECIFIED} is mapped to the value zero with the other values following.
 If a \texttt{Car} is now assigned an unspecified \texttt{VehicleCategory}, it will be set to \texttt{UNSPECIFIED}.
-A code example implementing the \texttt{VehicleCategory} enumeration is shown in Listing \autoref{lst:proto_vehicle_category}.
+A code example implementing the \texttt{VehicleCategory} enumeration is shown in \autoref{lst:proto_vehicle_category}.
 
 \begin{lstlisting}[
     style = kit-cm,
@@ -174,7 +174,7 @@ It is modeled as a string without any further nesting.
 It will be used as the unique identifier for the \texttt{Car} message.
 In the mentioned guideline on deriving gRPC specifications \cite{CM-G-RPC}, more complex identifier attributes will be modeled as nested messages within the message that will be identified.
 This nested message will then be used as a datatype for the identifier attribute.
-An example of a more complex, nested identifier attribute is shown in Listing \autoref{lst:proto_nested_identifier}.
+An example of a more complex, nested identifier attribute is shown in \autoref{lst:proto_nested_identifier}.
 
 Several alternatives are possible:
 First, the identifier attribute can be modeled as a message, yet without nesting.
@@ -188,7 +188,7 @@ Therefore, modeling the identifier attribute as a message without nesting is the
 \begin{lstlisting}[
     style=kit-cm,
     caption={Code Snippet of \texttt{AM-RentalManagementV1.0}'s \texttt{.proto} File},
-    label={lst:proto_car_service}
+    label={lst:proto_car_service},
     float=h
 ]
 message Car {

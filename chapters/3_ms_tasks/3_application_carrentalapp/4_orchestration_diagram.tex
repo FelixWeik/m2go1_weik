@@ -34,16 +34,16 @@ Calls to \texttt{DM-Car} are modeled as ReST calls, being specified by the HTTP 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/microservices/rentalManagement/ms_rentalManagement_orchestrationAddACar.png}
+    \includegraphics[width=\textwidth]{figures/microservices/rentalManagement/ms_rentalManagement_orchestrationAddACar.png}
     \caption{Orchestration Diagram RentACarV1.0 (AM-RentalManagementV1.0)}
     \label{fig:ms_rentalManagement_orchestrationAddACar}
 \end{figure}
 
-\subsubsection*{Orchestration Between AM-Rentalmanagement and DM-Car}
+\subsubsection*{Orchestration Between AM-RentalManagement and DM-Car}
 % What triggers the orchestration diagram of "Rent a Car"
 Two possibilities occur to trigger the orchestration diagram.
 The first possibility is calling "\texttt{listAvailableCars}".
-After the call is done, the second call is possible.
+After the call is done, a second call is possible.
 According to the specification of the orchestration diagram \cite{CM-G-ORC}, the gRPC call to \texttt{rentCar} is by the customer, who selects one of the listed cars to rent.
 Therefore the call is triggered by the customer and therefore by the UI.
 

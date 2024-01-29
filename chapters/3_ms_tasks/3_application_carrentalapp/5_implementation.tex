@@ -1,6 +1,17 @@
 \subsection{Excercise API Controller}
 \subsubsection*{Differences in the Micro Architecture}
-% Explain Differences
+% Explain Differences in Files between gRPC and ReST
+Several differences appear in the file structure of the gRPC and ReST APIs.
+First, differences in the subfolders appear.
+The gRPC API has two subfolders, namely \texttt{pb} and \texttt{mappers}.
+The ReST API has none of these, all files are located in the \texttt{controllers} folder.
+Next, there are differences in the provided controller files.
+While the ReST implementation has only one controller, the gRPC implementation has three namely the \texttt{CustomerController}, the \texttt{CustomersCollectionController}, and the \texttt{RentalsCollectionController}.
+Next, the gRPC implementation has additional mappers.
+Both implementations provide mappers in the \texttt{infrastructure} package mapping between persistency entities and models, yet the gRPC implementation provides additional mappers in the \texttt{controller} package mapping between serialized protobuf data and the models.
+The gRPC implementation has the \texttt{pb} subfolder containing generated code from the specification.
+It holds the primitives to interact with the API that are located in the generated code of the ReST implementation.
+Also, the generated files of the ReST implementation are much shorter than in the gRPC implementation.
 
 \subsubsection*{Interfaces Implementation}
 % Which interfaces are implemented by CustomerController and RentalsCollectionController

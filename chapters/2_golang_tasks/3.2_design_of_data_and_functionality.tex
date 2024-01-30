@@ -54,12 +54,9 @@ The following attributes are added to the entities:
 The chosen signature of the function is \texttt{rentACar(startDate: string, endDate: string, rentalId: int, carId: int): Rental}.
 
 The method works as follows:
-First, the function checks if the credit card of the customer is valid.
+The algorithm checks if the car is available for the given period.
 If this is not the case, the function aborts.
-Then, the date object is created with the given start and end date.
-The algorithm checks if the car is available for the given time period.
-If this is not the case, the function aborts.
-A new rental object is created with a unique ID and is assigned the date object.
+A new rental object is created with a unique ID and is assigned both date objects.
 The car is marked as rented and linked to the rental object.
 The rental object is linked to the customer.
 In the end, all changes are saved to the objects and the rental object is returned.

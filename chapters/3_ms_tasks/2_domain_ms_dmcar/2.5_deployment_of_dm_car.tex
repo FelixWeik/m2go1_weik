@@ -316,7 +316,12 @@ This also enables the efficient utilization of resources.
 The deployment of services can therefore be optimized.
 
 % How does this contribute to the microservice paradigm
-TODO What is the microservice paradigm?
+Ensuring system reliability and resilience by ensuring one service is fully operational before another dependent service is crucial in the microservice paradigm.
+When applications are composed of loosely coupled and independently deployable services, dependencies are common.
+If a dependent service starts before the required service is fully operational it may encounter errors or false behavior, which may in return lead to service disruptions.
+
+%//TODO: Hier nochmal ausformulieren
+
 
 \begin{lstlisting}[
     style=kit-cm,

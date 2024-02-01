@@ -1,33 +1,33 @@
 \chapter{Summary}
 \label{cha:summary_outlook}
 This module introduced the UME approach for designing microservices.
-Each step, namely the analysis, the design, the implementation and testing as well as the deployment and the operations of different microservice kinds were explained.
+Each step, namely the analysis, the design, the implementation and testing as well as the deployment and the operations of different microservice types were explained.
 This included learning the techniques and tools for each step.
 The following paragraphs summarize each part of this practical course thesis.
 
 \begin{description}
     \item[Part 1: C\&M Org] The first part of this module introduced the C\&M organization and the necessary tools for the practical course.
-    This included the time sheet, understanding the timesheet and communication processes.
+    This included understanding the timesheet and communication processes.
     \item[Part 2: Golang] This part focused on the programming language Go and the correct installation of the development environment.
     The first Go program, Hello World, was implemented introducing basic Go syntax and concepts.
     The second program introduced the analysis phase of the UME approach on the example program \texttt{CarRental}.
     This helped to understand the importance of the analysis artifacts and the analysis phase.
-    \texttt{CarRental} was extended with a CLI, making it the \texttt{CarRentalCLI} program.
-    First implementation steps were made to implement the missing functionality.
+    \texttt{CarRental} was extended with a CLI, the \texttt{CarRentalCLI} program.
+    First implementation steps were made to implement the missing functionality and understand basic user interaction.
     \item[Part 3: Microservice Engineering] This part introduced the application microservice \texttt{AM-RentalManagement} and the domain microservice \texttt{DM-Car}.
     To fully understand the differences, the API styles \texttt{ReST} and \texttt{gRPC} were introduced.
-    Also, different modeling views were distinguished. \\
+    Also, different modeling views were distinguished.
     \texttt{DM-CarV1.0} was implemented using the \texttt{ReST} API style.
     The API diagram was analyzed leading to the specification of the API endpoints in the OpenAPI specification.
-    Text cases were derived from OCL constraints, added to the OpenAPI specification, and implemented using the Go testing framework.
-    Additional functionality was implemented to extend the functionality of \texttt{DM-CarV1.0}.
-    Finally, the application was containerized using Docker and deployed using Docker Compose. \\
-    \texttt{AM-RentalManagementV1.0} was implemented using the \texttt{gRPC} API style.
+    Text cases were derived from OCL constraints, added to the OpenAPI specification, and implemented.
+    Additional functionality was implemented to extend \texttt{DM-CarV1.0}'s functionality.
+    Finally, the application was containerized using Docker and deployed with Docker Compose.
+    \texttt{AM-RentalManagementV1.0} was implemented introducing \texttt{gRPC}.
     Analysis artifacts were analyzed, learning the differences between API diagrams of application and domain microservices.
     Finally, the protobuf specification language was used to specify the API endpoints.
     The challenge of orchestration, the API controller, and local deployment introduced further concepts of microservice engineering.
 \end{description}
 
-In summary, this course introduced the UME approach for designing microservices.
+In summary, this course went over the UME approach for designing microservices.
 Each step was explained in detail, and tools and techniques were introduced and applied.
 This does not only equip the students with tools like Go, Docker, and Kubernetes but also with a holistic understanding of microservice engineering through the complete UME approach.

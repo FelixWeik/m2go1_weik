@@ -85,6 +85,8 @@ Also, the separation becomes clearer and the code is easier to maintain.
 \subsubsection*{Repository Interface}
 % Description of the CarRepositoryInterface
 The \texttt{CarRepositoryInterface} is placed in the \texttt{logic/model} folder.
+It acts as the Interface between the \texttt{logic} and the \texttt{infrastructure} layer, thus separating the logic from the infrastructure.
+\texttt{CarOperations} will use the \texttt{CarRepositoryInterface} to communicate with the \texttt{infrastructure} layer.
 It provides the signatures of the functions "\texttt{GetCars}" and "\texttt{GetCar}".
 "\texttt{AddCar}" will be implemented later.
 
@@ -102,7 +104,9 @@ The \texttt{CarOperationsInterface} is placed in the \texttt{logic/model} folder
 It provides the signatures of the functions \texttt{GetCars} and \texttt{GetCar}.
 \texttt{AddCar} will be implemented later.
 
-The difference between the \texttt{CarRepositoryInterface} and the \texttt{CarOperationsInterface} is the signatures they use:
+The main difference between both interfaces is the layers they communicate with:
+The \texttt{CarRepositoryInterface} provides communication between the \texttt{infrastructure} and the \texttt{logic} layer, while the \texttt{CarOperationsInterface} provides communication between the \texttt{logic} and the \texttt{api} layer.
+Therefore the \texttt{CarRepositoryInterface} and the \texttt{CarOperationsInterface} use different signatures:
 While \texttt{GetCars} has the same signature and return type, \texttt{GetCar} takes a string representing the \texttt{vin} as input, while the \texttt{CarRepositoryInterface} takes the actual \texttt{vin} value object as input.
 
 % Which struct implements it
@@ -242,7 +246,7 @@ func (resource CarController) GetCar(ctx echo.Context, vin Vin) error {
 This task takes a close look into the \texttt{infrastructure} package of the DM-CarV1.0 microservice.
 First, the content of the infrastructure folder is explained.
 Then, the persistence entities and the mappers are explained.
-Finally, the \texttt{InMemoryRepository}, its implementation and its usage is explained.
+Finally, the \texttt{InMemoryRepository}, its implementation and its usage are explained.
 
 \subsubsection*{Content of the Infrastructure Folder}
 % Describe primary aspects of the infrastructure folder

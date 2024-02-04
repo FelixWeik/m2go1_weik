@@ -6,16 +6,16 @@ Finally, the microarchitecture is visualized in VS Code.
 
 \subsubsection*{Parts of a Micro Architecture}
 A microservice architecture divides a system into three distributed system parts: API, Logic, and Infrastructure.
-These term will be explained in the following.
+These terms will be explained in the following.
 
 \begin{description}
     \item[API:] The API defines the endpoints of the microservice.
-                This is done by specifying paths and the according methods each path uses.
+                This is done by specifying paths and the methods each path uses.
                 Therefore the API defines the operations the microservice exposes to the client.
     \item[Logic:] The Logic part implements the API's operations.
                 It provides a well-defined interface, offering access to the methods.
                 This separates the API endpoints from the actual implementation.
-    \item[Infrastructure:] This part is used to implement the logic part, yet it not part of the business logic.
+    \item[Infrastructure:] This part is used to implement the logic part, yet it is not part of the business logic.
                 It offers connectivity to databases, message queues, or other microservices and is therefore an essential part of the microservice architecture.
 \end{description}
 
@@ -29,7 +29,7 @@ The structure of the DM-CarV1.0 microarchitecture is shown in \autoref{fig:ms_dm
                 These methods are then mapped to the HTTP methods and paths.
                 In the case of the \texttt{CarController} struct, this happens using the \texttt{echo} framework.
     \item[Logic:] The Logic implements the operations behind the API endpoints.
-                It exposes an interface which hides the implementation details.
+                It exposes an interface that hides the implementation details.
                 \texttt{DM-CarV1.0} implements the operations behind the API in the \texttt{operations} package.
                 The domain entities used are defined in the \texttt{model} package.
     \item[Infrastructure:] \texttt{DM-CarV1.0}'s infrastructure offers different repositories for the domain entities.
@@ -47,7 +47,7 @@ The structure of the DM-CarV1.0 microarchitecture is shown in \autoref{fig:ms_dm
 
 \subsubsection*{Micro Architecture in VS Code}
 Opening the \texttt{dm-carv1.0} repository in VS-Code, the folder structure shown in \autoref{fig:micro_architecture_vs_code} can be found. 
-It clearly shows the microservice-architecture explained in both previous sections.
+It clearly shows the microservice architecture explained in both previous sections.
 
 \begin{figure}
     \centering
@@ -62,7 +62,7 @@ It clearly shows the microservice-architecture explained in both previous sectio
 This task dives deeper into the microarchitecture of the DM-CarV1.0 microservice.
 Parts of the microarchitecture are explained in greater detail.
 
-\subsubsection*{Content of the Logic Folder}
+\subsubsection*{Content of the logic Folder}
 % Primary aspects of the logic folder
 As previously explained, the logic folder contains the business logic of the microservice.
 Since \texttt{DM-CarV1.0} is a domain microservice, it implements the domain logic.
@@ -79,19 +79,20 @@ Each operation is implemented in a separate file to ensure the separation of con
 Also, each test is implemented in a separate file.
 
 Therefore, the subfolders' task is to separate the entities and value objects from the operations and their tests.
-This ensures the separation of concerns and the single responsibility principle.
+This ensures the separation of concerns.
 Also, the separation becomes clearer and the code is easier to maintain.
 
 \subsubsection*{Repository Interface}
 % Description of the CarRepositoryInterface
 The \texttt{CarRepositoryInterface} is placed in the \texttt{logic/model} folder.
 It acts as the Interface between the \texttt{logic} and the \texttt{infrastructure} layer, thus separating the logic from the infrastructure.
+This is done by the \texttt{CarRepositoryInterface} encapsulating the implementation of the persistence of cars.
 \texttt{CarOperations} will use the \texttt{CarRepositoryInterface} to communicate with the \texttt{infrastructure} layer.
 It provides the signatures of the functions "\texttt{GetCars}" and "\texttt{GetCar}".
 "\texttt{AddCar}" will be implemented later.
 
 % Which operations must be provided by a repository implementation
-The \texttt{CarRepositoryInterface} is used to create the \texttt{CarOperations} object, which implements the interface.
+The \texttt{CarRepositoryInterface} is used to create the \texttt{CarOperations} object, which implements the interface. %//TODO nochmal nachprüfen ob das stimmt
 % Why is the interface located in the logic folder
 Each function of the \texttt{CarRepositoryInterface} is implemented in the \texttt{operations} package with each function having a separate file.
 This is done by using the \texttt{CarOperations} struct, which calls the functions from the \texttt{operations} package.

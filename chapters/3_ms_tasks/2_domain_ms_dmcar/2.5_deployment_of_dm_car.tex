@@ -241,14 +241,14 @@ Therefore \texttt{docker compose} is a useful tool for local development.
 
 \subsubsection*{Extend DM-Car Docker Compose File With a Database}
 The Postgres database using the \texttt{postgres:15.4} image is added to the Docker Compose file.
-To configure the database, environment variables are used.
+To configure the database, environment variables are used. \\
 These are \texttt{POSTGRES\_HOST}, \texttt{POSTGRES\_USER}, \texttt{POSTGRES\_PASSWORD}, \texttt{POSTGRES\_PORT}, and \texttt{POSTGRES\_DATABASE}.
 Setting all these variables is necessary to connect to the database.
 Therefore, these values are added to the \texttt{dm-car} service in the Docker Compose file to ensure the correct connection variables are set.
 The passwort also needs to be set in the \texttt{postgres} service.
 \autoref*{lst:docker_compose_postgres} shows the changes made to the Docker Compose file.
 
-After rerunning \texttt{docker-compose up} the \texttt{postgres} service is started additionally to the \texttt{dm-car} service.
+After rerunning "\texttt{docker-compose up}" the \texttt{postgres} service is started additionally to the \texttt{dm-car} service.
 This happens automatically because the \texttt{postgres} service is defined in the Docker Compose file.
 In Docker Desktop, the running containers can be seen in the \texttt{dm-carv1.0} tab.
 Both containers are running, the \texttt{dm-car}, which has port 80 exposed, and the \texttt{postgres} container.
@@ -259,6 +259,7 @@ Configuration and application logic are distinct concepts of a software system.
 Both serve a different purpose.
 While configuration logic is used to set parameters and values on how a system's components are structured, application logic is used to implement the system's functionality.
 Therefore it is important to segregate configuration from application logic due to the SoC principle.
+Also, it ensures readability of the code and therefore makes it easier to maintain.
 
 \begin{lstlisting}[
     style=kit-cm,
@@ -281,11 +282,7 @@ services:
       - POSTGRES_DATABASE=postgres
   postgres:
     image: postgres:15.4
-    healthcheck:
-      test: pg_isready -U postgres
-      interval: 10s
-      timeout: 30s
-      retries: 3
+    ...
     environment:
       - POSTGRES_PASSWORD=password
     volumes:
@@ -337,9 +334,6 @@ Ensuring system reliability and resilience by ensuring one service is fully oper
 When applications are composed of loosely coupled and independently deployable services, dependencies are common.
 If a dependent service starts before the required service is fully operational it may encounter errors or false behavior, which may in return lead to service disruptions.
 
-%//TODO: Hier nochmal ausformulieren
-
-
 \begin{lstlisting}[
     style=kit-cm,
     caption={Added Health Checks to Docker Compose File},
@@ -350,9 +344,8 @@ services:
     dm-car:
         ...
         depends_on:
-            - postgres
-        environment:
-            - CONDITION=service_healthy
+          postgres:
+            condition: service_healthy
 postgres:
     ...
     healthcheck:

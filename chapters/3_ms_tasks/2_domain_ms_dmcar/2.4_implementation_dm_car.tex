@@ -25,16 +25,16 @@ This task applies the general structure to the DM-CarV1.0 microservice.
 The structure of the DM-CarV1.0 microarchitecture is shown in \autoref{fig:ms_dmCar_microArchitecture}.
 
 \begin{description}
-    \item[API:] The API defines the methods for the specified API endpoints. 
+    \item[API:] The API defines and exposes the methods for the specified API endpoints of the OpenAPI specification. 
                 These methods are then mapped to the HTTP methods and paths.
                 In the case of the \texttt{CarController} struct, this happens using the \texttt{echo} framework.
     \item[Logic:] The Logic implements the operations behind the API endpoints.
                 It exposes an interface that hides the implementation details.
-                \texttt{DM-CarV1.0} implements the operations behind the API in the \texttt{operations} package.
+                \texttt{DM-CarV1.0} implements the operations in the \texttt{operations} package.
                 The domain entities used are defined in the \texttt{model} package.
     \item[Infrastructure:] \texttt{DM-CarV1.0}'s infrastructure offers different repositories for the domain entities.
                 These repositories offer CRUD operations on the underlying databases.
-                Here implementations for in-memory and PostGreSQL databases can be found.
+                Here implementations for in-memory and PostgreSQL databases can be found.
                 The model is then mapped to persistence entities that are compatible with the given infrastructure.
 \end{description}
 

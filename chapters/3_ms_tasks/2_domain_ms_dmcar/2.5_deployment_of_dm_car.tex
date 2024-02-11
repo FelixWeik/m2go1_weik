@@ -363,8 +363,7 @@ A named volume is a type of volume that has been given a specific name.
 
 % Code changes
 The code changes adding a named volume to the \texttt{postgres} service in the \texttt{docker-compose} file are shown in \autoref*{lst:docker_compose_named_volume}.
-The volume is called \texttt{postgres-data} and is mounted to the \texttt{/var/lib/postgresql/data} directory of the \texttt{postgres} service.
-This directory is used by Postgres to store its data persistently.
+The volume is called \texttt{dm-car} and is mounted to the \texttt{/var/lib/postgresql/data} directory of the \texttt{postgres} service.
 
 % Importance of backing services in stateless services
 Stateless services, in contrast to stateful services, do not store any client state on the server between requests.
@@ -388,5 +387,8 @@ services:
   postgres:
     ...
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+    - dm-car:/var/lib/postgresql/data
+
+volumes:
+    dm-car:
 \end{lstlisting}

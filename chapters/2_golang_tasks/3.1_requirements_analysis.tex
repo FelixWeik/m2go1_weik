@@ -167,7 +167,7 @@ Preconditions:
     - Customer has no rentals or outstanding payments
 
 Postconditions:
-    - Customer is not registered anymore
+    - The customer is not registered anymore
 
 Flow:
 1. Customer calls the application CarRental
@@ -205,23 +205,23 @@ The use case diagram is shown in \autoref{fig:car_rental_use_case_diagram}.
 \end{figure}
 
 \autoref{fig:car_rental_use_case_diagram} illustrates the use cases and their relationships.
-If an user wants to rent a car, the user must be a registered customer.
+If a user wants to rent a car, the user must be a registered customer.
 Therefore, \texttt{Customer Registration} is included in the \texttt{Rent A Car} use case.
 Following the same logic, one cannot cancel a rental without renting it first.
 This explains the extension-relation between \texttt{Rental Cancellation} and \texttt{Rent A Car}.
-The same applies for \texttt{Customer Registration} and \texttt{Registration Cancellation}.
+The same applies to \texttt{Customer Registration} and \texttt{Registration Cancellation}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/goLang/carRental/carRental_umlDiagram.png}
-    \caption{Use Case Diagram of the \textbf{Best Rental} Application}
+    \caption{Use Case Diagram of the BestRental Application}
     \label{fig:car_rental_use_case_diagram}
 \end{figure}
 
 \subsection{Excercise UseCaseRentACar}
 \label{sec:exercise_use_case_rent_a_car}
 \subsubsection*{Alice's Car Rental}
-This task aims to complete the flow "Rent a Car" for Alice.
+This task aims to complete the flow of "Rent a Car" for Alice.
 This is done by adding the given data from the story to the flows.
 
 The completed use-case story is shown in \autoref{lst:alices_car_rental_use_case_1}.
@@ -231,6 +231,10 @@ style=kit-cm,
 caption={Alice's Version of Use Case 1},
 label={lst:alices_car_rental_use_case_1},
 ]
+Title: Rent a Car
+Primary Actor: Alice
+Secondary Actor: None
+
 Preconditions:
     - Alice is a registered customer
 

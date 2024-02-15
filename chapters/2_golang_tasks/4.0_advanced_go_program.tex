@@ -24,7 +24,7 @@ Else, an error is returned.
 
 The command for deregistering as a customer is \texttt{deregister} since it clearly describes the intention and action of the command.
 Only the customer ID is needed as input since it identifies the customer.
-If the deregistration is successful, the customer ID is returned to the CLI, showing the value that will be deleted from the yaml file.
+If the deregistration is successful, the customer ID is returned to the CLI, showing the value that will be deleted from the YAML file.
 If the deregistration fails, the CLI returns a failure message.
 
 The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inserted values are underlined.
@@ -59,7 +59,7 @@ Each layer will be explained in the following.
                   It uses the \texttt{CarRentalOperationsInterface}.
       \item[CarRentalOperations (Application Logic Layer):]
                   This component implements the \texttt{CarRentalRepositoryInterface} with the CarRentalOperations component.
-                  It provides the \texttt{CarRentalRepositoryInterface} for the Presentation Layer.
+                  It provides the \texttt{CarRentalOperationsInterface} for the Presentation Layer.
       \item[CarRentalRepository (Infrastructure Layer):]
                   This component is part of the infrastructure layer, ensuring data persistence.
                   The repository therefore is responsible for managing the data from the car rental process providing the according functionality.
@@ -98,7 +98,8 @@ These files represent the database of the application storing the data.
 \end{figure}
 
 \subsubsection*{Start the Go Program CarRentalCLI}
-The program is started by running \texttt{go run . --- rent} in the \texttt{./CarRentalCLI} directory.
+The program can be started by running \texttt{go run main.go <command>}.
+To rent a car \texttt{go run . --- rent} is executed in the \texttt{./CarRentalCLI} directory.
 
 The program asks for the ID of the customer and the ID of the car.
 After entering the IDs, the program asks for the start and end date of the rental by asking for the day, month and year.
@@ -123,8 +124,6 @@ First, a CLI command is added to the presentation layer which calls the basic fu
 After that, an entity mapper is added to the infrastructure layer.
 Then, the operation is implemented including validations.
 The last step is to test the functionality by registering Alice as a customer.
-
-This is a hands-on task, which requires adding code to the existing application.
 
 \subsubsection*{Add CLI Command}
 The CLI commands are placed in the \texttt{CarRentalCLI.go} file.
@@ -181,8 +180,8 @@ func (repository CarRentalRepository) CreateCustomer(customer model.Customer) er
 \subsubsection*{Add Entity Mapper}
 What is the necessity for a mapper?
 The general task of a mapper is to enable communication between the application and the database.
-In this case, the database is a yaml file.
-Therefore the mapper can read and write to the yaml files and convert the data to the corresponding entities and vice versa.
+In this case, the database is a YAML file.
+Therefore the mapper can read and write to the YAML files and convert the data to the corresponding entities and vice versa.
 
 Also, mappers are important in terms of decoupling.
 They give the possibility to switch the infrastructure layer by adjusting the mappers only.
@@ -190,8 +189,8 @@ They give the possibility to switch the infrastructure layer by adjusting the ma
 In the use case of registering a new customer, the mapper is called while creating a new customer.
 This mapper is located in the \texttt{./CustomerMapper.go} file, containing two functions.
 The first function \texttt{ConvertCustomerToCustomerPersistenceEntity} takes a customer object as an argument and returns a customer persistence entity containing the same values.
-This entity is then written to the yaml file.
-By writing the entity into the yaml file, the customer is registered and can be used in the application.
+This entity is then written to the YAML file.
+By writing the entity into the YAML file, the customer is registered and can be used in the application.
 
 The second function \texttt{ConvertCustomerPersistenceEntityToCustomer} takes a customer persistence entity as an argument and returns a customer object containing the same values.
 It acts just like the function above but in the opposite direction.

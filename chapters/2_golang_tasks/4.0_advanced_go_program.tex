@@ -17,7 +17,7 @@ Empty fields are marked with an underline.
 
 The command for registering as a customer is chosen to be \texttt{register} since it clearly describes the intention and action of the command.
 
-Input for cancelling a rental is the \texttt{RentalID}.
+Input for canceling a rental is the \texttt{RentalID}.
 This is needed to identify the rental to cancel.
 If the cancellation process is successful, the input \texttt{RentalID} is returned.
 Else, an error is returned.
@@ -51,7 +51,7 @@ The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inse
 
 \subsubsection*{Describe the Software Architecture}
 The UML in Figure 4.1 of the tasks sheet describes the software architecture.
-Three layers are defined, each of them is implemented by one component.
+Three layers are defined, and each of them is implemented by one component.
 The components of each layer only have access to the components of the layer below.
 Each of these components will be explained in the following.
 
@@ -64,8 +64,8 @@ Each of these components will be explained in the following.
                   This component implements the \texttt{CarRentalOperationsInterface}.
                   This includes managing the application state and performing the requested operations.
       \item[CarRentalRepository (Infrastructure Layer):]
-                  This component is part of the infrastructure layer, ensuring data persistency.
-                  Therefore, it persists data, exposing functionality to store and retreive data.
+                  This component is part of the infrastructure layer, ensuring data persistence.
+                  Therefore, it persists data, exposing functionality to store and retrieve data.
 \end{description}
 
 \subsubsection*{Analyze the Micro Architecture}
@@ -86,11 +86,11 @@ The interface hides the infrastructure-specific details and provides a simple in
 Both components share the same model, which is defined in the \texttt{model} subpackage.
 
 \paragraph*{Infrastructure:}
-The \texttt{CarRentalRepository} package is responsible for the communication with the yaml files.
+The \texttt{CarRentalRepository} package is responsible for the communication with the YAML files.
 It provides the \texttt{CarRentalRepositoryInterface} which is implemented by the \texttt{CarRentalRepository} class.
 This class is responsible for storing and retrieving data, hiding the infrastructure-specific calls.
-The yaml mappers provide functions to read and write yaml files.
-The entities provide the structure of the yaml files and the structure of the struct the mapper creates.
+The yaml mappers provide functions to read and write YAML files.
+The entities provide the structure of the YAML files and the structure of the struct the mapper creates.
 These files represent the database of the application storing the data.
 
 \begin{figure}[h]
@@ -231,7 +231,7 @@ After that, it calls the \texttt{RegisterAsCustomer} function that takes both co
 This function is located in the operations package in the \hfill \linebreak \texttt{RegisterAsCustomerOperation.go} file.
 It validates the input by checking if the customer exists.
 If the input is valid, it calls the \texttt{NewCustomer} and \texttt{CreateCustomer} functions, which are located in the models package.
-These functions will write to the yaml file, storing the new customer.
+These functions will write to the YAML file, storing the new customer.
 
 If an error occurs or the validations fail, the process will abort.
 If the process succeeds, a success message containing the newly created customer ID is printed to the CLI.

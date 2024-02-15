@@ -44,12 +44,12 @@ type Rental struct {
 }
 
 type Car struct {
-	id          int
-	carType     string
+    id          int
+    carType     string
 }
 
 type Date struct {
-	day         int 
+    day         int 
     month       int 
     year        int 
 }
@@ -136,31 +136,30 @@ The goal of this task is to analyze these constraints, check their implementatio
 
 \subsubsection*{Analyze OCL Constraints}
 In the given task four invariants are described.
-These invariants stand under the context of the date object.
-Therefore the invariants are implemented in the date object.
-
-These invariants are implemented in \texttt{./CarRentalTests/CarRentalTests.go} \hfill \linebreak and executed in \texttt{./CarRentalStructs/CarRentalStructs.go}.
-
-The first invariant checks if the year is greater than or equal to 2000.
-The second invariant checks if the month is less than 13.
-The third invariant checks if the month is greater than or equal to 1.
-The fourth invariant checks if the number of days in the month is valid.
+These invariants stand under the context of the date object and are therefore implemented in the same object.
 
 The following enumeration depicts the lines of code where the invariants are implemented.
 \begin{enumerate}
-    \item \texttt{self.Date.Year >= 2000}: CarRentalTests.go line 20-22
-    \item \texttt{self.Date.Month < 13}: CarRentalTests.go line 24-26
-    \item \texttt{self.Date.Moth >= 1}: CarRentalTests.go line 24-26
-    \item \texttt{self.ValidateNumberOfDaysInMonth() == True}: CarRentalTests.go line 32
+    \item \texttt{self.Date.Year >= 2000}: CarRentalTests.go line 20-22.
+    The year therefore cannot be less than 2000.
+    \item \texttt{self.Date.Month < 13}: CarRentalTests.go line 24-26.
+    This ensures that the month cannot be greater than 12.
+    \item \texttt{self.Date.Moth >= 1}: CarRentalTests.go line 24-26.
+    This ensures that the month cannot be less than 1.
+    Both invariants together make sure that the month is in the range of 1 to 12 and therefore valid.
+    \item \texttt{self.ValidateNumberOfDaysInMonth() == True}: CarRentalTests.go line 32.
+    It is a pseudo function that returns true if the day fits the month.
+    This ensures that the number of days in the month is valid.
 \end{enumerate}
 
 \subsubsection*{Run Test}
-After running the test function an error occurs. 
-The test, therefore, does not pass.
+After running the test function using \texttt{go test} an error occurs, which makes the test fail.
 The error is shown in \autoref{fig:car_rental_test_error}.
 
 This error is caused due to a false implementation in line 20 of \hfill \linebreak \texttt{./CarRentalTests/CarRentalTests.go}
-In the first test, it checks if the year is greater than 2000, yet for correct execution, it needs to be greater than or equal to 2000.
+It is part of the \texttt{validateDate} method validating the invariants from the previous section.
+In the first test, it checks if the year is greater than 2000, yet for correct execution.
+As mentioned in the OCL constraints, the year must be greater or equal to 2000.
 
 \begin{figure}[H]
     \centering
@@ -181,19 +180,21 @@ The working tree of the changes is shown in \autoref{fig:car_rental_test_working
     \label{fig:car_rental_test_working_tree}
 \end{figure}
 
-\subsubsection*{Invalid Test Case}
-Implementing an invalid test case the following code is added to the test function:
+\subsubsection*{Add Additional Test Case}
+A second negative test case is implemented.
+It passes the 12.13.2000 as a date expecting the test to fail.
+Since the month is set to 13, the test does not apply to the OCL constraints and should therefore return false.
+The test, however, runs successfully due to the want value set to false.
+The code implementing the invalid testcase is shown in \autoref{lst:invalid_test_case}.
+
 \begin{lstlisting}[
 style=kit-cm,
 language=Golang,
 caption={Invalid Test Case},
-label={lst:invalid_test_case}
+label={lst:invalid_test_case},
+float=h
 ]
 name:   "InvalidTestCase1",
 fields: fields{Day: 12, Month: 13, Year: 2000},
 want:   false,  
 \end{lstlisting}
-
-As shown in \autoref{lst:invalid_test_case} the month is set to 13, which is invalid.
-Therefore the test should return false.
-The test, however, runs successfully due to the want value set to false.

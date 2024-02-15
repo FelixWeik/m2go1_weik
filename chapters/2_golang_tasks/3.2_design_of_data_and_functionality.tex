@@ -2,14 +2,9 @@
 
 \subsection{Excercise CarRentalEntities}
 \label{sec:exercise_car_rental_entities}
-\subsubsection*{Description of the Initial Entity Diagram}
-The entity diagram consists of the following entities:
-\begin{itemize}
-    \item Customer entity
-    \item Rental entity
-    \item Car entity
-    \item Date value object
-\end{itemize}
+\subsubsection*{Describe the Initial Entity Diagram}
+The entity diagram consists of the \texttt{Customer} entity, the \texttt{Rental} entity, the \texttt{Car} entity and the \texttt{Date} value object.
+
 A customer has zero or more rentals.
 Therefore each rental belongs to at exactly one customer.
 Each rental has a date value object and belongs to exactly one car.
@@ -51,21 +46,17 @@ The following attributes are added to the entities:
 \end{figure}
 
 \subsubsection*{Add the Functionality as a Method}
-The chosen signature of the function is \texttt{rentACar(startDate: string, endDate: string, rentalId: int, carId: int): Rental}.
+The chosen signature of the function is "\texttt{rentACar(startDate: Date, endDate: Date): Rental[]}".
+Since the action implemented by the method is performed by the customer, the signature is added to the customer entity.
 
-The method works as follows:
-The algorithm checks if the car is available for the given period.
-If this is not the case, the function aborts.
-A new rental object is created with a unique ID and is assigned both date objects.
-The car is marked as rented and linked to the rental object.
-The rental object is linked to the customer.
-In the end, all changes are saved to the objects and the rental object is returned.
+The use case description was analyzed to find the method signature.
+It describes that the customer only inputs the start and end date, therefore both values are passed as parameters.
+A list of rentals is returned, that is why the return type is a list of rentals.
 
 \subsection{Excercise CarRentalExampleData}
 \label{sec:exercise_car_rental_example_data}
 \subsubsection*{Analyze Alice's Rental Request}
-Yes, the request is successful for several reasons.
-
+Yes, the request is successful since it fulfills the following conditions.
 First, the car exists so it can be rented.
 Next, the car is not rented for the specified period.
 The only rental of the car is from 1.3.00 to 15.03.2000 by Max.
@@ -143,7 +134,7 @@ Due to this rental overlapping with Rental5, Rental7 is not a valid rental.
 \end{table}
 
 \subsubsection*{Write YAML Code}
-The following yaml code represents the the data from the tables above.
+The following YAML code represents the data from the tables above.
 YAML is a human-readable data serialization language, similar to JSON.
 The notation specifies an object and the according attributes, storing the data in a key-value format.
 

@@ -31,8 +31,6 @@ The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inse
 
 \begin{table}[h]
       \centering
-      \caption{CLI Parameters for CarRentalCLI}
-      \label{tab:cli_parameters_car_rental_cli}
       \begin{tabular}{|p{4cm}|p{2cm}|p{4cm}|p{5cm}|}
             \hline
             \textbf{Use Case} & \textbf{Command} & \textbf{Input} & \textbf{Output} \\
@@ -47,25 +45,24 @@ The values are shown in \autoref{tab:cli_parameters_car_rental_cli} - newly inse
             Deregister as Customer & \underline{deregister} & \underline{CustomerID} & \underline{CustomerID / Failure} \\
             \hline
       \end{tabular}
+      \caption{CLI Parameters for CarRentalCLI}
+      \label{tab:cli_parameters_car_rental_cli}
 \end{table}
 
 \subsubsection*{Describe the Software Architecture}
-The UML in Figure 4.1 of the tasks sheet describes the software architecture.
-Three layers are defined, and each of them is implemented by one component.
-The components of each layer only have access to the components of the layer below.
-Each of these components will be explained in the following.
+The provided software architecture is a three-layer architecture consisting of the Presentation Layer, the Application Logic Layer, and the Infrastructure Layer.
+Each layer will be explained in the following.
 
 \begin{description}
       \item[CarRentalCLI (Presentation Layer):] 
                   This component handles the user interaction.
-                  It implements input and output operations, thus being implemented in the presentation layer.
-                  Its operations stem from the \texttt{CarRentalOperationsInterface}.
+                  It uses the \texttt{CarRentalOperationsInterface}.
       \item[CarRentalOperations (Application Logic Layer):]
-                  This component implements the \texttt{CarRentalOperationsInterface}.
-                  This includes managing the application state and performing the requested operations.
+                  This component implements the \texttt{CarRentalRepositoryInterface} with the CarRentalOperations component.
+                  It provides the \texttt{CarRentalRepositoryInterface} for the Presentation Layer.
       \item[CarRentalRepository (Infrastructure Layer):]
                   This component is part of the infrastructure layer, ensuring data persistence.
-                  Therefore, it persists data, exposing functionality to store and retrieve data.
+                  The repository therefore is responsible for managing the data from the car rental process providing the according functionality.
 \end{description}
 
 \subsubsection*{Analyze the Micro Architecture}
@@ -89,11 +86,11 @@ Both components share the same model, which is defined in the \texttt{model} sub
 The \texttt{CarRentalRepository} package is responsible for the communication with the YAML files.
 It provides the \texttt{CarRentalRepositoryInterface} which is implemented by the \texttt{CarRentalRepository} class.
 This class is responsible for storing and retrieving data, hiding the infrastructure-specific calls.
-The yaml mappers provide functions to read and write YAML files.
+The YAML mappers provide functions to read and write YAML files.
 The entities provide the structure of the YAML files and the structure of the struct the mapper creates.
 These files represent the database of the application storing the data.
 
-\begin{figure}[h]
+\begin{figure}
       \centering
       \includegraphics[width=0.8\textwidth]{figures/goLang/carRental/carRentalCLI/carRentalCLI_MicroArchitecture.png}
       \caption{Micro Architecture of the CarRentalCLI}

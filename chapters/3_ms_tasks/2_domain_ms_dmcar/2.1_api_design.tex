@@ -20,26 +20,33 @@ This concludes, the DDD pattern entity is an appropriate choice in this context.
 
 \subsubsection*{Terms Used}
 This section describes the terms used in the \texttt{domain\_entity\_car\_v1.0} file as it is shown in \texttt{gu\_terms\_used}.
-\begin{description}
-    \item[Domain Entity:] This shows, that this entity is part of the domain.
-    \item[Car:] \texttt{Car} is part of the domain.
-                It represents a car that can be used application-agnostically in various applications related to the domain.
-    \item[Vin:] The VIN (Vehicle Identification Number) is a unique identifier for a car.
-                It therefore is part of the car's identity.
-    \item[Brand:] This is the brand of the car.
-                It also is part of the car's identity.
-    \item[Model:] This is the model of the car.
-                It is part of the car's identity.
-\end{description}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{5cm}|p{9cm}|}
+        \hline
+        \textbf{Term} & \textbf{Definition} \\
+        \hline
+        Domain Entity & This shows, that this entity is part of the domain. \\
+        Car & \texttt{Car} is part of the domain. 
+        It represents a car that can be used application-agnostically in various applications related to the domain. \\
+        \hline
+        Vin & The VIN (Vehicle Identification Number) is a unique identifier for a car.\\
+        \hline
+        Brand & This is the name of the car's brand.\\
+        \hline
+        Model & This is the name of the car's model.\\
+        \hline
+    \end{tabular}
+    \caption{Terms Used in DomainEntityCarV1.0}
+    \label{tab:terms_used_domain_entity_car_v1.0}
+\end{table}
 
 \subsubsection*{Example Data}
 This task adds the example data to the table of example data.
 The example data is given in the task sheet.
 The results are shown in \autoref{tab:example_data_domain_entity_car_v1.0}.
-\begin{table}
+\begin{table}[H]
     \centering
-    \caption{Example Data of DomainEntityCarV1.0}
-    \label{tab:example_data_domain_entity_car_v1.0}
     \begin{tabular}{|p{5cm}|p{2cm}|p{2cm}|}
         \hline
         vin & brand & model \\
@@ -51,6 +58,8 @@ The results are shown in \autoref{tab:example_data_domain_entity_car_v1.0}.
         JH4DB1550MS003978 & Audi & A3 \\
         \hline
     \end{tabular}
+    \caption{Example Data of DomainEntityCarV1.0}
+    \label{tab:example_data_domain_entity_car_v1.0}
 \end{table}
 
 \subsection{Excercise APIDiagramDMCarV1.0}
@@ -101,13 +110,9 @@ Therefore both models have their pros and cons.
 As mentioned in \autoref{subsec:rest_and_grpc} gRPC and ReST are two different approaches to implementing an API.
 Their main difference is their orientation in the way they communicate.
 While gRPC is method-oriented, ReST is resource-oriented.
-Therefore the API operations of gRPC are methods, while the API operations of ReST are resources.
-ReST helps to build a distributed system that handles clearly defined and identifiable resources.
 
-\texttt{DM-CarV1.0} uses the DDD pattern \texttt{Entity}.
-The explanation of this pattern can be found in \autoref{subsubsec:ddd_pattern}.
-Therefore most of the communication in this microservice is entity- or resource-oriented due to car entities being the main part of the microservice and its communication.
-The API orientation therefore lies on the resources and its CRUD operations.
+\texttt{DM-CarV1.0} is a domain-microservice implementing CRUD operations on car entities.
+Therefore, the main focus of the microservice is resource-oriented.
 This makes ReST the better choice for this microservice.
 
 \subsection{Excercise PrepareLocalWorkingFolder}

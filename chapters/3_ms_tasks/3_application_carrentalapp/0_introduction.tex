@@ -5,20 +5,22 @@ Then, the task names three properties in which both microservices do not match.
 Finally, the UME artifacts containing relations between both microservices are shown.
 
 \subsubsection*{Matching Properties}
-This task names three properties in which DM-Car and AM-RentalManagement match:
+DM-Car and AM-RentalManagement share three common properties:
 \begin{itemize}
-    \item Both applications are written in Go
-    \item Both applications are deployed as Docker containers
-    \item Both applications are microservices
+    \item Both applications are written in Go.
+    \item Both applications follow the UME approach.
+    \item Both applications use an SQL database.
 \end{itemize}
 \subsubsection*{Not Matching Properties}
 This task names three properties in which DM-Car and AM-RentalManagement do not match:
 \begin{itemize}
-    \item DM-Car is a domain microservice, implementing the domain model, while AM-RentalManagement is an application microservice, implementing the application logic.
-    \item DM-Car is a stateless microservice, while AM-RentalManagement is a stateful microservice %TODO ist das so?
-    \item DM-Car is a microservice that is not exposed to the outside world, while AM-RentalManagement is a microservice that is exposed to the outside world.
+    \item DM-Car is a domain microservice implemented in the domain logic layer, while AM-RentalManagement is an application microservice implemented in the application logic layer.
+    \item DM-Car defines a ReST API, while AM-RentalManagement defines a gRPC API.
+    \item DM-Car implements CRUD operations for the \texttt{Car} domain entity, while \hfill \linebreak AM-RentalManagement focuses on the management of rentals.
 \end{itemize}
 
 \subsubsection*{Modeling of the Microservice Relation}
-The UME artifacts of DM-Car and AM-RentalManagement contain some relations.
-Both microservices are modeled with an API diagram, which shows the general structure and relations of both microservices.
+The software architecture illustrated in the component diagram illustrates the relation between both microservices.
+An API relationship is shown there.
+The system architecture shows the relation between both microservices in deployment.
+The orchestration diagram shows how both microservices interact in certain use cases.

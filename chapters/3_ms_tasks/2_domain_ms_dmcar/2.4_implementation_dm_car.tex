@@ -87,13 +87,13 @@ Also, the separation becomes clearer and the code is easier to maintain.
 % Description of the CarRepositoryInterface
 The \texttt{CarRepositoryInterface} is placed in the \texttt{logic/model} folder.
 It acts as the Interface between the \texttt{logic} and the \texttt{infrastructure} layer, thus separating the logic from the infrastructure.
-This is done by the \texttt{CarRepositoryInterface} encapsulating the implementation of the persistence of cars.
+This encapsulates the implementation of the persistence of cars.
 \texttt{CarOperations} will use the \texttt{CarRepositoryInterface} to communicate with the \texttt{infrastructure} layer.
 It provides the signatures of the functions "\texttt{GetCars}" and "\texttt{GetCar}".
-"\texttt{AddCar}" will be implemented later.
-
+\enquote{\texttt{AddCar}} will be implemented later.
 % Which operations must be provided by a repository implementation
-The \texttt{CarRepositoryInterface} is used to create the \texttt{CarOperations} object, which implements the interface. %//TODO nochmal nachprüfen ob das stimmt
+These operations therefore must be provided by a repository implementation.
+
 % Why is the interface located in the logic folder
 Each function of the \texttt{CarRepositoryInterface} is implemented in the \texttt{operations} package with each function having a separate file.
 This is done by using the \texttt{CarOperations} struct, which calls the functions from the \texttt{operations} package.

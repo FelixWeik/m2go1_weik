@@ -11,7 +11,15 @@ Also the \texttt{car} model, although using the domain entity \texttt{Car} from 
 \subsubsection*{Terms Used V1.0}
 A type-name pair is used to describe the terms used in the requirements analysis.
 Each type-name pair is described in a table, in this case, it is the table \texttt{Terms Used V1.0} from the \texttt{0.DocCarRentalAppV1} repository found at \url{https://gitlab.kit.edu/kit/cm/teaching/carrentalapp/0.doccarrentalappv1}.
-A fitting candidate is the type name pair \texttt{Vehicle Identification Number (VIN)} and its description.
+The following candidates build a fitting type-name pair example:
+\begin{itemize}
+    \item[Car:] This type allows to create instances of the type \texttt{Car}.
+    It will be uniquely identified by the \texttt{Vin} value object. 
+    \item[Rental:] Refers to a rental of a car.
+    It too can be identified by a set of attributes.
+    \item[Customer:] This type represents a customer of the car rental service.
+    A customer is identified by a unique ID.
+\end{itemize}
 \subsubsection*{Analysis Artifacts and Application Microservice}
 % Aus welchen Teilen ist ... hergeleitet
 % AM RentalManagementV1.0
